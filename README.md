@@ -24,7 +24,7 @@ See [docs.moralis.io/unity](https://docs.moralis.io/unity) for more info.
 
 **Structure**
 * `Unity/` - Open this folder in the Unity Editor
-* `Unity/Assets/Scenes/` - Open any Scene. Press 'Play'!
+* `Unity/Assets/Moralis Web3 Unity SDK Examples/Examples/` - Open any Scene. Press 'Play'!
 
 **Dependencies**
 * `Moralis Web3 Unity SDK` - Already included via [Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) as this [Version](./Unity/Packages/manifest.json)
