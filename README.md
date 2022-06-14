@@ -3,7 +3,7 @@
 This suite of standalone Unity example scenes showcases key features of the [Moralis](https://moralis.io/) Web3 Unity SDK.
 
 **Getting Started**
-1. Download this repo (as zip or git)
+1. Download this repo (As *.zip or *.git)
 2. Download the [Unity Editor](https://store.unity.com/#plans-individual)
 3. Open this repo in the Unity Editor
 4. Enjoy
