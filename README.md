@@ -41,13 +41,32 @@ See [docs.moralis.io/unity](https://docs.moralis.io/unity) for more info.
 **Videos: Unity Web3 Development - SDK Examples Project**
 <table>
   <tr>
-    <th>YouTube</th>
+    <th>Thumbnail</th>
+    <th>TimeStamps</th>
   </tr>
   <tr>
     <td align="center"><a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4"><img src="https://github.com/MoralisWeb3/web3-unity-sdk-examples/blob/main/Unity/Assets/Moralis%20Web3%20Unity%20SDK%20Examples/Documentation/Images/YouTubeThumbnail.png" width = "500"></a></td>
+        <td align="left">
+<ul>          
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=0s">0:00</a> Intro Topic</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=88s">1:28</a> Main Topic</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=222s">3:42</a> Live Coding - Overview</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=342s">5:42</a> Live Coding - Moralis </li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=883s">14:43</a> Live Coding - Moralis Client</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=979s">16:19</a> Live Coding - Moralis Cloud</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=1172s">19:32</a> Live Coding - Moralis User</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=1264s">21:04</a> Live Coding - Solana API</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=1437s">23:57</a> Live Coding - Web3 API</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=2154s">35:54</a> Live Coding - Web3 Client</li>
+<li>▶ <a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4&t=2308s">38:28</a> Recap Topic</li>
+</ul>
+    </td>
   </tr> 
 </table>
 
+  TIMESTAMPS:
+
+  
 <BR>
 
 **Images: The "Example_Query_01" Scene**
