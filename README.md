@@ -36,7 +36,21 @@ See [docs.moralis.io/unity](https://docs.moralis.io/unity) for more info.
 
 ## Media
 
-**The "Example_Query_01" Scene**
+<BR>
+  
+**Videos: Unity Web3 Development - SDK Examples Project**
+<table>
+  <tr>
+    <th>YouTube</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://www.youtube.com/watch?v=UJ_PiKoMTR4&list=PLFPZ8ai7J-iT8JvlwTCvBrKYqO8qT4DrB&index=4"><img src="https://github.com/MoralisWeb3/web3-unity-sdk-examples/blob/main/Unity/Assets/Moralis%20Web3%20Unity%20SDK%20Examples/Documentation/Images/YouTubeThumbnail.png" width = "500"></a></td>
+  </tr> 
+</table>
+
+<BR>
+
+**Images: The "Example_Query_01" Scene**
 <table>
   <tr>
     <th>Logged In</th>
