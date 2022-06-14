@@ -38,7 +38,7 @@ See [docs.moralis.io/unity](https://docs.moralis.io/unity) for more info.
 
 <BR>
   
-**Videos: Unity Web3 Development - SDK Examples Project**
+**Video: Unity Web3 Development - SDK Examples Project**
 <table>
   <tr>
     <th>Thumbnail</th>
