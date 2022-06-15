@@ -63,7 +63,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
         ///////////////////////////////////////////
         // Clickable Urls
         ///////////////////////////////////////////
-        public const string MoralisServersUrl = "https://admin.moralis.io/servers#";
+        public const string MoralisServersUrl = "https://admin.moralis.io/";
         
         ///////////////////////////////////////////
         // Web3 Addresses
