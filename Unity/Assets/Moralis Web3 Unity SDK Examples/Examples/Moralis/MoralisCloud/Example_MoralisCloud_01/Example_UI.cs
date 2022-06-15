@@ -150,7 +150,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 			// Display
 			_bottomBodyText.Clear();
 			_bottomBodyText.AppendHeaderLine
-				($"myMethod02 (10,20))");
+				($"myMethod02 (10,20)");
 
 			_bottomBodyText.AppendBullet($"result = '{result}'");
 			if (string.IsNullOrEmpty(result))

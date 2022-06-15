@@ -123,7 +123,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			try
 			{
 				///////////////////////////////////////////
-				// Execute: GetPortfolio
+				// Execute: GetNFTs
 				///////////////////////////////////////////
 				List<SplNft> splNfts = 
 					await moralisClient.SolanaApi.Account.GetNFTs(networkTypes, address);
