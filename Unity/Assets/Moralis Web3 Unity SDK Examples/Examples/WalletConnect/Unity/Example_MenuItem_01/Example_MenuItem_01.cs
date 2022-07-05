@@ -8,24 +8,21 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 {
 	/// <summary>
 	/// Example: MenuItem
-	///
+	/// 
+	/// <p/>
 	/// Documentation:
 	///		
 	/// <list type="bullet">
-	/// 
 	/// <item>See <a href="https://docs.unity3d.com/ScriptReference/MenuItem.html">MenuItem</a></item>
 	/// <item>See <a href="https://docs.unity3d.com/ScriptReference/EditorApplication.ExecuteMenuItem.html">ExecuteMenuItem</a></item>
-	/// 
 	/// </list>
 	///
-	/// 
+	/// <p/>
 	/// Coding Concerns:
 	/// 
 	/// <list type="bullet">
-	/// 
 	/// <item>See <see cref="Example_UI"/> for the UI functionality</item>
 	/// <item>See below for the core functionality</item>
-	/// 
 	/// </list>
 	/// </summary>
 	public class Example_MenuItem_01 : Example_UI

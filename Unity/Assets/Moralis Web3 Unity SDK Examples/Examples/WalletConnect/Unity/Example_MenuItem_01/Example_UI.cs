@@ -57,9 +57,18 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			
 			// Panels
 			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(10);
+
+			string title = "";
+			
+			
+#if UNITY_EDITOR
+			title = Example_MenuItem_01.MenuItemTitle;
+#endif //#if UNITY_EDITOR	
+			
+			
 			_topBodyText.Clear();
 			_topBodyText.AppendHeaderLine($"[MenuItem]");
-			_topBodyText.AppendBullet($"Click Menu: Tools ► {Example_MenuItem_01.MenuItemTitle}");
+			_topBodyText.AppendBullet($"Click Menu: Tools ► {title}");
 			_topBodyText.AppendHeaderLine($"EditorApplication.ExecuteMenuItem(...)");
 			_topBodyText.AppendBullet($"Or click 'Execute Menu Item' below");
 
@@ -103,7 +112,12 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			///////////////////////////////////////////
 			// Execute
 			///////////////////////////////////////////
+
+			
+#if UNITY_EDITOR
 			Example_MenuItem_01.Unity_ExecuteMenuItem();
+#endif //#if UNITY_EDITOR	
+			
 			
 			// Display
 			SignButton.IsInteractable = true;
