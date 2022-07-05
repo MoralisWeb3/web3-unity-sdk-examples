@@ -99,8 +99,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 			}
 			
 			// Prepare
+			SignButton.IsInteractable = false;
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{ExampleConstants.PendingTransactionMessage}");
 			await RefreshUI();
 			
 			string address = _exampleCanvas.Header.AuthenticationUI.ActiveAddress;
@@ -113,6 +114,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 				await Example_Session_Sign_01.WalletConnect_Session_EthPersonalSign(_walletConnect, message, address);
 			
 			// Display
+			SignButton.IsInteractable = true;
 			_bottomBodyText.Clear();
 			_bottomBodyText.AppendHeaderLine($"Session.EthSign({address}, {message})");
 			_bottomBodyText.AppendBullet($"result = {result}");

@@ -4,6 +4,7 @@ using MoralisUnity.Sdk.Constants;
 using MoralisUnity.Sdk.UI.ReadMe;
 using UnityEngine;
 using System.IO;
+using MoralisUnity.Samples.Shared.Data.Storage;
 
 namespace MoralisUnity.Examples.Sdk.Shared
 {
@@ -28,7 +29,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
 			ExampleConstants.PriorityMoralisWindow_Examples)]
 		public static void AddAllScenesToBuildSettings()
 		{
-			List<SceneAsset> sceneAssets = ExampleDiskStorage.Instance.SceneAssets;
+			List<SceneAsset> sceneAssets = SceneDataStorage.Instance.SceneAssets;
 
 			Debug.Log($"AddAllScenesToBuildSettings() sceneAssets.Count={sceneAssets.Count}");
 			EditorBuildSettingsUtility.AddScenesToBuildSettings(sceneAssets);

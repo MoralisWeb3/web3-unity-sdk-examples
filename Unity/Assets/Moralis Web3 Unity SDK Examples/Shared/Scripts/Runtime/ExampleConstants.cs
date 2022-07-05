@@ -14,8 +14,8 @@ namespace MoralisUnity.Examples.Sdk.Shared
         ///////////////////////////////////////////
         public const string Web3UnitySDKExamples = "Web3 Unity SDK Examples";
         public const string OpenReadMe = MoralisConstants.Open + " " + "ReadMe";
-        private const string PathMoralisCreateAssetMenu = Moralis + "/" + MoralisConstants.Web3UnitySDK;
-        private const string PathMoralisWindowMenu = "Window/" + Moralis + "/" + MoralisConstants.Web3UnitySDK;
+        public const string PathMoralisExamplesCreateAssetMenu = Moralis + MoralisConstants.Web3UnitySDK + "/Examples/" + Web3UnitySDKExamples + "/";
+        private const string PathMoralisExamplesToolsMenu = "Tools/" + Moralis + "/" + MoralisConstants.Web3UnitySDK  +"/Examples/" + Web3UnitySDKExamples + "/";
         
         ///////////////////////////////////////////
         // MenuItem Priority
@@ -31,10 +31,13 @@ namespace MoralisUnity.Examples.Sdk.Shared
         // Display Text
         ///////////////////////////////////////////
         public const string Moralis = "Moralis";
+        public const string Web3UnitySDK = "Web3 Unity SDK";
+        public const string Web3UnitySDKVersion = "v1.2.2"; //May be out of date. Compare to Manifest.json and update here
         public const string Chains = "Chains";
         public const string Main = "Main";
         public const string Details = "Details";
         public const string Loading = "Loading ...";
+        public const string PendingTransactionMessage ="Please confirm transaction in your wallet." ; 
         public const string NothingAvailable = "Nothing available";
         public const string Authenticate = "Authenticate";
         public const string Results = "Results";

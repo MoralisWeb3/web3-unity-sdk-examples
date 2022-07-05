@@ -34,29 +34,29 @@ MonoBehaviour:
   - heading: Getting Started
     subheading: 1. Get the Configuration
     text: Setup the server and copy the config
-    linkText: admin.moralis.io/servers
-    url: https://admin.moralis.io/servers
+    linkText: admin.moralis.io
+    url: https://admin.moralis.io
   - heading: 
     subheading: 2. Set the Configuration
     text: Paste the config into Unity
     linkText: 
     url: 
     openMenuName: Web3 Setup Window
-    openMenuNameId: Window/Moralis/Web3 Unity SDK/Open Web3 Setup
+    openMenuNameId: Tools/Moralis Web3 Unity SDK/Open Web3 Setup
   - heading: 
     subheading: 3. Update the Build Settings
     text: Prepare project for use
     linkText: 
     url: 
     openMenuName: Add Example Scenes To Build Settings
-    openMenuNameId: Window/Moralis/Web3 Unity SDK/Examples/Web3 Unity SDK Examples/Add Example Scenes To Build Settings
+    openMenuNameId: Tools/Moralis Web3 Unity SDK/Examples/Web3 Unity SDK Examples/Add Example Scenes To Build Settings
   - heading: 
     subheading: 4. Update Unity Layout & Aspect Ratio
     text: Use our default layout or choose your own
     linkText: 
     url: 
     openMenuName: Load Example Layout (10x16)
-    openMenuNameId: Window/Moralis/Web3 Unity SDK/Examples/Web3 Unity SDK Examples/Load Example Layout (10x16)
+    openMenuNameId: Tools/Moralis Web3 Unity SDK/Examples/Web3 Unity SDK Examples/Load Example Layout (10x16)
   - heading: 
     subheading: 5. Open Any Example Scene
     text: Play this scene or choose your own

@@ -39,9 +39,11 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisClient_01
 
 			if (string.IsNullOrEmpty(moralisClient.EthAddress))
 			{
+				string product = ExampleConstants.Moralis + ExampleConstants.Web3UnitySDK + ExampleConstants.Web3UnitySDKVersion;
+
 				outputText.AppendErrorLine($"EthAddress must not be null or empty. " +
 				                           $"This is a known issue and has been reported to Moralis in " +
-				                           $"Web3 Unity SDK v1.2.1.");
+				                           $"{product}.");
 				outputText.AppendLine();
 			}
 

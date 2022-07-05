@@ -105,7 +105,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Authentication_01
 				// If so, this scene is designed to handle Auth more completely
 				
 				if (_wasLoggedInAtSetupMoralis == false && 
-				    authenticationKitState == AuthenticationKitState.Connected)
+				    authenticationKitState == AuthenticationKitState.MoralisLoggedIn)
 				{
 					// You went from NOT LOGGED to CONNECTED...
 					// Success! So go back to the previous scene
