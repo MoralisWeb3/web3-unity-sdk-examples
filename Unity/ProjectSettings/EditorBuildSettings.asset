@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_Authentication_01/Example_Authentication_01.unity
     guid: e86d776073058a543aa040dcc9919139
   - enabled: 1
+    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleCanvas_01/Example_ExampleCanvas_01.unity
+    guid: caa68b87c4671aa4396ab338a1401337
+  - enabled: 1
+    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleChainsDropdown_01/Example_ExampleChainsDropdown_01.unity
+    guid: 836d7459f86c37745800d5d2594a41c2
+  - enabled: 1
     path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleDialog_01/Example_ExampleDialog_01.unity
     guid: be08b6c722ec8024bb808ecee7267507
+  - enabled: 1
+    path: Assets/Moralis Web3 Unity SDK Examples/Examples/WalletConnect/Unity/Example_MenuItem_01/Example_MenuItem_01.unity
+    guid: 800b8882d76a0774ca61c765035bd0eb
   - enabled: 1
     path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/MoralisClient/Example_MoralisClient_01/Example_MoralisClient_01.unity
     guid: b0e9bac8a166a4e46b7a813d050251cc
@@ -24,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Moralis/Example_Query_01/Example_Query_01.unity
     guid: f862f8546689e0c47b74fefea7ef727a
   - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/WalletConnect/Unity/Example_Query_LiveQuery_01/Example_Query_LiveQuery_01.unity
+    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Moralis/Example_Query_LiveQuery_01/Example_Query_LiveQuery_01.unity
     guid: 6aa2fb799053c674d90f02173c2823d3
   - enabled: 1
     path: Assets/Moralis Web3 Unity SDK Examples/Examples/WalletConnect/Session/Example_Session_Sign_01/Example_Session_Sign_01.unity
@@ -44,10 +53,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Web3Client/Example_Web3Client_SendTransactionAsync_01/Example_Web3Client_SendTransactionAsync_01.unity
     guid: 7de2022488564844db6ac24ef6ce0708
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleChainsDropdown_01/Example_ExampleChainsDropdown_01.unity
-    guid: 836d7459f86c37745800d5d2594a41c2
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleCanvas_01/Example_ExampleCanvas_01.unity
-    guid: caa68b87c4671aa4396ab338a1401337
   m_configObjects: {}
