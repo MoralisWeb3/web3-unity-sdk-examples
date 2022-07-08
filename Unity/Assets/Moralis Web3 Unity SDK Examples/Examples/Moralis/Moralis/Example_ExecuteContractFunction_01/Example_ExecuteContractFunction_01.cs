@@ -1,8 +1,6 @@
 using System;
 using System.Text;
 using MoralisUnity.Examples.Sdk.Shared;
-using MoralisUnity.Platform.Objects;
-using MoralisUnity.Platform.Queries;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.Web3Api.Models;
 using Nethereum.Hex.HexTypes;
@@ -12,14 +10,6 @@ using WalletConnectSharp.Unity;
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 {
-	public class MoriaGatesEvent : MoralisObject
-	{
-		public const string Name = "MoriaGatesEvent";
-		public string result { get; set; }
-	       
-		public MoriaGatesEvent() : base(MoriaGatesEvent.Name) {}
-	}
-	
 	/// <summary>
 	/// Example: INativeApi
 	///
@@ -36,8 +26,6 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 	public class Example_ExecuteContractFunction_01 : Example_UI
 	{
 		//  Fields ----------------------------------------
-		private static MoralisQuery<MoriaGatesEvent> _getEventsQuery;
-		private static MoralisLiveQueryCallbacks<MoriaGatesEvent> _queryCallbacks;
 		
 		//  General Methods -------------------------------	
 		public static async Cysharp.Threading.Tasks.UniTask<StringBuilder>  
@@ -57,16 +45,6 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				throw new Exception($"Error. You must use {chainListRequired} chain for this specific contract");
 			}
 			
-			// Try events...
-			// _getEventsQuery = await Moralis.GetClient().Query<MoriaGatesEvent>();
-			// _queryCallbacks = new MoralisLiveQueryCallbacks<MoriaGatesEvent>();
-			// _queryCallbacks.OnUpdateEvent += HandleContractEventResponse;
-			// MoralisLiveQueryController.AddSubscription<MoriaGatesEvent>(MoriaGatesEvent.Name, _getEventsQuery, _queryCallbacks);
-			
-			
-			//TODO: Call this on destroy? // not needed
-			//MoralisLiveQueryController.RemoveSubscriptions(MoriaGatesEvent.Name);
-
 			// Setup Web 3
 			if (WalletConnect.Instance == null)
 			{
@@ -114,9 +92,5 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 		}
 		
 		//  Event Handlers --------------------------------
-		private static void HandleContractEventResponse(MoriaGatesEvent newEvent, int requestId)
-		{
-			Debug.Log($"HandleContractEventResponse() {newEvent} and {requestId}");
-		}
 	}
 }
