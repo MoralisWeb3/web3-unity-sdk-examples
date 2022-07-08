@@ -78,9 +78,5 @@ namespace MoralisUnity.Examples.Sdk.Shared
         public const string AddressForTesting = "0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf";
         public const string TokenAddressForTesting = "0x00000000219ab540356cbb839cbe05303d7705fa";
         
-        //Compiled contract by Moralis via Remix
-        public const string AddressForContractTesting = "0x698d7D745B7F5d8EF4fdB59CeB660050b3599AC3";
-
-
     }
 }

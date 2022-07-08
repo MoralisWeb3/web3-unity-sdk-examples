@@ -5,7 +5,7 @@ using MoralisUnity.Web3Api.Models;
 using UnityEngine;
 
 #pragma warning disable CS1998
-namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
+namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 {
 	/// <summary>
 	/// This class is UI only.
@@ -52,7 +52,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			}
 			
 			// Header
-			_exampleCanvas.Header.TitleText.text = "Run Contract"; 
+			_exampleCanvas.Header.TitleText.text = "Execute Contract"; 
 			_exampleCanvas.Header.ChainsDropdown.IsVisible = true;
 			_exampleCanvas.Header.ChainsDropdown.OnValueChanged.AddListener(ChainsDropdown_OnValueChanged);
 			_exampleCanvas.Header.ChainsDropdown.SetSelectedChain(GreeterContractData.ChainListRequired);
@@ -62,7 +62,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 		
 			// Footer
 			RunContractFunctionButton.IsVisible = true;
-			RunContractFunctionButton.Text.text = $"Run Contract Function";
+			RunContractFunctionButton.Text.text = $"Execute Contract Function";
 			RunContractFunctionButton.Button.onClick.AddListener(RunContractFunctionButton_OnClicked);
 		}
 
@@ -96,7 +96,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			_topBodyText.AppendHeaderLine($"Web3Api.Native.RunContractFunction(...)");
 			_topBodyText.AppendBullet($"Runs a given function of a contract abi and returns readonly data");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{ExampleConstants.PendingTransactionMessage}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 			
@@ -106,8 +106,8 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			// Execute
 			///////////////////////////////////////////
 			_bottomBodyText =
-				await Example_Web3API_RunContractFunction_01.
-					MoralisClient_Web3Api_Native_RunContractFunction(chainList,
+				await Example_ExecuteContractFunction_01.
+					Moralis_ExecuteContractFunction(chainList,
 					_bottomBodyText);
 			
 			

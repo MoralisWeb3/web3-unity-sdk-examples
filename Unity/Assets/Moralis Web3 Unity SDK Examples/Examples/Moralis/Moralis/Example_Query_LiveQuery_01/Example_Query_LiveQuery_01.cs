@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Cysharp.Threading.Tasks;
-using MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01;
 using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Platform.Queries;
 using UnityEngine;

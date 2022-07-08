@@ -1,0 +1,17 @@
+///////////////////////////////////////////////////////////
+// Instructions.txt
+///////////////////////////////////////////////////////////
+
+// TO USE THIS EXAMPLE, ...
+    *   Run the scene in Unity
+    *   Use the runtime UI to logout and login again. This
+        ensures the WalletConnect connection is properly 
+        made. NOTE: This step may not be required in a future
+        version of the Web3 Unity SDK.
+    *   Click "Run Contract Function"
+
+// OPTIONAL: TO RE-EDIT/RE-DEPLOY THE CONTRACT, SEE...
+
+    \Unity\web3-unity-sdk-examples\Unity\Assets\Moralis Web3 Unity SDK Examples\Shared\SmartContracts\Instructions.txt
+    
+    
