@@ -23,7 +23,6 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 		
 		private readonly StringBuilder _topBodyText = new StringBuilder();
 		private StringBuilder _bottomBodyText = new StringBuilder();
-
 		
 		//  Unity Methods ---------------------------------
 		protected async void Start()
@@ -39,8 +38,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 		{
 			Moralis.Start();
 		}
-		
-		
+
 		private async UniTask SetupUI()
 		{
 			// Canvas
@@ -51,6 +49,13 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				return;
 			}
 			
+			// Text
+			_topBodyText.Clear();
+			_topBodyText.AppendHeaderLine($"Moralis.ExecuteContractFunction(...)");
+			_topBodyText.AppendBullet($"Executes a given function of a contract abi for read/write operations");
+			_bottomBodyText.Clear();
+			_bottomBodyText.AppendLine($"Click a button below.");
+
 			// Header
 			_exampleCanvas.Header.TitleText.text = "Execute Contract"; 
 			_exampleCanvas.Header.ChainsDropdown.IsVisible = true;
@@ -74,6 +79,8 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				return;
 			}
 			
+
+			RunContractFunctionButton.IsInteractable = true;
 			_exampleCanvas.TopPanel.BodyText.Text.text = _topBodyText.ToString();
 			_exampleCanvas.BottomPanel.BodyText.Text.text = _bottomBodyText.ToString();
 			_exampleCanvas.BottomPanel.BodyText.ScrollToTop();
@@ -92,14 +99,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			}
 			
 			// Prepare
-			_topBodyText.Clear();
-			_topBodyText.AppendHeaderLine($"Web3Api.Native.RunContractFunction(...)");
-			_topBodyText.AppendBullet($"Runs a given function of a contract abi and returns readonly data");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.PendingTransactionMessage}");
-			await RefreshUI();
-			_bottomBodyText.Clear();
-			
 			ChainList chainList = _exampleCanvas.Header.ChainsDropdown.GetSelectedChain();
 			
 			///////////////////////////////////////////
@@ -115,9 +115,9 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			await RefreshUI();
 		}
 		
-		private void ChainsDropdown_OnValueChanged(ChainEntry chainEntry)
+		private async void ChainsDropdown_OnValueChanged(ChainEntry chainEntry)
 		{
-			RunContractFunctionButton_OnClicked();
+			await RefreshUI();
 		}
 	}
 }

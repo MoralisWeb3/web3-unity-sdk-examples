@@ -16,7 +16,6 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 		//  Properties ------------------------------------
 		private ExampleButton RunContractFunctionButton { get { return _exampleCanvas.Footer.Button03;}}
 		
-		
 		//  Fields ----------------------------------------
 		[SerializeField] 
 		private ExampleCanvas _exampleCanvas = null;
@@ -50,6 +49,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			{
 				return;
 			}
+			
+			// Text
+			_topBodyText.Clear();
+			_topBodyText.AppendHeaderLine($"Web3Api.Native.RunContractFunction(...)");
+			_topBodyText.AppendBullet($"Executes a given function of a contract abi for read/write operations");
+			_bottomBodyText.Clear();
+			_bottomBodyText.AppendLine($"Click a button below.");
 			
 			// Header
 			_exampleCanvas.Header.TitleText.text = "Run Contract"; 
@@ -92,9 +98,6 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			}
 			
 			// Prepare
-			_topBodyText.Clear();
-			_topBodyText.AppendHeaderLine($"Web3Api.Native.RunContractFunction(...)");
-			_topBodyText.AppendBullet($"Runs a given function of a contract abi and returns readonly data");
 			_bottomBodyText.Clear();
 			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
 			await RefreshUI();
@@ -115,9 +118,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			await RefreshUI();
 		}
 		
-		private void ChainsDropdown_OnValueChanged(ChainEntry chainEntry)
+		private async void ChainsDropdown_OnValueChanged(ChainEntry chainEntry)
 		{
-			RunContractFunctionButton_OnClicked();
+			await RefreshUI();
 		}
 	}
 }

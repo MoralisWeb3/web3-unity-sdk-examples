@@ -93,6 +93,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Authentication_01
 		
 		private void AuthenticationKit_OnStateChanged(AuthenticationKitState authenticationKitState)
 		{
+			Debug.Log($"_wasLoggedInAtSetupMoralis = {_wasLoggedInAtSetupMoralis}");
+			Debug.Log($"State = {authenticationKitState}");
+			
 			// Did you open the scene in the Unity Editor and Press Play?
 			// If so, show some helpful state info
 			if (_exampleCanvas.WasSceneLoadedDirectly)

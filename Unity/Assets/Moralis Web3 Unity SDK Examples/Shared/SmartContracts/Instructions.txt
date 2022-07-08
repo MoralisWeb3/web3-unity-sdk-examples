@@ -2,94 +2,81 @@
 // Instructions.txt
 ///////////////////////////////////////////////////////////
 
-// 1. INSTALL NODEJS
+// 01. INSTALL NODEJS
 
     https://nodejs.org/en/download/
     
     
-// 2. CREATE EMPTY FOLDER OUTSIDE OF GIT. OPEN IN TEXT EDITOR (E.G. VISUAL STUDIO CODE)
+// 02. CREATE EMPTY FOLDER OUTSIDE OF GIT CALLED "MyHardHat". OPEN IN TEXT EDITOR (E.G. VISUAL STUDIO CODE)
 
 
-// 3. INSTALL HARDHAT via COMMAND LINE
+// 03. INSTALL HARDHAT via COMMAND LINE
 
     npm i -D hardhat
     npx hardhat
 
 
-// 4. INSTALL DEPENDENCIES via COMMAND LINE
+// 04. INSTALL DEPENDENCIES via COMMAND LINE
 
     npm i -D @openzeppelin/contracts
     npm i -D @nomiclabs/hardhat-waffle
     npm i -D @nomiclabs/hardhat-etherscan
 
 
-// 5. RENAME "./contracts/Greeter.sol" TO "./contracts/{YourContractName}.sol" (WITHOUT {} of course)
-
-// 6. RENAME "./scripts/sample_script.js" to "./scripts/deploy{YourContractName}.js" (WITHOUT {} of course)
-
-// 7. IN "./scripts/deploy{YourContractName}.sol", RENAME "Greeter" TO {YourContractName} AND "greeter" to {yourContractName}. Respect existing letter-casing
-
-// 8. IN "./scripts/deploy{YourContractName}.sol", ENSURE THE "deploy()" function has the correct contract constructor parameters
-
-// 9. IN "./scripts/deploy{YourContractName}.sol", MODIFY TO ADD ETHERSCAN VERIFICATION. Then REPLACE {YourContractName}
-
-    await {YourContractName}.deployTransaction.wait(5);
-    
-    // We verify the contract
-    await hre.run("verify:verify", {
-        address: {YourContractName}.address,
-        constructorArguments: [],
-    });
+// 05. DELETE FILE(S) WITHIN "./MyHardHat/contracts/"
 
 
-// 10. IN "./hardhat.config.js", ADD THIS REQUIRE TO THE TOP:
+// 06. COPY ALL FILE(S) WITHIN "./Unity/Assets/Moralis Web3 Unity SDK Examples/Shared/SmartContracts/HardHat/contracts/" TO
 
-    require("@nomiclabs/hardhat-etherscan");
+    "./MyHardHat/contracts/" 
+
+// 07. DELETE FILE(S) WITHIN "./MyHardHat/scripts/"
 
 
-// 11. IN "./hardhat.config.js", ADD THESE FIELDS BEFORE "module.exports" part:
+// 08. COPY ALL FILE(S) WITHIN "./Unity/Assets/Moralis Web3 Unity SDK Examples/Shared/SmartContracts/HardHat/scripts/" TO
+
+    "./MyHardHat/scripts/" 
+
+// 09. COPY THE CONTENTS OF "./Unity/Assets/Moralis Web3 Unity SDK Examples/Shared/SmartContracts/hardhat.config.js" INTO 
+
+    "./MyHardHat/hardhat.config.js" 
+   
+
+// 10. IN "./MyHardHat/hardhat.config.js", populate the string values of...
 
     const PRIVATE_KEY = "";           // Populate from MetaMask, after sign-in
     const MUMBAI_NETWORK_URL = "";    // Populate from admin.moralis.io, after sign-in
     const POLYGONSCAN_API_KEY = "";   // Populate from polygonscan.com, after sign-in
 
 
-// 12. IN "./hardhat.config.js", MODIFY "module.exports" WITH YOUR NEEDS, LIKE THIS:
-
-    module.exports = {
-      solidity: "0.8.7",
-      networks: {
-        mumbai: {
-          url: MUMBAI_NETWORK_URL,
-          accounts: [PRIVATE_KEY]
-        }
-      },
-      etherscan: {
-        apiKey: POLYGONSCAN_API_KEY 
-      }
-    };
-
-
-// 13. COMPILE SMART CONTRACT via COMMAND LINE
+// 11. CLEAN SMART CONTRACT via COMMAND LINE
 
     npx hardhat clean
+
+
+// 12. COMPILE SMART CONTRACT via COMMAND LINE
     
     npx hardhat compile
 
 
-// 14. RUN "./scripts/deploy{YourContractName}.js" TO DEPLOY SMART CONTRACT via COMMAND LINE
+// 13. DEPLOY SMART CONTRACT via COMMAND LINE
 
-    npx hardhat run scripts/deployProperty.js --network mumbai
+    npx hardhat run scripts/deployGreeter.js --network mumbai
         
         
-// 15. UPON SUCCESS SEE OUTPUT via COMMAND LINE WHICH RESEMBLES "deployed to: {YourContractAddress}"
+// 14. UPON SUCCESS SEE OUTPUT via COMMAND LINE WHICH RESEMBLES "deployed to: {YourContractAddress}"
 
     Visit "https://mumbai.polygonscan.com/address/{YourContractAddress}#code" in the browser to find {YourContractAddress} and {YourABI}.
      
-    Reread the instructions atop this page to use {YourContractAddress} and the {YourABI} in Unity.
-    
-    Congratulations, you are done!
+
+// 15. PASTE {YourContractAddress} and the {YourABI} WITHIN
+
+    "./Unity/Assets/Moralis Web3 Unity SDK Examples/Shared/Scripts/Runtime/Data/GreeterContractData.cs
  
+
+ // 16. RUN THE RELEVANT SCENE IN UNITY
+
+    Congratulations, you are done!
 
 ///////////////////////////////////////////////////////////
 

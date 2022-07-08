@@ -16,7 +16,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 	{
 		public const string Name = "MoriaGatesEvent";
 		public string result { get; set; }
-        
+	       
 		public MoriaGatesEvent() : base(MoriaGatesEvent.Name) {}
 	}
 	
@@ -36,7 +36,6 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 	public class Example_ExecuteContractFunction_01 : Example_UI
 	{
 		//  Fields ----------------------------------------
-		
 		private static MoralisQuery<MoriaGatesEvent> _getEventsQuery;
 		private static MoralisLiveQueryCallbacks<MoriaGatesEvent> _queryCallbacks;
 		
@@ -46,16 +45,28 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			ChainList chainList, StringBuilder outputText)
 		{
 			
-			_getEventsQuery = await Moralis.GetClient().Query<MoriaGatesEvent>();
-			_queryCallbacks = new MoralisLiveQueryCallbacks<MoriaGatesEvent>();
-			_queryCallbacks.OnUpdateEvent += HandleContractEventResponse;
-			MoralisLiveQueryController.AddSubscription<MoriaGatesEvent>(MoriaGatesEvent.Name, _getEventsQuery, _queryCallbacks);
+			// Define contract data
+			string functionName = GreeterContractData.FunctionName_getGreeting;
+			string address = GreeterContractData.Address;
+			string abi = GreeterContractData.Abi;
+			ChainList chainListRequired = GreeterContractData.ChainListRequired;
+			
+			// Validate
+			if (chainList != chainListRequired)
+			{
+				throw new Exception($"Error. You must use {chainListRequired} chain for this specific contract");
+			}
+			
+			// Try events...
+			// _getEventsQuery = await Moralis.GetClient().Query<MoriaGatesEvent>();
+			// _queryCallbacks = new MoralisLiveQueryCallbacks<MoriaGatesEvent>();
+			// _queryCallbacks.OnUpdateEvent += HandleContractEventResponse;
+			// MoralisLiveQueryController.AddSubscription<MoriaGatesEvent>(MoriaGatesEvent.Name, _getEventsQuery, _queryCallbacks);
 			
 			
-			//TODO: Call this on destroy?
+			//TODO: Call this on destroy? // not needed
 			//MoralisLiveQueryController.RemoveSubscriptions(MoriaGatesEvent.Name);
 
-			
 			// Setup Web 3
 			if (WalletConnect.Instance == null)
 			{
@@ -64,46 +75,31 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 					$"WalletConnect.Instance must not be null. " +
 					$"Add the WalletConnect.prefab to your scene.");
 			}
-
+	
 			await Moralis.SetupWeb3();
-
-			// Define contract data
-			string functionName = GreeterContractData.FunctionName_setGreeting;
-			string address = GreeterContractData.Address;
-			string abi = GreeterContractData.Abi;
-			ChainList chainListRequired = GreeterContractData.ChainListRequired;
 			
 			// Estimate the gas
 			HexBigInteger value = new HexBigInteger(0);
 			HexBigInteger gas = new HexBigInteger(0);
-			HexBigInteger gasPrice = new HexBigInteger(0);
+			HexBigInteger gasPrice = new HexBigInteger(2000); //change to o?
 
 			// Define contract request
 			int randomNumber = UnityEngine.Random.Range(0, 1000); // Randomize string for fun!
 			string greeting = string.Format($"Hello World {randomNumber} !");
-			object[] args =
-			{
-				greeting
-			};
+			object[] args = null;
 
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			outputText.AppendHeaderLine(
-				$"Web3Api.Native.RunContractFunction({addressFormatted}, {abi.ToString().Length}, {functionName}, {args}, {value}, {gas}, {gasPrice})");
-			string result = "NOPE";
+				$"Moralis.ExecuteContractFunction({addressFormatted}, {abi.ToString().Length}, {functionName}, {args}, {value}, {gas}, {gasPrice})");
 			
 			try
 			{
-				if (chainList != chainListRequired)
-				{
-					throw new Exception($"Error. You must use {chainListRequired} chain for this specific contract");
-				}
-
 				///////////////////////////////////////////
-				// Execute: RunContractFunction
+				// Execute: ExecuteContractFunction
 				///////////////////////////////////////////
 				Debug.Log("ExecuteContractFunction Call Pending ...");
 				
-				result = await Moralis.ExecuteContractFunction(address, abi, functionName, args, value, gas, gasPrice);
+				string result = await Moralis.ExecuteContractFunction(address, abi, functionName, args, value, gas, gasPrice);
 				
 				Debug.Log("ExecuteContractFunction Call Completed");
 				

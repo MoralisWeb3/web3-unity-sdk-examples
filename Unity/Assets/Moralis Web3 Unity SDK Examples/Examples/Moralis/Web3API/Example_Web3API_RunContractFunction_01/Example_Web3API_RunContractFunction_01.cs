@@ -3,8 +3,6 @@ using System.Text;
 using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.Web3Api.Models;
-using UnityEngine;
-using UnityEngine.Networking;
 
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
@@ -41,6 +39,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			RunContractDto runContractDto = new RunContractDto()
 			{
 				Abi = abi,
+				Params = null
 			};
 
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
@@ -60,26 +59,10 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 				MoralisClient moralisClient = Moralis.GetClient();
 				string result = await moralisClient.Web3Api.Native.RunContractFunction(address, functionName, runContractDto, chainList);
 				
-				if (!string.IsNullOrEmpty(result))
-				{
-					// Format the url
-					string resultTrimmed = result.TrimEnd('"').TrimStart('"');
-					
-					// Call the url
-					UnityWebRequest unityWebRequest = UnityWebRequest.Get(resultTrimmed);
-					var x  = await unityWebRequest.SendWebRequest();
-					
-					// Display the url
-					outputText.AppendBullet($"result = {unityWebRequest.downloadHandler.text}");
-				}
-				else
-				{
-					outputText.AppendBullet($"result = {result}");
-				}
+				outputText.AppendBullet($"result = {result}");
 			}
 			catch (Exception exception)
 			{
-				Debug.Log("asd: " + exception.Message);
 				outputText.AppendBulletException(exception);
 			}
 			
