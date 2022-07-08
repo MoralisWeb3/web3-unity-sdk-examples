@@ -34,7 +34,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 		{
 			
 			// Define contract data
-			string functionName = GreeterContractData.FunctionName_getGreeting;
+			string functionName = GreeterContractData.FunctionName_setGreeting;
 			string address = GreeterContractData.Address;
 			string abi = GreeterContractData.Abi;
 			ChainList chainListRequired = GreeterContractData.ChainListRequired;
@@ -64,7 +64,10 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			// Define contract request
 			int randomNumber = UnityEngine.Random.Range(0, 1000); // Randomize string for fun!
 			string greeting = string.Format($"Hello World {randomNumber} !");
-			object[] args = null;
+			object[] args =
+			{
+				greeting
+			};
 
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			outputText.AppendHeaderLine(

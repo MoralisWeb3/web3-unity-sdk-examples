@@ -163,7 +163,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3Client_SendTransactionAsync_01
 			if (!isValid4)
 			{
 				outputText.AppendBulletError(
-					$"Failed. fromAddress must not equal toAddress. \n\nTo fix, hardcode new value in {nameof(Example_Web3Client_SendTransactionAsync_01)}.cs");
+					$"Failed. fromAddress must not equal toAddress. \n\nTo fix, hardcode new value(s) in {nameof(Example_Web3Client_SendTransactionAsync_01)}.cs");
 			}
 
 			return isValid1 && isValid2 && isValid3 && isValid4;

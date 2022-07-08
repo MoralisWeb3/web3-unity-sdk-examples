@@ -99,7 +99,10 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 		
 		protected async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			// This sometimes is called DURING OnDestroy
+			// so return instead of throwing an error
+			if (await ExampleHelper.HasMoralisUser() == false || 
+			    _exampleCanvas == null)
 			{
 				return;
 			}
@@ -152,7 +155,10 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 		
 		private async void RenderImage()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			// This sometimes is called DURING OnDestroy
+			// so return instead of throwing an error
+			if (await ExampleHelper.HasMoralisUser() == false || 
+			    _exampleCanvas == null)
 			{
 				return;
 			}
