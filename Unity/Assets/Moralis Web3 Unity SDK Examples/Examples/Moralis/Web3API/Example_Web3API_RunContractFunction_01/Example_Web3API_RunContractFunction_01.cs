@@ -34,14 +34,16 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 			// Prepare the function values
 			string address = GreeterContractData.Address;
 			string functionName = GreeterContractData.FunctionName_getGreeting;
-			RunContractDto runContractDto = null;
 			ChainList chainListRequired = GreeterContractData.ChainListRequired;
 			string outputAfterResult = "This function result is string format. Success!";
 			
+			// NOTE: RunContractFunction requires Abi in **object[]** format
+			object[] abi = GreeterContractData.GetAbiObject();
+			
 			// Prepare the contract request
-			runContractDto = new RunContractDto()
+			RunContractDto runContractDto = new RunContractDto()
 			{
-				Abi = GreeterContractData.GetAbiObject(),
+				Abi = abi,
 				Params = null
 			};
 			

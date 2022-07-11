@@ -31,7 +31,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 		
 		public static async Cysharp.Threading.Tasks.UniTask<StringBuilder>
 			Moralis_ExecuteContractFunction_Set(
-				ChainList chainList, StringBuilder outputText)
+				ChainList chainList, StringBuilder outputText, Action<string> refreshUI)
 		{
 			
 			// Define functionName
@@ -45,13 +45,13 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				greeting
 			};
 			
-			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText);
+			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText, refreshUI);
 		}
 		
 		
 		public static async Cysharp.Threading.Tasks.UniTask<StringBuilder>
 			Moralis_ExecuteContractFunction_Get(
-				ChainList chainList, StringBuilder outputText)
+				ChainList chainList, StringBuilder outputText, Action<string> refreshUI)
 		{
 			
 			// Define functionName
@@ -60,21 +60,22 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			// Define contract request
 			object[] args = null;
 			
-			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText);
+			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText, refreshUI);
 		}
-
 
 		private static async Cysharp.Threading.Tasks.UniTask<StringBuilder>  
 			Moralis_ExecuteContractFunction(
 				string functionName, object[] args,
-				ChainList chainList, StringBuilder outputText)
+				ChainList chainList, StringBuilder outputText, Action<string> refreshUI)
 		{
 			
 			// Define contract data
 			string address = GreeterContractData.Address;
-			string abi = GreeterContractData.Abi;
 			ChainList chainListRequired = GreeterContractData.ChainListRequired;
 			string outputAfterResult = "This function result is a TransactionHash in string format. Success!";
+			
+			// NOTE: ExecuteContractFunction requires Abi in **string** format
+			string abi = GreeterContractData.Abi;
 			
 			// Validate
 			if (chainList != chainListRequired)
@@ -98,7 +99,6 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			HexBigInteger gas = new HexBigInteger(0);
 			HexBigInteger gasPrice = new HexBigInteger(2000); //change to o?
 
-
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			string argsString = "";
 			if (args == null)
@@ -110,20 +110,18 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				argsString = args.ToString();
 			}
 			
-			outputText.AppendHeaderLine(
-				$"Moralis.ExecuteContractFunction({addressFormatted}, {abi.ToString().Length}, {functionName}, {argsString}, {value}, {gas}, {gasPrice})");
-			
 			try
 			{
 				///////////////////////////////////////////
 				// Execute: ExecuteContractFunction
 				///////////////////////////////////////////
-				//Debug.Log("ExecuteContractFunction Call Pending ...");
+				refreshUI.Invoke($"{ExampleConstants.PendingTransactionMessage}");
 				
 				string result = await Moralis.ExecuteContractFunction(address, abi, functionName, args, value, gas, gasPrice);
-				
-				//Debug.Log("ExecuteContractFunction Call Completed");
-				
+
+				outputText.Clear();
+				outputText.AppendHeaderLine(
+					$"Moralis.ExecuteContractFunction({addressFormatted}, {abi.ToString().Length}, {functionName}, {argsString}, {value}, {gas}, {gasPrice})");
 				outputText.AppendBullet($"result = {result}");
 				outputText.AppendHeaderLine($"Comment");
 				outputText.AppendLine($"{outputAfterResult}");

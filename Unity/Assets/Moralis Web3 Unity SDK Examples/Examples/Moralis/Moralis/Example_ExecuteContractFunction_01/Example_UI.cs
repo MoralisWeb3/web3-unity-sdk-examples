@@ -4,7 +4,7 @@ using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Web3Api.Models;
 using UnityEngine;
 
-#pragma warning disable CS1998
+#pragma warning disable CS1998, CS4014
 namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 {
 	/// <summary>
@@ -92,6 +92,18 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			// Cosmetic delay for UI
 			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
 		}
+		
+		/// <summary>
+		/// This is called from within example methods
+		/// to refresh more often than normal for better
+		/// user-experience
+		/// </summary>
+		private void HotRefreshUI(string message)
+		{
+			_bottomBodyText.Clear();
+			_bottomBodyText.AppendLine(message);
+			RefreshUI();
+		}
 
 
 		//  Event Handlers --------------------------------
@@ -112,7 +124,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			_bottomBodyText =
 				await Example_ExecuteContractFunction_01.
 					Moralis_ExecuteContractFunction_Get(chainList,
-						_bottomBodyText);
+						_bottomBodyText, HotRefreshUI);
 			
 			
 			// Display
@@ -136,16 +148,12 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			_bottomBodyText =
 				await Example_ExecuteContractFunction_01.
 					Moralis_ExecuteContractFunction_Set(chainList,
-					_bottomBodyText);
+					_bottomBodyText, HotRefreshUI);
 			
 			
 			// Display
 			await RefreshUI();
 		}
-		
-		
-		
-		
 		
 		private async void ChainsDropdown_OnValueChanged(ChainEntry chainEntry)
 		{

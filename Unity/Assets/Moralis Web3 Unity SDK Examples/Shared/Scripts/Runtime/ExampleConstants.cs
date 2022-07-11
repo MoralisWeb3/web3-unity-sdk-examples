@@ -37,7 +37,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
         public const string Main = "Main";
         public const string Details = "Details";
         public const string Loading = "Loading ...";
-        public const string PendingTransactionMessage ="Please confirm transaction in your wallet." ; 
+        public const string PendingTransactionMessage ="Please confirm transaction in your MOBILE wallet." ; 
         public const string NothingAvailable = "Nothing available";
         public const string Authenticate = "Authenticate";
         public const string Results = "Results";
