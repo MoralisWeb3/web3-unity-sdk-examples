@@ -21,25 +21,25 @@ namespace MoralisUnity.Examples.Sdk.Shared
 			// Abi Format: Manually Created in C#
 			// Use "GreeterContractData.Abi" as a reference
 			///////////////////////////////////////////
-			object[] abiObject = new object[3];
+			object[] newAbi = new object[3];
 			
 			// constructor
-			object[] cInputParams = null;
-			abiObject[0] = new { inputs = cInputParams, name = "", stateMutability = "nonpayable", type = "constructor" };
+			object[] cInputParams = new object[0];
+			newAbi[0] = new { inputs = cInputParams, name = "", stateMutability = "nonpayable", type = "constructor" };
 			
 			// getGreeting
-			object[] gInputParams = null;
+			object[] gInputParams = new object[0];
 			object[] gOutputParams = new object[1];
 			gOutputParams[0] = new { internalType = "string", name = "", type = "string" };
-			abiObject[1] = new { inputs = gInputParams, outputs = gOutputParams, name = "getGreeting", stateMutability = "view", type = "function" };
+			newAbi[1] = new { inputs = gInputParams, outputs = gOutputParams, name = "getGreeting", stateMutability = "view", type = "function" };
 
 			// setGreeting
 			object[] sInputParams = new object[1];
 			sInputParams[0] = new { internalType = "string", name = "greeting", type = "string" };
 			object[] sOutputParams = null;
-			abiObject[2] = new { inputs = sInputParams, outputs = sOutputParams, name = "setGreeting", stateMutability = "nonpayable", type = "function" };
+			newAbi[2] = new { inputs = sInputParams, outputs = sOutputParams, name = "setGreeting", stateMutability = "nonpayable", type = "function" };
 
-			return abiObject;
+			return newAbi;
 		}
 
 	}

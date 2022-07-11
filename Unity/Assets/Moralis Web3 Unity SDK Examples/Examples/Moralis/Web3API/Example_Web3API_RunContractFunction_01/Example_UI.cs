@@ -68,7 +68,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 		
 			// Footer
 			RunContractFunctionButton.IsVisible = true;
-			RunContractFunctionButton.Text.text = $"Run Contract Function";
+			RunContractFunctionButton.Text.text = $"Run\ngetGreeting ()";
 			RunContractFunctionButton.Button.onClick.AddListener(RunContractFunctionButton_OnClicked);
 		}
 

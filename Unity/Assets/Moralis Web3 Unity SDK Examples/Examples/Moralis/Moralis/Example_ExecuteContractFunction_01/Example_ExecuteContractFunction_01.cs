@@ -74,7 +74,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			string address = GreeterContractData.Address;
 			string abi = GreeterContractData.Abi;
 			ChainList chainListRequired = GreeterContractData.ChainListRequired;
-			string outputAfterResult = "This function returns the TransactionHash as result in the format of string. Success!";
+			string outputAfterResult = "This function result is a TransactionHash in string format. Success!";
 			
 			// Validate
 			if (chainList != chainListRequired)
@@ -118,11 +118,11 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				///////////////////////////////////////////
 				// Execute: ExecuteContractFunction
 				///////////////////////////////////////////
-				Debug.Log("ExecuteContractFunction Call Pending ...");
+				//Debug.Log("ExecuteContractFunction Call Pending ...");
 				
 				string result = await Moralis.ExecuteContractFunction(address, abi, functionName, args, value, gas, gasPrice);
 				
-				Debug.Log("ExecuteContractFunction Call Completed");
+				//Debug.Log("ExecuteContractFunction Call Completed");
 				
 				outputText.AppendBullet($"result = {result}");
 				outputText.AppendHeaderLine($"Comment");
