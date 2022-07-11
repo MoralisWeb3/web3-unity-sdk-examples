@@ -32,61 +32,36 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 		{
 			
 			// Prepare the function values
-			string address = "";
-			string functionName = "";
+			string address = GreeterContractData.Address;
+			string functionName = GreeterContractData.FunctionName_getGreeting;
 			RunContractDto runContractDto = null;
 			ChainList chainListRequired = GreeterContractData.ChainListRequired;
-			string outputAfterResult = "";
+			string outputAfterResult = "This function returns results in the format of string. Success!";
 			
-			// There are two examples scripts you can try. Try each.
-			const bool useExampleScript01 = true;
-			if (useExampleScript01)
-			{
-				///////////////////////////////////////////
-				// Abi Format: Manually Created in C#
-				///////////////////////////////////////////
-				//
-				object[] inputParams = new object[1];
-				inputParams[0] = new { internalType = "uint256", name = "id", type = "uint256" };
-				// 
-				object[] outputParams = new object[1];
-				outputParams[0] = new { internalType = "string", name = "", type = "string" };
-				// 
-				object[] abi = new object[1];
-				abi[0] = new { inputs = inputParams, name = "uri", outputs = outputParams, stateMutability = "view", type = "function" };
+			// Prepare the contract request
+			object[] abiObject = new object[3];
+			
+			// constructor
+			object[] cInputParams = null;
+			abiObject[0] = new { inputs = cInputParams, name = "", stateMutability = "nonpayable", type = "constructor" };
+			
+			// getGreeting
+			object[] gInputParams = null;
+			object[] gOutputParams = new object[1];
+			gOutputParams[0] = new { internalType = "string", name = "", type = "string" };
+			abiObject[1] = new { inputs = gInputParams, outputs = gOutputParams, name = "getGreeting", stateMutability = "view", type = "function" };
 
-				// Prepare the function values
-				outputAfterResult = "This function returns results in the format of Json. Success!";
-				address = "0x698d7D745B7F5d8EF4fdB59CeB660050b3599AC3"; 
-				functionName = "uri";
-				
-				// Prepare the contract request
-				runContractDto = new RunContractDto()
-				{
-					Abi = abi,
-					Params = new { id = "15310200874782" }
-				};
-			}
-			else 
+			// setGreeting
+			object[] sInputParams = new object[1];
+			sInputParams[0] = new { internalType = "string", name = "greeting", type = "string" };
+			object[] sOutputParams = null;
+			abiObject[2] = new { inputs = sInputParams, outputs = sOutputParams, name = "setGreeting", stateMutability = "nonpayable", type = "function" };
+
+			runContractDto = new RunContractDto()
 			{
-				// Prepare the function values
-				outputAfterResult = "This function returns results in the format of string. Success!";
-				address = GreeterContractData.Address;
-				functionName = GreeterContractData.FunctionName_getGreeting;
-				
-				///////////////////////////////////////////
-				// Abi Format:	String pasted here,
-				//				from Hardhat deployment
-				///////////////////////////////////////////
-				string abi = GreeterContractData.Abi;
-			
-				// Prepare the contract request
-				runContractDto = new RunContractDto()
-				{
-					Abi = abi,
-					Params = new { blah = "fun" }
-				};
-			}
+				Abi = abiObject,
+				Params = null
+			};
 			
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			outputText.AppendHeaderLine(
