@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using MoralisUnity.Examples.Sdk.Shared;
@@ -17,16 +18,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 		//  Properties ------------------------------------
 		private ExampleButton SignButton { get { return _exampleCanvas.Footer.Button03;}}
 		
+		
 		//  Fields ----------------------------------------
 		[SerializeField] 
 		private ExampleCanvas _exampleCanvas = null;
 		
-		[SerializeField] 
-		private WalletConnect _walletConnect = null;
-
 		private readonly StringBuilder _topBodyText = new StringBuilder();
 		private readonly StringBuilder _bottomBodyText = new StringBuilder();
-		
 		
 		//  Unity Methods ---------------------------------
 		protected async void Start()
@@ -107,11 +105,18 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 			string address = _exampleCanvas.Header.AuthenticationUI.ActiveAddress;
 			string message = "My custom message";
 			
+			// Ensure WalletConnect
+			if (WalletConnect.Instance == null)
+			{
+				throw new Exception(ExampleConstants.MissingWalletConnectPrefab);
+			}
+			
 			///////////////////////////////////////////
 			// Execute
 			///////////////////////////////////////////
+			
 			string result = 
-				await Example_Session_Sign_01.WalletConnect_Session_EthPersonalSign(_walletConnect, message, address);
+				await Example_Session_Sign_01.WalletConnect_Session_EthPersonalSign(WalletConnect.Instance, message, address);
 			
 			// Display
 			SignButton.IsInteractable = true;

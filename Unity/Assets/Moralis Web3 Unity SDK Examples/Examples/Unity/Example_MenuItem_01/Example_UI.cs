@@ -122,6 +122,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			// Display
 			SignButton.IsInteractable = true;
 			_bottomBodyText.Clear();
+			_bottomBodyText.AppendLine($"{ExampleConstants.Success}");
 			await RefreshUI();
 		}
 	}

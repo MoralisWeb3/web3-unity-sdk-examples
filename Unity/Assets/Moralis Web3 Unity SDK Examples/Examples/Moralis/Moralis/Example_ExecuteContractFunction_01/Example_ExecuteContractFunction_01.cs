@@ -83,15 +83,13 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				throw new Exception($"Error. You must use {chainListRequired} chain for this specific contract");
 			}
 			
-			// Setup Web 3
+			// Ensure WalletConnect
 			if (WalletConnect.Instance == null)
 			{
-				throw new Exception(
-					$"ExecuteContractFunction() failed. " +
-					$"WalletConnect.Instance must not be null. " +
-					$"Add the WalletConnect.prefab to your scene.");
+				throw new Exception(ExampleConstants.MissingWalletConnectPrefab);
 			}
 	
+			// Setup Web 3
 			await Moralis.SetupWeb3();
 			
 			// Estimate the gas
