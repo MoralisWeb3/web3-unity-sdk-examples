@@ -7,7 +7,7 @@ const fs = require('fs');
 ///////////////////////////////////////////////////////////
 // MAIN
 ///////////////////////////////////////////////////////////
-async function main() 
+async function main()
 {
 
   ///////////////////////////////////////////////////////////
@@ -34,15 +34,15 @@ async function main()
   ///////////////////////////////////////////////////////////
   console.log("WAIT...");
   console.log("\n");
-  await greeter.deployTransaction.wait(5);
+  await greeter.deployTransaction.wait(7);
 
 
   ///////////////////////////////////////////////////////////
   // VERIFY
   ///////////////////////////////////////////////////////////
   await hre.run("verify:verify", {
-      address: greeter.address,
-      constructorArguments: [],
+    address: greeter.address,
+    constructorArguments: [],
   });
 
 
@@ -51,15 +51,15 @@ async function main()
   ///////////////////////////////////////////////////////////
   console.log("VERIFICATION COMPLETE");
   console.log("\n");
-  
+
 }
 
 ///////////////////////////////////////////////////////////
 // EXECUTE
 ///////////////////////////////////////////////////////////
 main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+    .then(() => process.exit(0))
+    .catch((error) => {
+      console.error(error);
+      process.exit(1);
+    });
