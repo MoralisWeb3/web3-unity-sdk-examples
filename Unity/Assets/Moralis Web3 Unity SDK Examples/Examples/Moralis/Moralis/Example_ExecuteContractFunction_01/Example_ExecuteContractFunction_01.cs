@@ -28,16 +28,53 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 		//  Fields ----------------------------------------
 		
 		//  General Methods -------------------------------	
-		public static async Cysharp.Threading.Tasks.UniTask<StringBuilder>  
+		
+		public static async Cysharp.Threading.Tasks.UniTask<StringBuilder>
+			Moralis_ExecuteContractFunction_Set(
+				ChainList chainList, StringBuilder outputText)
+		{
+			
+			// Define functionName
+			string functionName = GreeterContractData.FunctionName_setGreeting;
+			
+			// Define contract request
+			int randomNumber = UnityEngine.Random.Range(0, 1000); // Randomize string for fun!
+			string greeting = string.Format($"Hello World {randomNumber} !");
+			object[] args =
+			{
+				greeting
+			};
+			
+			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText);
+		}
+		
+		
+		public static async Cysharp.Threading.Tasks.UniTask<StringBuilder>
+			Moralis_ExecuteContractFunction_Get(
+				ChainList chainList, StringBuilder outputText)
+		{
+			
+			// Define functionName
+			string functionName = GreeterContractData.FunctionName_getGreeting;
+			
+			// Define contract request
+			object[] args = null;
+			
+			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText);
+		}
+
+
+		private static async Cysharp.Threading.Tasks.UniTask<StringBuilder>  
 			Moralis_ExecuteContractFunction(
-			ChainList chainList, StringBuilder outputText)
+				string functionName, object[] args,
+				ChainList chainList, StringBuilder outputText)
 		{
 			
 			// Define contract data
-			string functionName = GreeterContractData.FunctionName_setGreeting;
 			string address = GreeterContractData.Address;
 			string abi = GreeterContractData.Abi;
 			ChainList chainListRequired = GreeterContractData.ChainListRequired;
+			string outputAfterResult = "This function returns the TransactionHash as result in the format of string. Success!";
 			
 			// Validate
 			if (chainList != chainListRequired)
@@ -61,17 +98,20 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			HexBigInteger gas = new HexBigInteger(0);
 			HexBigInteger gasPrice = new HexBigInteger(2000); //change to o?
 
-			// Define contract request
-			int randomNumber = UnityEngine.Random.Range(0, 1000); // Randomize string for fun!
-			string greeting = string.Format($"Hello World {randomNumber} !");
-			object[] args =
-			{
-				greeting
-			};
 
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
+			string argsString = "";
+			if (args == null)
+			{
+				argsString = "null";
+			}
+			else
+			{
+				argsString = args.ToString();
+			}
+			
 			outputText.AppendHeaderLine(
-				$"Moralis.ExecuteContractFunction({addressFormatted}, {abi.ToString().Length}, {functionName}, {args}, {value}, {gas}, {gasPrice})");
+				$"Moralis.ExecuteContractFunction({addressFormatted}, {abi.ToString().Length}, {functionName}, {argsString}, {value}, {gas}, {gasPrice})");
 			
 			try
 			{
@@ -85,6 +125,8 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				Debug.Log("ExecuteContractFunction Call Completed");
 				
 				outputText.AppendBullet($"result = {result}");
+				outputText.AppendHeaderLine($"Comment");
+				outputText.AppendLine($"{outputAfterResult}");
 			}
 			catch (Exception exception)
 			{		

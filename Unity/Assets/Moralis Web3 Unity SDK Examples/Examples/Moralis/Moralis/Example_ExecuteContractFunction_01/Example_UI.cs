@@ -14,8 +14,8 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 	public class Example_UI : MonoBehaviour
 	{
 		//  Properties ------------------------------------
-		private ExampleButton RunContractFunctionButton { get { return _exampleCanvas.Footer.Button03;}}
-		
+		private ExampleButton ExecuteContractFunctionGetButton { get { return _exampleCanvas.Footer.Button02;}}
+		private ExampleButton ExecuteContractFunctionSetButton { get { return _exampleCanvas.Footer.Button03;}}
 		
 		//  Fields ----------------------------------------
 		[SerializeField] 
@@ -66,9 +66,13 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(5);
 		
 			// Footer
-			RunContractFunctionButton.IsVisible = true;
-			RunContractFunctionButton.Text.text = $"Execute Contract Function";
-			RunContractFunctionButton.Button.onClick.AddListener(RunContractFunctionButton_OnClicked);
+			ExecuteContractFunctionGetButton.IsVisible = true;
+			ExecuteContractFunctionGetButton.Text.text = $"Execute\ngetGreeting ()";
+			ExecuteContractFunctionGetButton.Button.onClick.AddListener(ExecuteContractFunctionGetButton_OnClicked);
+			
+			ExecuteContractFunctionSetButton.IsVisible = true;
+			ExecuteContractFunctionSetButton.Text.text = $"Execute\nsetGreeting ()";
+			ExecuteContractFunctionSetButton.Button.onClick.AddListener(ExecuteContractFunctionSetButton_OnClicked);
 		}
 
 		
@@ -80,7 +84,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			}
 			
 
-			RunContractFunctionButton.IsInteractable = true;
+			ExecuteContractFunctionSetButton.IsInteractable = true;
 			_exampleCanvas.TopPanel.BodyText.Text.text = _topBodyText.ToString();
 			_exampleCanvas.BottomPanel.BodyText.Text.text = _bottomBodyText.ToString();
 			_exampleCanvas.BottomPanel.BodyText.ScrollToTop();
@@ -91,7 +95,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 
 
 		//  Event Handlers --------------------------------
-		private async void RunContractFunctionButton_OnClicked()
+		private async void ExecuteContractFunctionGetButton_OnClicked()
 		{
 			if (await ExampleHelper.HasMoralisUser() == false)
 			{
@@ -107,13 +111,41 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			///////////////////////////////////////////
 			_bottomBodyText =
 				await Example_ExecuteContractFunction_01.
-					Moralis_ExecuteContractFunction(chainList,
+					Moralis_ExecuteContractFunction_Get(chainList,
+						_bottomBodyText);
+			
+			
+			// Display
+			await RefreshUI();
+		}
+		
+		private async void ExecuteContractFunctionSetButton_OnClicked()
+		{
+			if (await ExampleHelper.HasMoralisUser() == false)
+			{
+				return;
+			}
+			
+			// Prepare
+			_bottomBodyText.Clear();
+			ChainList chainList = _exampleCanvas.Header.ChainsDropdown.GetSelectedChain();
+			
+			///////////////////////////////////////////
+			// Execute
+			///////////////////////////////////////////
+			_bottomBodyText =
+				await Example_ExecuteContractFunction_01.
+					Moralis_ExecuteContractFunction_Set(chainList,
 					_bottomBodyText);
 			
 			
 			// Display
 			await RefreshUI();
 		}
+		
+		
+		
+		
 		
 		private async void ChainsDropdown_OnValueChanged(ChainEntry chainEntry)
 		{
