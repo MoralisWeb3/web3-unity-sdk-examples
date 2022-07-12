@@ -3,7 +3,7 @@ using MoralisUnity.Web3Api.Models;
 namespace MoralisUnity.Examples.Sdk.Shared
 {
 	/// <summary>
-	/// Stores the 
+	/// Stores the values needed to call the contract
 	/// </summary>
 	public static class GreeterContractData
 	{
