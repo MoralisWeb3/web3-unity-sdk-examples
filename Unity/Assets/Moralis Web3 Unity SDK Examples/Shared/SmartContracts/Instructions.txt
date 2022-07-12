@@ -10,17 +10,22 @@
 // 02. CREATE EMPTY FOLDER OUTSIDE OF GIT CALLED "MyHardHat". OPEN IN TEXT EDITOR (E.G. VISUAL STUDIO CODE)
 
 
-// 03. INSTALL HARDHAT via COMMAND LINE
+// 03. INSTALL HARDHAT via COMMAND LINE (EACH LINE IS A SEPARATE COMMAND)
 
     npm i -D hardhat
+    
     npx hardhat
 
 
-// 04. INSTALL DEPENDENCIES via COMMAND LINE
+// 04. INSTALL DEPENDENCIES via COMMAND LINE (EACH LINE IS A SEPARATE COMMAND)
 
     npm i -D @openzeppelin/contracts
+    
     npm i -D @nomiclabs/hardhat-waffle
+    
     npm i -D @nomiclabs/hardhat-etherscan
+    
+    npm i -D chai 
 
 
 // 05. DELETE FILE(S) WITHIN "./MyHardHat/contracts/"
