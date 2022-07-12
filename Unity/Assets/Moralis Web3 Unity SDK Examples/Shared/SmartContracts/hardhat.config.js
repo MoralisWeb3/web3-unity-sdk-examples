@@ -28,3 +28,14 @@ module.exports = {
         apiKey: POLYGONSCAN_API_KEY
     }
 };
+
+
+///////////////////////////////////////////////////////////
+// TASKS
+///////////////////////////////////////////////////////////
+task("cct", "Clean, Compile, & Test the Greeter.sol").setAction(async () => {
+
+    await hre.run("clean");
+    await hre.run("compile");
+    await hre.run("test");
+});
