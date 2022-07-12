@@ -45,7 +45,12 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 				greeting
 			};
 			
-			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText, refreshUI);
+			// Define success message
+			string outputAfterResult = $"Sent greeting = '{greeting}'. " +
+			                           $"This function result is a TransactionHash in string format. Success!";
+			
+			return await Moralis_ExecuteContractFunction(functionName, args, 
+				chainList, outputText, outputAfterResult, refreshUI);
 		}
 		
 		
@@ -60,20 +65,24 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			// Define contract request
 			object[] args = null;
 			
-			return await Moralis_ExecuteContractFunction(functionName, args, chainList, outputText, refreshUI);
+			// Define success message
+			string outputAfterResult = "This function result is a TransactionHash in string format. Success!";
+			
+			return await Moralis_ExecuteContractFunction(functionName, args, chainList, 
+				outputText, outputAfterResult, refreshUI);
 		}
 
 		private static async Cysharp.Threading.Tasks.UniTask<StringBuilder>  
 			Moralis_ExecuteContractFunction(
 				string functionName, object[] args,
-				ChainList chainList, StringBuilder outputText, Action<string> refreshUI)
+				ChainList chainList, StringBuilder outputText, 
+				string outputAfterResult, Action<string> refreshUI)
 		{
 			
 			// Define contract data
 			string address = GreeterContractData.Address;
 			ChainList chainListRequired = GreeterContractData.ChainListRequired;
-			string outputAfterResult = "This function result is a TransactionHash in string format. Success!";
-			
+
 			// NOTE: ExecuteContractFunction requires Abi in **string** format
 			string abi = GreeterContractData.Abi;
 			
@@ -110,11 +119,11 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			
 			try
 			{
+				refreshUI.Invoke($"{ExampleConstants.PendingTransactionMessage}");
+				
 				///////////////////////////////////////////
 				// Execute: ExecuteContractFunction
 				///////////////////////////////////////////
-				refreshUI.Invoke($"{ExampleConstants.PendingTransactionMessage}");
-				
 				string result = await Moralis.ExecuteContractFunction(address, abi, functionName, args, value, gas, gasPrice);
 
 				outputText.Clear();

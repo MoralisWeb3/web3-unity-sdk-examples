@@ -12,15 +12,21 @@ namespace MoralisUnity.Examples.Sdk.Shared
 		public const string FunctionName_getGreeting = "getGreeting";
 		public const string FunctionName_setGreeting = "setGreeting";
 
-		public const string Address  = "0xAC7FbA74256774493F6EAB6bd028025AC470235c";
-		public const string Abi  = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getGreeting\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"greeting\",\"type\":\"string\"}],\"name\":\"setGreeting\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
+        ///////////////////////////////////////////
+        // TODO: Did you redeploy the contract via
+        //		 Hardhat? Then, paste new 2 new
+        //		 values here
+        ///////////////////////////////////////////
+        public const string Address  = "0x9e9f17Afe2b29DaFf4C98e2A09d2774D08E18845";
+        public const string Abi  = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getGreeting\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"greeting\",\"type\":\"string\"}],\"name\":\"setGreeting\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
 
+        ///////////////////////////////////////////
+        // TODO: Did you redeploy the contract via
+        //		 Hardhat? Then, manually recreate
+        //		 the object[] below from Abi above
+        ///////////////////////////////////////////
 		public static object[] GetAbiObject ()
 		{
-			///////////////////////////////////////////
-			// Abi Format: Manually Created in C#
-			// Use "GreeterContractData.Abi" as a reference
-			///////////////////////////////////////////
 			object[] newAbi = new object[3];
 			
 			// constructor
