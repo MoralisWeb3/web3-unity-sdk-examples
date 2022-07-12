@@ -5,7 +5,7 @@ pragma solidity ^0.8.7;
 ///////////////////////////////////////////////////////////
 // IMPORTS
 ///////////////////////////////////////////////////////////
-
+import "hardhat/console.sol";
 
 ///////////////////////////////////////////////////////////
 // CLASS
@@ -39,6 +39,12 @@ contract Greeter
     {
         _owner = msg.sender;
         _greeting = "Default Greeting";
+
+        console.log(
+            "Greeter.constructor() _owner = %s, _greeting = %s",
+            _owner,
+            _greeting
+        );
     }
 
 
@@ -56,7 +62,7 @@ contract Greeter
         _greeting = greeting;
     }
 
-
+    
     ///////////////////////////////////////////////////////////
     // FUNCTION: GETTER
     // *    Get greeting 
@@ -69,5 +75,39 @@ contract Greeter
         // require(msg.sender == _owner);
 
         return _greeting;
+    }
+
+    ///////////////////////////////////////////////////////////
+    // FUNCTION: EXAMPLE OF TESTING & ERROR CHECKING 
+    //      *   Set greeting after error checking
+    //      *   Changes contract state, so requires calling via
+    //          ExecuteContractFunction
+    ///////////////////////////////////////////////////////////
+    function setGreetingSafe(string memory greeting) public 
+    {
+        // DISCLAIMER -- NOT A PRODUCTION READY CONTRACT
+        // require(msg.sender == _owner);
+
+        bytes memory greetingBytes = bytes(greeting);
+        uint256 greetingBytesLength = greetingBytes.length;
+
+        if (greetingBytesLength == 0)
+        {
+            // What the revert function will undo all state changes.
+            //  * It will allow you to return a value
+            //  * It will refund any remaining gas to the caller
+            revert("Unexpected value for greeting");
+        }
+
+        // The require function should be used to ensure valid conditions, 
+        // such as inputs, or contract state variables are met, or to validate return values
+        require (greetingBytesLength == 0, "Unexpected value for greeting");
+
+        // Properly functioning code should never reach a failing assert statement; 
+        // if this happens there is a bug in your contract which you should fix.
+        assert (greetingBytesLength == 0);
+
+        setGreeting (greeting);
+
     }
 }
