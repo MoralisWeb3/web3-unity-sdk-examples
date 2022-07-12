@@ -4,7 +4,6 @@ using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.Web3Api.Models;
 using Nethereum.Hex.HexTypes;
-using UnityEngine;
 using WalletConnectSharp.Unity;
 
 #pragma warning disable CS1998

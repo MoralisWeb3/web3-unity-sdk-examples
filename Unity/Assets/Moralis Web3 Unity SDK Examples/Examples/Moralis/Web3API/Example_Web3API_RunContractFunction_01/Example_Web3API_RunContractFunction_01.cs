@@ -4,7 +4,6 @@ using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.Web3Api.Models;
 
-// ReSharper disable once ConditionIsAlwaysTrueOrFalse
 #pragma warning disable CS1998, CS0162
 namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 {
@@ -62,6 +61,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 				// Execute: RunContractFunction
 				///////////////////////////////////////////
 				MoralisClient moralisClient = Moralis.GetClient();
+				
 				string result = await moralisClient.Web3Api.Native.RunContractFunction(address, functionName, 
 					runContractDto, chainList);
 				
