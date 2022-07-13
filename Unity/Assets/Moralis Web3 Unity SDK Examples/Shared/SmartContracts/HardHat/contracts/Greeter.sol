@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.9;
 
 
 ///////////////////////////////////////////////////////////
 // IMPORTS
 ///////////////////////////////////////////////////////////
 import "hardhat/console.sol";
+
 
 ///////////////////////////////////////////////////////////
 // CLASS
@@ -77,6 +78,7 @@ contract Greeter
         return _greeting;
     }
 
+
     ///////////////////////////////////////////////////////////
     // FUNCTION: EXAMPLE OF TESTING & ERROR CHECKING 
     //      *   Set greeting after error checking
@@ -111,3 +113,5 @@ contract Greeter
 
     }
 }
+
+

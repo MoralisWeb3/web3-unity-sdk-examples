@@ -1,5 +1,7 @@
-require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-etherscan");
+///////////////////////////////////////////////////////////
+// REQUIRES
+///////////////////////////////////////////////////////////
+require("@nomicfoundation/hardhat-toolbox");
 
 ///////////////////////////////////////////////////////////
 // CONFIGURATION
@@ -17,7 +19,7 @@ const POLYGONSCAN_API_KEY = "";  // Populate from polygonscan.com, after sign-in
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-    solidity: "0.8.7",
+    solidity: "0.8.9",
     networks: {
         mumbai: {
             url: MUMBAI_NETWORK_URL,
@@ -35,7 +37,11 @@ module.exports = {
 ///////////////////////////////////////////////////////////
 task("cct", "Clean, Compile, & Test the Greeter.sol").setAction(async () => {
 
+    // Works!
     await hre.run("clean");
     await hre.run("compile");
     await hre.run("test");
 });
+
+
+
