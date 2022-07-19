@@ -12,7 +12,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
 	/// The MenuItem attribute allows you to add menu items to the main menu and inspector context menus.
 	/// <see cref="https://docs.unity3d.com/ScriptReference/MenuItem.html"/>
 	/// </summary>
-	public static class ExampleMenuItems
+	public static class SharedMenuItems
 	{
 
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
@@ -37,12 +37,24 @@ namespace MoralisUnity.Examples.Sdk.Shared
 
 
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
-				   ExampleConstants.Web3UnitySDKExamples + "/" + "Load Example Layout (10x16)", false,
+				   ExampleConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (10x16)", false,
 			ExampleConstants.PriorityMoralisWindow_Examples)]
-		public static void LoadExampleLayout()
+		public static void LoadExampleLayout_10x16()
 		{
-			string path = Path.GetFullPath("Assets/Moralis Web3 Unity SDK Examples/Shared/Layouts/MoralisUnityLayout10x16.wlt");
+			string path = Path.GetFullPath("Assets/Moralis Web3 Unity SDK Examples/Shared/Layouts/MoralisLayout10x16.wlt");
 			UnityReflectionUtility.UnityEditor_WindowLayout_LoadWindowLayout(path);
 		}
+		
+		
+		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
+		          ExampleConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (16x10)", false,
+			ExampleConstants.PriorityMoralisWindow_Examples)]
+		public static void LoadExampleLayout_16x10()
+		{
+			string path = Path.GetFullPath("Assets/Moralis Web3 Unity SDK Examples/Shared/Layouts/MoralisLayout16x10.wlt");
+			UnityReflectionUtility.UnityEditor_WindowLayout_LoadWindowLayout(path);
+		}
+
+		
 	}
 }

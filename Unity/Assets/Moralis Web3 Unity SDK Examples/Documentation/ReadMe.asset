@@ -55,8 +55,8 @@ MonoBehaviour:
     text: Use our default layout or choose your own
     linkText: 
     url: 
-    openMenuName: Load Example Layout (10x16)
-    openMenuNameId: Tools/Moralis Web3 Unity SDK/Examples/Web3 Unity SDK Examples/Load Example Layout (10x16)
+    openMenuName: Load Moralis Layout (10x16)
+    openMenuNameId: Tools/Moralis Web3 Unity SDK/Examples/Web3 Unity SDK Examples/Load Moralis Layout (10x16)
   - heading: 
     subheading: 5. Open Any Example Scene
     text: Play this scene or choose your own
