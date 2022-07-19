@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using MoralisUnity.Examples.Sdk.Shared;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using UnityEngine;
 
 #pragma warning disable CS1998

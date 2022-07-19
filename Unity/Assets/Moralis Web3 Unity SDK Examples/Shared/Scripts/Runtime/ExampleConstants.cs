@@ -31,8 +31,11 @@ namespace MoralisUnity.Examples.Sdk.Shared
         // Display Text
         ///////////////////////////////////////////
         public const string Moralis = "Moralis";
+       
         public const string Web3UnitySDK = "Web3 Unity SDK";
         public const string Web3UnitySDKVersion = "v1.2.4"; // This may be out of date. Check to Manifest.json, then re-update here
+        public const string ProductWithVersion = ExampleConstants.Moralis + ExampleConstants.Web3UnitySDK + " " + ExampleConstants.Web3UnitySDKVersion;
+        public const string KnownIssueReported = "Known issue: Reported to Moralis in " + ProductWithVersion + ".";
         public const string Chains = "Chains";
         public const string Main = "Main";
         public const string Details = "Details";
@@ -79,5 +82,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
         public const string AddressForTesting = "0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf";
         public const string TokenAddressForTesting = "0x00000000219ab540356cbb839cbe05303d7705fa";
         public static string MissingWalletConnectPrefab = "Method failed. WalletConnect.Instance must not be null. Add the WalletConnect.prefab to your scene.";
+
+        
     }
 }

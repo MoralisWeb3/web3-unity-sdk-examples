@@ -1,5 +1,4 @@
-
-using MoralisUnity;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using MoralisUnity.Web3Api.Models;
 
 namespace MoralisUnity.Examples.Sdk.Shared

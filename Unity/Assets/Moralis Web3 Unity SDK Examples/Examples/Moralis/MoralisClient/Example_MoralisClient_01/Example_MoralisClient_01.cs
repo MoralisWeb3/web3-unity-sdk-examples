@@ -20,7 +20,6 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisClient_01
 	/// </summary>
 	public class Example_MoralisClient_01 : Example_UI
 	{
-
 		//  General Methods -------------------------------	
 		public static async UniTask<StringBuilder> Moralis_GetClient(StringBuilder outputText)
 		{
@@ -39,11 +38,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisClient_01
 
 			if (string.IsNullOrEmpty(moralisClient.EthAddress))
 			{
-				string product = ExampleConstants.Moralis + ExampleConstants.Web3UnitySDK + ExampleConstants.Web3UnitySDKVersion;
-
-				outputText.AppendErrorLine($"EthAddress must not be null or empty. " +
-				                           $"This is a known issue and has been reported to Moralis in " +
-				                           $"{product}.");
+				outputText.AppendErrorLine($"EthAddress must not be null or empty. {ExampleConstants.KnownIssueReported}");
 				outputText.AppendLine();
 			}
 

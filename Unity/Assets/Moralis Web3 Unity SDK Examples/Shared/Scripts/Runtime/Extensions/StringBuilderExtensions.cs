@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 
 namespace MoralisUnity.Examples.Sdk.Shared
 {

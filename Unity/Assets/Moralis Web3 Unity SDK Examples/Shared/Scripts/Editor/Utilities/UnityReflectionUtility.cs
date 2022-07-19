@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace MoralisUnity.Examples.Sdk.Shared
+namespace MoralisUnity.Samples.Shared.Utilities
 {
 	/// <summary>
 	/// Reflection is string-based and Unity-version-based and thus, notoriously fragile.

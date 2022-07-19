@@ -3,7 +3,7 @@ using MoralisUnity.Platform.Objects;
 using MoralisUnity.Sdk.DesignPatterns.Creational.Singleton.SingletonMonobehaviour;
 using UnityEngine;
 
-namespace MoralisUnity.Examples.Sdk.Shared
+namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
 {
     /// <summary>
     /// Example local storage which is written to disk

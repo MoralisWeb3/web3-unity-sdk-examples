@@ -1,4 +1,4 @@
-namespace MoralisUnity.Examples.Sdk.Shared
+namespace MoralisUnity.Examples.Sdk.Shared.Data.Types
 {
 	/// <summary>
 	/// Concise counter to depart a foreach loop after X iterations

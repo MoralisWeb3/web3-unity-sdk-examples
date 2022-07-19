@@ -4,53 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_Authentication_01/Example_Authentication_01.unity
-    guid: e86d776073058a543aa040dcc9919139
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleCanvas_01/Example_ExampleCanvas_01.unity
-    guid: caa68b87c4671aa4396ab338a1401337
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleChainsDropdown_01/Example_ExampleChainsDropdown_01.unity
-    guid: 836d7459f86c37745800d5d2594a41c2
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Shared/Scenes/Example_ExampleDialog_01/Example_ExampleDialog_01.unity
-    guid: be08b6c722ec8024bb808ecee7267507
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Unity/Example_MenuItem_01/Example_MenuItem_01.unity
-    guid: 800b8882d76a0774ca61c765035bd0eb
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/MoralisClient/Example_MoralisClient_01/Example_MoralisClient_01.unity
-    guid: b0e9bac8a166a4e46b7a813d050251cc
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/MoralisCloud/Example_MoralisCloud_01/Example_MoralisCloud_01.unity
-    guid: 8a03ab8a8f6312443a054157745d4b17
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/MoralisUser/Example_MoralisUser_01/Example_MoralisUser_01.unity
-    guid: 1ff3718d015544d46947f75c90bb87ae
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Moralis/Example_Query_01/Example_Query_01.unity
-    guid: f862f8546689e0c47b74fefea7ef727a
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Moralis/Example_Query_LiveQuery_01/Example_Query_LiveQuery_01.unity
-    guid: 6aa2fb799053c674d90f02173c2823d3
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/WalletConnect/Session/Example_Session_Sign_01/Example_Session_Sign_01.unity
-    guid: b39d0427bda2f404e968df078f0a1e98
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/SolanaAPI/Example_SolanaAPI_Account_01/Example_SolanaAPI_Account_01.unity
-    guid: fb5fd68639c75004283e00532ecf35e9
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Web3API/Example_Web3API_Account_01/Example_Web3API_Account_01.unity
-    guid: 7295230198cb095419331da5fcdbd77b
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Web3API/Example_Web3API_RunContractFunction_01/Example_Web3API_RunContractFunction_01.unity
-    guid: afaf21ba78e2c60409407b822a47d9a5
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Web3API/Example_Web3API_Storage_01/Example_Web3API_Storage_01.unity
-    guid: ebece4633c4c0764b9c75fecfb4fdbe4
-  - enabled: 1
-    path: Assets/Moralis Web3 Unity SDK Examples/Examples/Moralis/Web3Client/Example_Web3Client_SendTransactionAsync_01/Example_Web3Client_SendTransactionAsync_01.unity
-    guid: 7de2022488564844db6ac24ef6ce0708
+  m_Scenes: []
   m_configObjects: {}

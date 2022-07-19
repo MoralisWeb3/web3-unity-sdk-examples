@@ -1,6 +1,7 @@
 using System.Text;
 using Cysharp.Threading.Tasks;
 using MoralisUnity.Examples.Sdk.Shared;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using MoralisUnity.Web3Api.Models;
 using UnityEngine;
 

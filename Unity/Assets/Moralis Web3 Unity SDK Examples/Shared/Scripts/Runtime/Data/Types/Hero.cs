@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MoralisUnity.Platform.Objects;
 
-namespace MoralisUnity.Examples.Sdk.Shared
+namespace MoralisUnity.Examples.Sdk.Shared.Data.Types
 {
 	/// <summary>
 	/// Example: Moralis Object

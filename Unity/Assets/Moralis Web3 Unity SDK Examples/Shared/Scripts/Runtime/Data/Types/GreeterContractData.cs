@@ -1,6 +1,6 @@
 using MoralisUnity.Web3Api.Models;
 
-namespace MoralisUnity.Examples.Sdk.Shared
+namespace MoralisUnity.Examples.Sdk.Shared.Data.Types
 {
 	/// <summary>
 	/// Stores the values needed to call the contract

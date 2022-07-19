@@ -1,27 +1,31 @@
-#if UNITY_EDITOR
 using System.Collections.Generic;
-using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Samples.Shared.Attributes;
+using MoralisUnity.Samples.Shared.Data.Types;
 using MoralisUnity.Samples.Shared.DesignPatterns.Creational.Singleton.CustomSingletonScriptableObject;
-using UnityEditor;
 using UnityEngine;
 
-namespace MoralisUnity.Samples.Shared.Data.Storage
+#pragma warning disable CS0414
+namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
 {
     [ReferenceByGuid (Guid = "81d335281c7572a41b9d84c3deede854")]
     [CreateAssetMenu( menuName = ExampleConstants.PathMoralisExamplesCreateAssetMenu + Title,  fileName = Title, order = ExampleConstants.PriorityMoralisWindow_Primary)]
     public class SceneDataStorage: CustomSingletonScriptableObject<SceneDataStorage>
     {
         //  Properties ------------------------------------
-        public List<SceneAsset> SceneAssets { get { return _sceneAssets; } }
+        public List<SceneData> SceneDatas { get { return _sceneDatas; } }
 
         //  Fields ----------------------------------------
         private const string Title = "SceneDataStorage";
 
+        [Header("References (Project)")] 
+        
+        [InspectorComment("Note: The SceneDatas[0] will appear first in builds.")]
         [SerializeField]
-        private List<SceneAsset> _sceneAssets = null;
+        private string _dummy = "dummy";
+
+        [SerializeField]
+        private List<SceneData> _sceneDatas = null;
 
         //  Methods ---------------------------------------
     }
 }
-#endif // UNITY_EDITOR

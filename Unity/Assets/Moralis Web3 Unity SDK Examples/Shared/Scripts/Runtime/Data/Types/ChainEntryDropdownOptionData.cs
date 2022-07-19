@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-namespace MoralisUnity.Examples.Sdk.Shared
+namespace MoralisUnity.Examples.Sdk.Shared.Data.Types
 {
 	/// <summary>
 	/// Holds data for display in <see cref="ChainsDropdown"/>

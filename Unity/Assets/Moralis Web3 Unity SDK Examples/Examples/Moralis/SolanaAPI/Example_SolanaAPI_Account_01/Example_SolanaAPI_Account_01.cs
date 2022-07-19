@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using MoralisUnity.Examples.Sdk.Shared;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.SolanaApi.Models;
 using UnityEngine;
@@ -160,6 +161,8 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			outputText.AppendLine();
 			outputText.AppendErrorLine($"Exception was for address of...");
 			outputText.AppendErrorLine($"{address}");
+			outputText.AppendLine();
+			outputText.AppendErrorLine($"SolanaAPI throws exceptions. {ExampleConstants.KnownIssueReported}");
 			outputText.AppendLine();
 			
 		}

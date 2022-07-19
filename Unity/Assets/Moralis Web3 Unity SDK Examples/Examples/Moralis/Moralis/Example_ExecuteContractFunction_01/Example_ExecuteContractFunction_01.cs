@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using MoralisUnity.Examples.Sdk.Shared;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.Web3Api.Models;
 using Nethereum.Hex.HexTypes;

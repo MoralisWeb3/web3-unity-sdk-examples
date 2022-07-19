@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Cysharp.Threading.Tasks;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types;
+using MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage;
 using MoralisUnity.Sdk.Exceptions;
 using MoralisUnity.Sdk.Interfaces;
 using UnityEngine;
