@@ -79,6 +79,17 @@ See [docs.moralis.io/unity](https://docs.moralis.io/unity) for more info.
   </tr> 
 </table>
 
+<table>
+  <tr>
+    <th>Logged In2</th>
+    <th>Logged Out3</th>
+  </tr>
+  <tr>
+    <td style="max-width:50%;" align="center"><img src="https://github.com/SamuelAsherRivello/web3-unity-sdk-examples/blob/main/Unity/Assets/Moralis%20Web3%20Unity%20SDK%20Examples/Documentation/Images/Screenshot_03.png" width = "250"></td>
+    <td align="center"><img src="https://github.com/SamuelAsherRivello/web3-unity-sdk-examples/blob/main/Unity/Assets/Moralis%20Web3%20Unity%20SDK%20Examples/Documentation/Images/Screenshot_04.png" width = "250"></td>
+  </tr> 
+</table>
+
 ----
 
 ## What is Moralis?
