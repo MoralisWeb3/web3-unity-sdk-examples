@@ -36,22 +36,22 @@ namespace MoralisUnity.Examples.Sdk.Shared
                 bodyText,
                 new List<DialogButtonData>
                 {
-                    new DialogButtonData(ExampleConstants.LogOut, delegate
+                    new DialogButtonData(SharedConstants.LogOut, delegate
                     {
                         logoutAction();
                         HideDialogBox();
                     }),
-                    new DialogButtonData(ExampleConstants.DialogReset, delegate
+                    new DialogButtonData(SharedConstants.DialogReset, delegate
                     {
                         // For reset, do not call HideDialogBox();
                         resetAction.Invoke();
                     }),
-                    new DialogButtonData(ExampleConstants.Ok, delegate
+                    new DialogButtonData(SharedConstants.Ok, delegate
                     {
                         confirmationAction.Invoke();
                         HideDialogBox();
                     }),
-                    new DialogButtonData(ExampleConstants.Cancel, delegate
+                    new DialogButtonData(SharedConstants.Cancel, delegate
                     {
                         cancelAction.Invoke();
                         HideDialogBox();

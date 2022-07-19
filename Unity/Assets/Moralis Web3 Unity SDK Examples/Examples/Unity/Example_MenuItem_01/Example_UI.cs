@@ -46,7 +46,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -81,7 +81,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 		
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -92,13 +92,13 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			_exampleCanvas.BottomPanel.BodyText.Text.text = _bottomBodyText.ToString();
 
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 		//  Event Handlers --------------------------------
 		private async void ExecuteMenuItemButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -106,7 +106,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			// Prepare
 			SignButton.IsInteractable = false;
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			
 			///////////////////////////////////////////
@@ -122,7 +122,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			// Display
 			SignButton.IsInteractable = true;
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Success}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Success}");
 			await RefreshUI();
 		}
 	}

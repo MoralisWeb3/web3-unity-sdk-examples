@@ -60,7 +60,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 			
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -91,7 +91,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 		
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -108,14 +108,14 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			_exampleCanvas.BottomPanel.BodyText.ScrollToTop();
 			
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 
 		//  Event Handlers --------------------------------
 		private async void GetNativeInfoButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -129,7 +129,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			_topBodyText.AppendHeaderLine($"Web3Api.Account.GetTransactions(...)");
 			_topBodyText.AppendBullet($"Gets native transactions in descending order based on block number");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 			
@@ -150,7 +150,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 
 		private async void GetTokenInfoButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -164,7 +164,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			_topBodyText.AppendHeaderLine( $"Web3Api.Account.GetTokenTransfers(...)");
 			_topBodyText.AppendBullet($"Gets ERC20 token transactions in descending order based on block number");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 			
@@ -184,7 +184,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 		
 		private async void GetNFTInfoButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -200,7 +200,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			_topBodyText.AppendHeaderLine($"Web3Api.Account.GetNFTsForContract(...)");
 			_topBodyText.AppendBullet($"Gets NFTs owned by the given address");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 			

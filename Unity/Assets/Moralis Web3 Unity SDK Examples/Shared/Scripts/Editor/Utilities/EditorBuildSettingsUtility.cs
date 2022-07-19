@@ -1,6 +1,7 @@
 ﻿using MoralisUnity.Samples.Shared.Data.Types;
 using System.Collections.Generic;
 using System.Linq;
+using MoralisUnity.Samples.Shared.Data.Types.Storage;
 using UnityEditor;
 
 namespace MoralisUnity.Samples.Shared.Utilities

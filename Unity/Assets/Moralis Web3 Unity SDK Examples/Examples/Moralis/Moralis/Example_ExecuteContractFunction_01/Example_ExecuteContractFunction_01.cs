@@ -95,7 +95,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			// Ensure WalletConnect
 			if (WalletConnect.Instance == null)
 			{
-				throw new Exception(ExampleConstants.MissingWalletConnectPrefab);
+				throw new Exception(SharedConstants.MissingWalletConnectPrefab);
 			}
 	
 			// Setup Web 3
@@ -119,7 +119,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExecuteContractFunction_01
 			
 			try
 			{
-				refreshUI.Invoke($"{ExampleConstants.PendingTransactionMessage}");
+				refreshUI.Invoke($"{SharedConstants.PendingTransactionMessage}");
 				
 				///////////////////////////////////////////
 				// Execute: ExecuteContractFunction

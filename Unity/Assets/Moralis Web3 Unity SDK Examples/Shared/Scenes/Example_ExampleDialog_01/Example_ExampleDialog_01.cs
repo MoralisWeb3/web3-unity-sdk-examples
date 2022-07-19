@@ -42,7 +42,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExampleDialog_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -64,7 +64,7 @@ namespace MoralisUnity.Examples.Sdk.Example_ExampleDialog_01
 		
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -79,12 +79,12 @@ namespace MoralisUnity.Examples.Sdk.Example_ExampleDialog_01
 			StringBuilder bottomBodyText = new StringBuilder();
 			if (!string.IsNullOrEmpty(_lastDialogTypeMessage))
 			{
-				bottomBodyText.AppendHeaderLine(ExampleConstants.Type);
+				bottomBodyText.AppendHeaderLine(SharedConstants.Type);
 				bottomBodyText.AppendBullet(_lastDialogTypeMessage);
 			}
 			if (!string.IsNullOrEmpty(_lastDialogResultMessage))
 			{
-				bottomBodyText.AppendHeaderLine(ExampleConstants.Results);
+				bottomBodyText.AppendHeaderLine(SharedConstants.Results);
 				bottomBodyText.AppendBullet(_lastDialogResultMessage);
 			}
 			_exampleCanvas.BottomPanel.BodyText.Text.text = bottomBodyText.ToString();
@@ -94,13 +94,13 @@ namespace MoralisUnity.Examples.Sdk.Example_ExampleDialog_01
 			OpenDialogWithTextButton.Button.interactable = !hasActiveDialog;
 
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 		
 
 		private async void CloseDialog(string dialogResultMessage = "")
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -114,14 +114,14 @@ namespace MoralisUnity.Examples.Sdk.Example_ExampleDialog_01
 		//  Event Handlers --------------------------------
 		private async void OpenDialogWithTextButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
 			
 			if (_dialogUI != null)
 			{
-				Debug.LogError(ExampleConstants.NotExpectedSoFix);
+				Debug.LogError(SharedConstants.NotExpectedSoFix);
 				return;
 			}
 			

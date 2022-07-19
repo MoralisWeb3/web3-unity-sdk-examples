@@ -141,7 +141,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
       private async void ExampleManager_OnActiveAddressChanged(string address)
       {
          
-         if (await ExampleHelper.HasMoralisUser())
+         if (await SharedHelper.HasMoralisUser())
          {
             State = ExampleAuthenticationUIState.Authenticated;
          }
@@ -162,7 +162,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
                _button.Text.text = Formatters.GetWeb3AddressShortFormat(ExampleRuntimeStorage.Instance.ActiveAddress);
                break;
             case ExampleAuthenticationUIState.NotAuthenticated:
-               _button.Text.text = ExampleConstants.Authenticate;
+               _button.Text.text = SharedConstants.Authenticate;
                break;
             default:
                SwitchDefaultException.Throw(State);

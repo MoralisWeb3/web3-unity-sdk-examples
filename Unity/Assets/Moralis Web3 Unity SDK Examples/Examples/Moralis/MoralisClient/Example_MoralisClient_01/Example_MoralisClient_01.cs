@@ -38,7 +38,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisClient_01
 
 			if (string.IsNullOrEmpty(moralisClient.EthAddress))
 			{
-				outputText.AppendErrorLine($"EthAddress must not be null or empty. {ExampleConstants.KnownIssueReported}");
+				outputText.AppendErrorLine($"EthAddress must not be null or empty. {SharedConstants.KnownIssueReported}");
 				outputText.AppendLine();
 			}
 

@@ -61,7 +61,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 			
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -78,7 +78,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			_topBodyText.AppendBullet($"Uploads multiple files and place them in a folder directory.");
 			
 			// Dynamically add, for the to-be-loaded Image
-			_imageDestination = ExampleHelper.CreateNewImageUnderParentAsLastSibling(
+			_imageDestination = SharedHelper.CreateNewImageUnderParentAsLastSibling(
 				_panelForSpriteDestination.transform.parent, new Vector2(400, 400));
 			_imageDestination.GetComponent<CanvasGroup>().SetIsVisible(false);
 			
@@ -101,7 +101,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 		{
 			// This sometimes is called DURING OnDestroy
 			// so return instead of throwing an error
-			if (await ExampleHelper.HasMoralisUser() == false || 
+			if (await SharedHelper.HasMoralisUser() == false || 
 			    _exampleCanvas == null)
 			{
 				return;
@@ -119,20 +119,20 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			}
 			
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 
 		private async UniTask CallUploadFolder(string content)
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
 			
 			// Cosmetic delay for UI
 			_exampleCanvas.IsInteractable(false);
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 			
 			///////////////////////////////////////////
 			// Execute
@@ -149,7 +149,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			
 			// Cosmetic delay for UI
 			_exampleCanvas.IsInteractable(true);
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 			
 		}
 		
@@ -157,7 +157,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 		{
 			// This sometimes is called DURING OnDestroy
 			// so return instead of throwing an error
-			if (await ExampleHelper.HasMoralisUser() == false || 
+			if (await SharedHelper.HasMoralisUser() == false || 
 			    _exampleCanvas == null)
 			{
 				return;
@@ -165,7 +165,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			
 			if (_lastLoadedIpfsFiles.Count >= 1 && _lastLoadedIpfsFiles[0].Path.Length > 0)
 			{
-				_spriteDestination = await ExampleHelper.CreateSpriteFromImageUrl(_lastLoadedIpfsFiles[0].Path);
+				_spriteDestination = await SharedHelper.CreateSpriteFromImageUrl(_lastLoadedIpfsFiles[0].Path);
 				_imageDestination.sprite = _spriteDestination;
 				_imageDestination.GetComponent<CanvasGroup>().SetIsVisible(true);
 				await RefreshUI();
@@ -176,7 +176,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 		//  Event Handlers --------------------------------
 		private async void ClearImageButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -201,7 +201,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 		
 		private async void SaveImageButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -212,7 +212,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			_bottomBodyText.AppendLine($"Saving...");
 			await RefreshUI();
 			
-			string content = ExampleHelper.ConvertSpriteToContentString(_spriteToSave);
+			string content = SharedHelper.ConvertSpriteToContentString(_spriteToSave);
 			await CallUploadFolder(content);
 			RenderImage();
 			
@@ -225,7 +225,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 
 		private async void LoadImageButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -244,7 +244,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 
 			if (_spriteDestination == null)
 			{
-				_bottomBodyText.AppendBullet($"{ExampleConstants.NothingAvailable}");
+				_bottomBodyText.AppendBullet($"{SharedConstants.NothingAvailable}");
 			}
 			else
 			{

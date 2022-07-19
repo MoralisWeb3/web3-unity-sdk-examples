@@ -40,7 +40,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			StringBuilder outputText)
 		{
 			
-			string address = ExampleConstants.AddressForSolanaTesting;
+			string address = SharedConstants.AddressForSolanaTesting;
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			NetworkTypes networkTypes = NetworkTypes.mainnet;
 			MoralisClient moralisClient = Moralis.GetClient();
@@ -70,7 +70,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 		public static async UniTask<StringBuilder> MoralisClient_SolanaApi_Account_GetPortfolio(
 			StringBuilder outputText)
 		{
-			string address = ExampleConstants.AddressForSolanaTesting; 
+			string address = SharedConstants.AddressForSolanaTesting; 
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			NetworkTypes networkTypes = NetworkTypes.mainnet;
 			MoralisClient moralisClient = Moralis.GetClient();
@@ -113,7 +113,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			StringBuilder outputText)
 		{
 
-			string address = ExampleConstants.AddressForSolanaTesting;
+			string address = SharedConstants.AddressForSolanaTesting;
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			NetworkTypes networkTypes = NetworkTypes.mainnet;
 			MoralisClient moralisClient = Moralis.GetClient();
@@ -162,7 +162,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			outputText.AppendErrorLine($"Exception was for address of...");
 			outputText.AppendErrorLine($"{address}");
 			outputText.AppendLine();
-			outputText.AppendErrorLine($"SolanaAPI throws exceptions. {ExampleConstants.KnownIssueReported}");
+			outputText.AppendErrorLine($"SolanaAPI throws exceptions. {SharedConstants.KnownIssueReported}");
 			outputText.AppendLine();
 			
 		}

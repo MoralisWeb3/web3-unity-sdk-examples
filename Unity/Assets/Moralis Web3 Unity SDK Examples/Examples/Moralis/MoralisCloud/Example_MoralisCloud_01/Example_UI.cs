@@ -50,7 +50,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 			
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -64,10 +64,10 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 			_exampleCanvas.TopPanel.TitleText.text = "Server Side (JS)";
 			_exampleCanvas.BottomPanel.TitleText.text = "Client Side Output";
 			
-			List<string> lines = ExampleHelper.ConvertTextAssetToLines(_cloudFunctionsTextAsset, 3);
+			List<string> lines = SharedHelper.ConvertTextAssetToLines(_cloudFunctionsTextAsset, 3);
 			_topBodyText.AppendHeaderLine($"Moralis.Cloud.RunAsync<T>(...)");
 			_topBodyText.AppendBullet($"Call a method on the Moralis Cloud");
-			_topBodyText.AppendHeaderLine($"{ExampleConstants.SceneSetupInstructions}");
+			_topBodyText.AppendHeaderLine($"{SharedConstants.SceneSetupInstructions}");
 			_topBodyText.Append("\n" + String.Join("\n", lines));
 			
 			// Footer
@@ -87,7 +87,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 		
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -98,14 +98,14 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 			_exampleCanvas.BottomPanel.BodyText.ScrollToTop();
 
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 
 		//  Event Handlers --------------------------------
 		private async void CallMethod01Button_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -124,7 +124,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 			_bottomBodyText.AppendBullet($"result = '{result}'");
 			if (string.IsNullOrEmpty(result))
 			{
-				_bottomBodyText.AppendErrorLine($"{ExampleConstants.CloudFunctionNotFound}");
+				_bottomBodyText.AppendErrorLine($"{SharedConstants.CloudFunctionNotFound}");
 			}
 			
 			_exampleCanvas.IsInteractable(true);
@@ -134,7 +134,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 		
 		private async void CallMethod02Button_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -155,7 +155,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 			_bottomBodyText.AppendBullet($"result = '{result}'");
 			if (string.IsNullOrEmpty(result))
 			{
-				_bottomBodyText.AppendErrorLine($"{ExampleConstants.CloudFunctionNotFound}");
+				_bottomBodyText.AppendErrorLine($"{SharedConstants.CloudFunctionNotFound}");
 			}
 
 			_exampleCanvas.IsInteractable(true);
@@ -165,7 +165,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisCloud_01
 		
 		private void OpenUrlButton_OnClicked()
 		{
-			Application.OpenURL(ExampleConstants.MoralisServersUrl);
+			Application.OpenURL(SharedConstants.MoralisServersUrl);
 		}
 	}
 }

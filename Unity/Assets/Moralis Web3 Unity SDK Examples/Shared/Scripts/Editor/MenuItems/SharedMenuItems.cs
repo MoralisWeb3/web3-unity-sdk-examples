@@ -6,6 +6,7 @@ using UnityEngine;
 using System.IO;
 using MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage;
 using MoralisUnity.Samples.Shared.Data.Types;
+using MoralisUnity.Samples.Shared.Data.Types.Storage;
 using MoralisUnity.Samples.Shared.Utilities;
 
 namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
@@ -18,8 +19,8 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 	{
 
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
-			ExampleConstants.Web3UnitySDKExamples + "/" + ExampleConstants.OpenReadMe, false,
-			ExampleConstants.PriorityMoralisWindow_Examples)]
+			SharedConstants.Web3UnitySDKExamples + "/" + SharedConstants.OpenReadMe, false,
+			SharedConstants.PriorityMoralisWindow_Examples)]
 		public static void OpenReadMe()
 		{
 			ReadMeEditor.SelectReadmeGuid("3b4d333465945474ea57ff6e62ba4f37");
@@ -27,8 +28,8 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 
 
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
-				   ExampleConstants.Web3UnitySDKExamples + "/" + "Add Example Scenes To Build Settings", false,
-			ExampleConstants.PriorityMoralisWindow_Examples)]
+				   SharedConstants.Web3UnitySDKExamples + "/" + "Add Example Scenes To Build Settings", false,
+			SharedConstants.PriorityMoralisWindow_Examples)]
 		public static void AddAllScenesToBuildSettings()
 		{
 			List<SceneData> sceneDatas = SceneDataStorage.Instance.SceneDatas;
@@ -39,27 +40,30 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 
 
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
-				   ExampleConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (10x16)", false,
-			ExampleConstants.PriorityMoralisWindow_Examples)]
+		          SharedConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (10x16)", false,
+			SharedConstants.PriorityMoralisWindow_Examples)]
 		public static void LoadExampleLayout_10x16()
 		{
-			string path = Path.GetFullPath("Assets/Moralis Web3 Unity SDK Examples/Shared/Layouts/MoralisLayout10x16.wlt");
+			string guid = "68e09fd97bc6f3f4f9154ccdf9ece35d";
+			string path = AssetDatabase.GUIDToAssetPath(guid);
 			UnityReflectionUtility.UnityEditor_WindowLayout_LoadWindowLayout(path);
 		}
 		
 		
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
-		          ExampleConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (16x10)", false,
-			ExampleConstants.PriorityMoralisWindow_Examples)]
+		          SharedConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (16x10)", false,
+			SharedConstants.PriorityMoralisWindow_Examples)]
 		public static void LoadExampleLayout_16x10()
 		{
-			string path = Path.GetFullPath("Assets/Moralis Web3 Unity SDK Examples/Shared/Layouts/MoralisLayout16x10.wlt");
+			string guid = "bb0830cff9fd5fa4b9ac04292dc30acc";
+			string path = AssetDatabase.GUIDToAssetPath(guid);
 			UnityReflectionUtility.UnityEditor_WindowLayout_LoadWindowLayout(path);
 		}
+
 		
 		
-		[MenuItem( ExampleConstants.PathMoralisExamplesAssetsMenu + "/" + "Copy Guid", false,
-			ExampleConstants.PriorityMoralisAssets_Examples)]
+		[MenuItem( SharedConstants.PathMoralisExamplesAssetsMenu + "/" + "Copy Guid", false,
+			SharedConstants.PriorityMoralisAssets_Examples)]
 		public static void CopyGuidToClipboard()
 		{
 			// Support only if exactly 1 object is selected in project window
@@ -77,8 +81,8 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 		}
 		
 		
-		[MenuItem( ExampleConstants.PathMoralisExamplesAssetsMenu + "/" + "Copy Guid", true,
-			ExampleConstants.PriorityMoralisAssets_Examples)]
+		[MenuItem( SharedConstants.PathMoralisExamplesAssetsMenu + "/" + "Copy Guid", true,
+			SharedConstants.PriorityMoralisAssets_Examples)]
 		public static bool CopyGuidToClipboard_ValidationFunction()
 		{
 			// Support only if exactly 1 object is selected in project window

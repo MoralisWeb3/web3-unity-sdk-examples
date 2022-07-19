@@ -75,16 +75,16 @@ namespace MoralisUnity.Examples.Sdk.Shared
         {
             return ShowDialogBox<DialogUI>(
                 _dialogUIPrefabWithText,
-                ExampleConstants.DialogConfirmation,
-                ExampleConstants.DialogAreYouSure,
+                SharedConstants.DialogConfirmation,
+                SharedConstants.DialogAreYouSure,
                 new List<DialogButtonData>
                 {
-                    new DialogButtonData(ExampleConstants.Ok, delegate
+                    new DialogButtonData(SharedConstants.Ok, delegate
                     {
                         confirmationAction.Invoke();
                         HideDialogBox();
                     }),
-                    new DialogButtonData(ExampleConstants.Cancel, delegate
+                    new DialogButtonData(SharedConstants.Cancel, delegate
                     {
                         cancelAction.Invoke();
                         HideDialogBox();
@@ -109,12 +109,12 @@ namespace MoralisUnity.Examples.Sdk.Shared
                 bodyText,
                 new List<DialogButtonData>
                 {
-                    new DialogButtonData(ExampleConstants.Ok, delegate
+                    new DialogButtonData(SharedConstants.Ok, delegate
                     {
                         confirmationAction.Invoke();
                         HideDialogBox();
                     }),
-                    new DialogButtonData(ExampleConstants.Cancel, delegate
+                    new DialogButtonData(SharedConstants.Cancel, delegate
                     {
                         cancelAction.Invoke();
                         HideDialogBox();
@@ -136,7 +136,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
             
             DialogUI dialogUI = ShowDialogBox<DialogUI>(
                 _dialogUIPrefabWithText,
-                string.Format(ExampleConstants.DialogLoading, titleOfLoadingContent),
+                string.Format(SharedConstants.DialogLoading, titleOfLoadingContent),
                 "",
                 new List<DialogButtonData>());
             

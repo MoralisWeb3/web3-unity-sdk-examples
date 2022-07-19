@@ -57,7 +57,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 			
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -96,7 +96,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01
 		
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -108,21 +108,21 @@ namespace MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01
 			_exampleCanvas.BottomPanel.BodyText.ScrollToTop();
 			
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 		
 		//  Event Handlers --------------------------------
 		private async void CreateHeroButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
 			
 			// Prepare
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			
 			///////////////////////////////////////////
@@ -140,14 +140,14 @@ namespace MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01
 		
 		private async void DeleteHeroButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
 
 			// Prepare
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			
 			///////////////////////////////////////////
@@ -175,7 +175,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01
 			}
 			else
 			{
-				_bottomBodyText.AppendBullet($"{ExampleConstants.NothingAvailable}");
+				_bottomBodyText.AppendBullet($"{SharedConstants.NothingAvailable}");
 			}
 
 			await RefreshUI();
@@ -184,14 +184,14 @@ namespace MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01
 		
 		private async void QueryHeroButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
 			
 			// Prepare
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			
 			///////////////////////////////////////////
@@ -212,7 +212,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Query_LiveQuery_01
 			}
 			else
 			{
-				_bottomBodyText.AppendBullet($"{ExampleConstants.NothingAvailable}");
+				_bottomBodyText.AppendBullet($"{SharedConstants.NothingAvailable}");
 			}
 			
 			await RefreshUI();

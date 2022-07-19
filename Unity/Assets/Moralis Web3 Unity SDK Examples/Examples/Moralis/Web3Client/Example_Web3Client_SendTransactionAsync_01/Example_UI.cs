@@ -55,7 +55,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3Client_SendTransactionAsync_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -83,7 +83,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3Client_SendTransactionAsync_01
 
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -94,7 +94,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3Client_SendTransactionAsync_01
 			_exampleCanvas.BottomPanel.BodyText.Text.text = _bottomBodyText.ToString();
 
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 
@@ -108,14 +108,14 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3Client_SendTransactionAsync_01
 
 		private async void TransferButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
 
 			// Prepare
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 

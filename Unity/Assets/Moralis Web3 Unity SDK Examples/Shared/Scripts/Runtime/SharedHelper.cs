@@ -15,7 +15,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
     /// which is outside the educational scope of per-scene
     /// example files
     /// </summary>
-    public static class ExampleHelper
+    public static class SharedHelper
     {
         //  General Methods  --------------------------------------
         

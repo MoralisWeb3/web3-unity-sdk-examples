@@ -50,7 +50,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Authentication_01
 		{
 			Moralis.Start();
 			
-			_wasLoggedInAtSetupMoralis = await ExampleHelper.HasMoralisUser();
+			_wasLoggedInAtSetupMoralis = await SharedHelper.HasMoralisUser();
 		}
 
 		
@@ -73,7 +73,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Authentication_01
 			
 			// Footer
 			BackButton.IsVisible = _exampleCanvas.HasSceneNamePrevious;
-			BackButton.Text.text = ExampleConstants.Cancel;
+			BackButton.Text.text = SharedConstants.Cancel;
 			BackButton.Button.onClick.AddListener(BackButton_OnClicked);
 			
 		}
@@ -81,7 +81,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Authentication_01
 		private async UniTask RefreshUI()
 		{
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 		

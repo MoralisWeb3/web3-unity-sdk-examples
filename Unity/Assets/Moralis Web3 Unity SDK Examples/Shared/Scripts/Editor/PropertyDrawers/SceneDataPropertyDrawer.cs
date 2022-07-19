@@ -1,5 +1,6 @@
 using System;
 using MoralisUnity.Samples.Shared.Data.Types;
+using MoralisUnity.Samples.Shared.Data.Types.Storage;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,7 +20,6 @@ namespace MoralisUnity.Samples.Shared.PropertyDrawers
 		// Properties -------------------------------------
 		private const float LineHeight = 16f;
 		private const float Pad = 4f;
-		private const float LineCount = 2;
 
 		// Fields -----------------------------------------
 

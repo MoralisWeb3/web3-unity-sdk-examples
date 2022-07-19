@@ -44,7 +44,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisClient_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 			
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -70,7 +70,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisClient_01
 
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -80,21 +80,21 @@ namespace MoralisUnity.Examples.Sdk.Example_MoralisClient_01
 			_exampleCanvas.BottomPanel.BodyText.ScrollToTop();
 
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 
 		//  Event Handlers --------------------------------
 		private async void GetClientButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
 
 			// Prepare
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			
 			///////////////////////////////////////////

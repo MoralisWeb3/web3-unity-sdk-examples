@@ -50,7 +50,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -74,7 +74,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 		
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -85,13 +85,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 			_exampleCanvas.BottomPanel.BodyText.Text.text = _bottomBodyText.ToString();
 
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 		//  Event Handlers --------------------------------
 		private async void SignButtonButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -99,7 +99,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 			// Prepare
 			SignButton.IsInteractable = false;
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.PendingTransactionMessage}");
+			_bottomBodyText.AppendLine($"{SharedConstants.PendingTransactionMessage}");
 			await RefreshUI();
 			
 			string address = _exampleCanvas.Header.AuthenticationUI.ActiveAddress;
@@ -108,7 +108,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Session_Sign_01
 			// Ensure WalletConnect
 			if (WalletConnect.Instance == null)
 			{
-				throw new Exception(ExampleConstants.MissingWalletConnectPrefab);
+				throw new Exception(SharedConstants.MissingWalletConnectPrefab);
 			}
 			
 			///////////////////////////////////////////

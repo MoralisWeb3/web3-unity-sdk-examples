@@ -189,10 +189,10 @@ namespace MoralisUnity.Examples.Sdk.Shared
          _isInitialized = true;
          
          // Default display text. (Scene's may set again, if desired)
-         Header.TitleText.text = ExampleConstants.Moralis;
-         Header.ChainsDropdown.Dropdown.itemText.text = ExampleConstants.Chains;
-         TopPanel.TitleText.text = ExampleConstants.Main;
-         BottomPanel.TitleText.text = ExampleConstants.Details;
+         Header.TitleText.text = SharedConstants.Moralis;
+         Header.ChainsDropdown.Dropdown.itemText.text = SharedConstants.Chains;
+         TopPanel.TitleText.text = SharedConstants.Main;
+         BottomPanel.TitleText.text = SharedConstants.Details;
 
          // Default visibility. (Scene's may set again, if desired)
          TopPanel.BodyText.Text.text = "";
@@ -202,21 +202,21 @@ namespace MoralisUnity.Examples.Sdk.Shared
          Footer.Button02.IsVisible = false;
          Footer.Button03.IsVisible = false;
 
-         if (!await ExampleHelper.HasMoralisUser())
+         if (!await SharedHelper.HasMoralisUser())
          {
             Moralis.Start();
          }
          
          // Defaults depend on IsLoggedIn...
-         bool isLoggedIn = await ExampleHelper.HasMoralisUser();
+         bool isLoggedIn = await SharedHelper.HasMoralisUser();
          Header.ChainsDropdown.IsVisible = isLoggedIn;
          if (!isLoggedIn)
          {
             string currentSceneName = SceneManager.GetActiveScene().name;
             StringBuilder topBodyText = new StringBuilder();
-            topBodyText.AppendErrorLine(ExampleConstants.YouAreNotLoggedIn);
+            topBodyText.AppendErrorLine(SharedConstants.YouAreNotLoggedIn);
             topBodyText.AppendLine();
-            topBodyText.AppendFormat(ExampleConstants.BodyTextAuthenticate,
+            topBodyText.AppendFormat(SharedConstants.BodyTextAuthenticate,
                _authenticationSceneName,
                currentSceneName);
             TopPanel.BodyText.Text.text = topBodyText.ToString();
@@ -298,7 +298,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
          List<Dropdown.OptionData> optionDatas = new List<Dropdown.OptionData>();
          foreach (ChainEntry chainEntry in supportedChains)
          {
-            string displayName = ExampleHelper.GetPrettifiedNameByChainEntry(chainEntry);
+            string displayName = SharedHelper.GetPrettifiedNameByChainEntry(chainEntry);
             optionDatas.Add(new ChainEntryDropdownOptionData(chainEntry, displayName));
          }
 
@@ -314,19 +314,19 @@ namespace MoralisUnity.Examples.Sdk.Shared
          (this as IInitializableAsync).RequireIsInitialized();
          
          // Delay so the UI triggers a rerender
-         await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+         await SharedHelper.TaskDelayWaitForCosmeticEffect();
 
          // There are 2 panels. Maintain the total nextBottomHeight.
-         float topHeight = ExampleHelper.GetExamplePanelActualSize(TopPanel, _canvas).y;
-         float bottomHeight = ExampleHelper.GetExamplePanelActualSize(BottomPanel, _canvas).y;
+         float topHeight = SharedHelper.GetExamplePanelActualSize(TopPanel, _canvas).y;
+         float bottomHeight = SharedHelper.GetExamplePanelActualSize(BottomPanel, _canvas).y;
          float totalHeight = topHeight + bottomHeight;
 
          if (nextBottomHeight > 0 || nextBottomHeight < totalHeight)
          {
             float nextTopHeight = totalHeight - nextBottomHeight;
 
-            ExampleHelper.SetExamplePanelPreferredHeight(TopPanel, nextTopHeight);
-            ExampleHelper.SetExamplePanelPreferredHeight(BottomPanel, nextBottomHeight);
+            SharedHelper.SetExamplePanelPreferredHeight(TopPanel, nextTopHeight);
+            SharedHelper.SetExamplePanelPreferredHeight(BottomPanel, nextBottomHeight);
          }
       }
       
@@ -351,7 +351,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
                // SHOW DIALOG: "Edit this address..."
                ////////////////
                dialogUI = _dialogSystem.ShowDialogBoxCustomEditableText(
-                  ExampleConstants.DialogTitleAddress,
+                  SharedConstants.DialogTitleAddress,
                   _header.AuthenticationUI.ActiveAddress,
                   () =>
                   {
@@ -390,8 +390,8 @@ namespace MoralisUnity.Examples.Sdk.Shared
                ////////////////
                // Show 'go and log in
                dialogUI = _dialogSystem.ShowDialogBoxCustomText(
-                  ExampleConstants.DialogTitleTextAuthenticate,
-                  string.Format(ExampleConstants.DialogBodyTextAuthenticate, 
+                  SharedConstants.DialogTitleTextAuthenticate,
+                  string.Format(SharedConstants.DialogBodyTextAuthenticate, 
                      _authenticationSceneName,
                      currentSceneName),
                   () =>

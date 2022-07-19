@@ -42,7 +42,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			///////////////////////////////////////////
 			// Execute
 			///////////////////////////////////////////
-			string address = ExampleConstants.AddressForTesting;
+			string address = SharedConstants.AddressForTesting;
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 			
@@ -102,7 +102,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			ChainList chainList, StringBuilder outputText)
 		{
 
-			string address = ExampleConstants.AddressForTesting; // TODO: Use Moralis.GetUser().ethAddress;
+			string address = SharedConstants.AddressForTesting; // TODO: Use Moralis.GetUser().ethAddress;
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 
@@ -176,7 +176,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			ChainList chainList, StringBuilder outputText)
 		{
 
-			string address = ExampleConstants.AddressForTesting; // TODO: Use Moralis.GetUser().ethAddress;
+			string address = SharedConstants.AddressForTesting; // TODO: Use Moralis.GetUser().ethAddress;
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 
@@ -242,7 +242,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				outputText.AppendBulletException(exception);
 			}
 			
-			string tokenAddress = ExampleConstants.TokenAddressForTesting;
+			string tokenAddress = SharedConstants.TokenAddressForTesting;
 			outputText.AppendHeaderLine(
 				$"Web3Api.Account.GetNFTsForContract({addressFormatted}, {tokenAddress}, {chainList})");
 

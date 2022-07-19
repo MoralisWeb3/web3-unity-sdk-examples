@@ -5,7 +5,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
     /// <summary>
     /// Helper values
     /// </summary>
-    public static class ExampleConstants
+    public static class SharedConstants
     {
         //  Fields  -----------------------------------------------
         
@@ -36,7 +36,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
        
         public const string Web3UnitySDK = "Web3 Unity SDK";
         public const string Web3UnitySDKVersion = "v1.2.4"; // This may be out of date. Check to Manifest.json, then re-update here
-        public const string ProductWithVersion = ExampleConstants.Moralis + ExampleConstants.Web3UnitySDK + " " + ExampleConstants.Web3UnitySDKVersion;
+        public const string ProductWithVersion = SharedConstants.Moralis + SharedConstants.Web3UnitySDK + " " + SharedConstants.Web3UnitySDKVersion;
         public const string KnownIssueReported = "Known issue: Reported to Moralis in " + ProductWithVersion + ".";
         public const string Chains = "Chains";
         public const string Main = "Main";

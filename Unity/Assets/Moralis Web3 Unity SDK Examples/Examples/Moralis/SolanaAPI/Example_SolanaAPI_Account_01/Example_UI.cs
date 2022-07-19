@@ -51,7 +51,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			// Canvas
 			await _exampleCanvas.InitializeAsync();
 			
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -80,7 +80,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 		
 		private async UniTask RefreshUI()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -97,14 +97,14 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			_exampleCanvas.BottomPanel.BodyText.ScrollToTop();
 			
 			// Cosmetic delay for UI
-			await ExampleHelper.TaskDelayWaitForCosmeticEffect();
+			await SharedHelper.TaskDelayWaitForCosmeticEffect();
 		}
 
 
 		//  Event Handlers --------------------------------
 		private async void GetBalanceButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -114,7 +114,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			_topBodyText.AppendHeaderLine($"SolanaApi.Account.Balance(...)");
 			_topBodyText.AppendBullet($"Gets native balance for a specific address");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 			
@@ -133,7 +133,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 
 		private async void GetPortfolioButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -143,7 +143,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			_topBodyText.AppendHeaderLine($"SolanaApi.Account.GetPortfolio(...)");
 			_topBodyText.AppendBullet($"Gets portfolio for specific address");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 			
@@ -161,7 +161,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 		
 		private async void GetNFTsButton_OnClicked()
 		{
-			if (await ExampleHelper.HasMoralisUser() == false)
+			if (await SharedHelper.HasMoralisUser() == false)
 			{
 				return;
 			}
@@ -171,7 +171,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			_topBodyText.AppendHeaderLine($"SolanaApi.Account_GetNFTs(...)");
 			_topBodyText.AppendBullet($"Gets NFTs owned by the given address");
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"{ExampleConstants.Loading}");
+			_bottomBodyText.AppendLine($"{SharedConstants.Loading}");
 			await RefreshUI();
 			_bottomBodyText.Clear();
 			

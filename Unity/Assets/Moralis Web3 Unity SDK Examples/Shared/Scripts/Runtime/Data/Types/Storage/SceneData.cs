@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace MoralisUnity.Samples.Shared.Data.Types
+#pragma warning disable CS0414
+namespace MoralisUnity.Samples.Shared.Data.Types.Storage
 {
 	/// <summary>
 	/// Stores info about Scenes
