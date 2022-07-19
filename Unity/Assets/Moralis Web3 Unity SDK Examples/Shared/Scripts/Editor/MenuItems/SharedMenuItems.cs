@@ -56,7 +56,34 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 			string path = Path.GetFullPath("Assets/Moralis Web3 Unity SDK Examples/Shared/Layouts/MoralisLayout16x10.wlt");
 			UnityReflectionUtility.UnityEditor_WindowLayout_LoadWindowLayout(path);
 		}
-
 		
+		
+		[MenuItem( ExampleConstants.PathMoralisExamplesAssetsMenu + "/" + "Copy Guid", false,
+			ExampleConstants.PriorityMoralisAssets_Examples)]
+		public static void CopyGuidToClipboard()
+		{
+			// Support only if exactly 1 object is selected in project window
+			var objs = Selection.objects;
+			if (objs.Length != 1)
+			{
+				return;
+			}
+
+			var obj = objs[0];
+			string path = AssetDatabase.GetAssetPath(obj);
+			GUID guid = AssetDatabase.GUIDFromAssetPath(path);
+			GUIUtility.systemCopyBuffer = guid.ToString();
+			Debug.Log($"CopyGuidToClipboard() success! Value '{GUIUtility.systemCopyBuffer}' copied to clipboard.");
+		}
+		
+		
+		[MenuItem( ExampleConstants.PathMoralisExamplesAssetsMenu + "/" + "Copy Guid", true,
+			ExampleConstants.PriorityMoralisAssets_Examples)]
+		public static bool CopyGuidToClipboard_ValidationFunction()
+		{
+			// Support only if exactly 1 object is selected in project window
+			var objs = Selection.objects;
+			return objs.Length == 1;
+		}
 	}
 }

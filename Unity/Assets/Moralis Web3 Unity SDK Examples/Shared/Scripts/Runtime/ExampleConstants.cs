@@ -16,6 +16,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
         public const string OpenReadMe = MoralisConstants.Open + " " + "ReadMe";
         public const string PathMoralisExamplesCreateAssetMenu = Moralis + MoralisConstants.Web3UnitySDK + "/Examples/" + Web3UnitySDKExamples + "/";
         private const string PathMoralisExamplesToolsMenu = "Tools/" + Moralis + "/" + MoralisConstants.Web3UnitySDK  +"/Examples/" + Web3UnitySDKExamples + "/";
+        public const string PathMoralisExamplesAssetsMenu = "Assets/Moralis Web3 Unity SDK/Examples";
         
         ///////////////////////////////////////////
         // MenuItem Priority
@@ -26,6 +27,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
         public const int PriorityMoralisWindow_Secondary = 100;
         public const int PriorityMoralisWindow_Examples = 1000;
         public const int PriorityMoralisWindow_Samples = 10000;
+        public const int PriorityMoralisAssets_Examples = 1;
         
         ///////////////////////////////////////////
         // Display Text
