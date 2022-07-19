@@ -1,10 +1,10 @@
 using MoralisUnity.Samples.Shared.Attributes;
-using UnityEditor;
 using UnityEngine;
 
 namespace MoralisUnity.Samples.Shared.DesignPatterns.Creational.Singleton.CustomSingletonScriptableObject
 {
 
+    //TODO: Add to Web3 Unity SDK - srivello
     /// <summary>
     /// Unity offers https://docs.unity3d.com/2020.1/Documentation/ScriptReference/ScriptableSingleton_1.html
     /// but it was throwing "ScriptableSingleton already exists. Did you query the singleton in a constructor?"
@@ -51,7 +51,6 @@ namespace MoralisUnity.Samples.Shared.DesignPatterns.Creational.Singleton.Custom
         
         protected static T Instantiate()
         {
-            
             System.Attribute[] attrs = System.Attribute.GetCustomAttributes(typeof(T));
             string guid = string.Empty;
             for (int i = 0; i < attrs.Length; i++)
@@ -67,10 +66,10 @@ namespace MoralisUnity.Samples.Shared.DesignPatterns.Creational.Singleton.Custom
             {
                 Debug.LogError("Add [ReferenceByGuidAttribute] to child object and include accurate Guid value.");
             }
-        
-            var path = AssetDatabase.GUIDToAssetPath(guid);
-            var instance = AssetDatabase.LoadAssetAtPath<T>(path);
-            return instance;
+
+
+            T[] instances = Resources.LoadAll<T>("");
+            return instances[0];
         }
     }
 }
