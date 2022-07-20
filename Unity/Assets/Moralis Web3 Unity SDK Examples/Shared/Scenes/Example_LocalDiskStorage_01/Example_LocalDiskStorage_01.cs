@@ -7,6 +7,7 @@ using UnityEngine;
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_LocalDiskStorage_01	
 {
+	
 	[CustomFilePath(LocalDiskStorage.Title + "/SampleData.txt", CustomFilePathLocation.StreamingAssetsPath)]
 	[System.Serializable]
 	public class SampleData
@@ -39,14 +40,14 @@ namespace MoralisUnity.Examples.Sdk.Example_LocalDiskStorage_01
 		{
 
 			SampleData sampleData = null;
-
-			bool hasObject = LocalDiskStorage.Instance.Has<SampleData>();
+			
+			bool hasSampleData = LocalDiskStorage.Instance.Has<SampleData>();
 			
 			outputText.Clear();
 			outputText.AppendHeaderLine($"Load()");
-			outputText.AppendBullet($"Has<T>() = {hasObject}");
+			outputText.AppendBullet($"Has<T>() = {hasSampleData}");
 			
-			if (hasObject)
+			if (hasSampleData)
 			{
 				///////////////////////////////////////////
 				// Execute: Load<T>
