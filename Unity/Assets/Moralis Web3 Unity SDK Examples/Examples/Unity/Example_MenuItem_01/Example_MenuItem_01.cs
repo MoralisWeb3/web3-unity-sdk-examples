@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Kits.AuthenticationKit;
 using UnityEditor;
 using UnityEngine;
@@ -34,8 +35,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 		// The MenuItem will appear with this title
 		public const string MenuItemTitle = "Add To Scene: AuthenticationKit";
 		
-		// Optional: The MenuItem will appear with this vertical ordering priority (0 = top)
-		private const int MenuItemPriority = 5000;
+
 		
 		// Optional: The MenuItem will execute upon hotkey
 		//		# (shift)
@@ -47,7 +47,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 		/// <summary>
 		/// This methods DISPLAYS the MenuItem
 		/// </summary>
-		[MenuItem(MenuItemPath, false, MenuItemPriority)]
+		[MenuItem(MenuItemPath, false, SharedConstants.PriorityMoralisTools_Examples_Sub)]
 		public static void Unity_ExampleMenuItem()
 		{
 			///////////////////////////////////////////
@@ -85,7 +85,7 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 		/// <summary>
 		/// Optional: This methods ENABLES/DISABLES the MenuItem
 		/// </summary>
-		[MenuItem(MenuItemPath, true, MenuItemPriority)]
+		[MenuItem(MenuItemPath, true, SharedConstants.PriorityMoralisTools_Examples_Sub)]
 		public static bool Unity_ExampleMenuItem_ValidationFunction()
 		{
 			// Determines if an instance already exists in the current scene

@@ -23,10 +23,11 @@ namespace MoralisUnity.Examples.Sdk.Shared
         ///////////////////////////////////////////
 
         // Skipping ">10" shows a horizontal divider line.
-        public const int PriorityMoralisWindow_Primary = 10;
-        public const int PriorityMoralisWindow_Secondary = 100;
-        public const int PriorityMoralisWindow_Examples = 1000;
-        public const int PriorityMoralisWindow_Samples = 10000;
+        public const int PriorityMoralisTools_Primary = 10;
+        public const int PriorityMoralisTools_Secondary = 100;
+        public const int PriorityMoralisTools_Examples = 1000;
+        public const int PriorityMoralisTools_Examples_Sub = 5000;
+        public const int PriorityMoralisTools_Samples = 10000;
         public const int PriorityMoralisAssets_Examples = 1;
         
         ///////////////////////////////////////////

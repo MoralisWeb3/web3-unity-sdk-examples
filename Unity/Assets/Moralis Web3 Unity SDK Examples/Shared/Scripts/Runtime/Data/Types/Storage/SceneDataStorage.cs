@@ -8,7 +8,7 @@ using UnityEngine;
 namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
 {
     [ReferenceByGuid (Guid = "81d335281c7572a41b9d84c3deede854")]
-    [CreateAssetMenu( menuName = SharedConstants.PathMoralisExamplesCreateAssetMenu + Title,  fileName = Title, order = SharedConstants.PriorityMoralisWindow_Primary)]
+    [CreateAssetMenu( menuName = SharedConstants.PathMoralisExamplesCreateAssetMenu + Title,  fileName = Title, order = SharedConstants.PriorityMoralisTools_Primary)]
     public class SceneDataStorage: CustomSingletonScriptableObject<SceneDataStorage>
     {
         //  Properties ------------------------------------

@@ -17,10 +17,20 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 	/// </summary>
 	public static class SharedMenuItems
 	{
+		//  Properties ------------------------------------
 
+        
+		//  Fields ----------------------------------------
+
+		
+		//  General Methods -------------------------------
+		
+		///////////////////////////////////////////
+		// Tools Menu
+		///////////////////////////////////////////
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
 			SharedConstants.Web3UnitySDKExamples + "/" + SharedConstants.OpenReadMe, false,
-			SharedConstants.PriorityMoralisWindow_Examples)]
+			SharedConstants.PriorityMoralisTools_Examples)]
 		public static void OpenReadMe()
 		{
 			ReadMeEditor.SelectReadmeGuid("3b4d333465945474ea57ff6e62ba4f37");
@@ -29,7 +39,7 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
 				   SharedConstants.Web3UnitySDKExamples + "/" + "Add Example Scenes To Build Settings", false,
-			SharedConstants.PriorityMoralisWindow_Examples)]
+			SharedConstants.PriorityMoralisTools_Examples)]
 		public static void AddAllScenesToBuildSettings()
 		{
 			List<SceneData> sceneDatas = SceneDataStorage.Instance.SceneDatas;
@@ -41,7 +51,7 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
 		          SharedConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (10x16)", false,
-			SharedConstants.PriorityMoralisWindow_Examples)]
+			SharedConstants.PriorityMoralisTools_Examples)]
 		public static void LoadExampleLayout_10x16()
 		{
 			string guid = "68e09fd97bc6f3f4f9154ccdf9ece35d";
@@ -52,16 +62,35 @@ namespace MoralisUnity.Examples.Sdk.Shared.MenuItems
 		
 		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
 		          SharedConstants.Web3UnitySDKExamples + "/" + "Load Moralis Layout (16x10)", false,
-			SharedConstants.PriorityMoralisWindow_Examples)]
+			SharedConstants.PriorityMoralisTools_Examples)]
 		public static void LoadExampleLayout_16x10()
 		{
 			string guid = "bb0830cff9fd5fa4b9ac04292dc30acc";
 			string path = AssetDatabase.GUIDToAssetPath(guid);
 			UnityReflectionUtility.UnityEditor_WindowLayout_LoadWindowLayout(path);
 		}
+		
+		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
+		          SharedConstants.Web3UnitySDKExamples + "/" + "Example_LocalDiskStorage_01/Open Persistent Data Path", false,
+			SharedConstants.PriorityMoralisTools_Examples_Sub)]
+		public static void OpenApplicationPersistentDataPath()
+		{
+			EditorUtility.RevealInFinder(Application.persistentDataPath);
+		}
+		
+		[MenuItem(MoralisConstants.PathMoralisExamplesWindowMenu + "/" +
+		          SharedConstants.Web3UnitySDKExamples + "/" + "Example_LocalDiskStorage_01/Open Steaming Data Path", false,
+			SharedConstants.PriorityMoralisTools_Examples_Sub)]
+		public static void OpenApplicationStreamingDataPath()
+		{
+			EditorUtility.RevealInFinder(Application.streamingAssetsPath);
+		}
 
 		
-		
+		///////////////////////////////////////////
+		// Assets Menu
+		///////////////////////////////////////////
+
 		[MenuItem( SharedConstants.PathMoralisExamplesAssetsMenu + "/" + "Copy Guid", false,
 			SharedConstants.PriorityMoralisAssets_Examples)]
 		public static void CopyGuidToClipboard()

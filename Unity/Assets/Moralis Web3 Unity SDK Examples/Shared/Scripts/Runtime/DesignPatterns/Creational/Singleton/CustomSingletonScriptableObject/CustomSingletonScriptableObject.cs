@@ -6,6 +6,10 @@ namespace MoralisUnity.Samples.Shared.DesignPatterns.Creational.Singleton.Custom
 
     //TODO: Add to Web3 Unity SDK - srivello
     /// <summary>
+    /// Custom Singleton Pattern: See <a href="https://en.wikipedia.org/wiki/Singleton_pattern">https://en.wikipedia.org/wiki/Singleton_pattern</a>
+    ///
+    /// This version is designed for situations: ScriptableObjects
+    /// 
     /// Unity offers https://docs.unity3d.com/2020.1/Documentation/ScriptReference/ScriptableSingleton_1.html
     /// but it was throwing "ScriptableSingleton already exists. Did you query the singleton in a constructor?"
     /// So here is a custom implementation

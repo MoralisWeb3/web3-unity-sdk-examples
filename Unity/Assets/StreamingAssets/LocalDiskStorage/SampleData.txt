@@ -1,0 +1,3 @@
+{
+    "_clickCount": 0
+}

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc71f260be8c7b41bd4f4433d808f09, type: 3}
   m_Name: SceneDataStorage
   m_EditorClassIdentifier: 
-  _inspectorInstructions: The index at 0 will be loaded first in builds. FYI.
+  _dummy: dummy
   _sceneDatas:
+  - _scene: {fileID: 102900000, guid: d41a4ea50be81ff41b04ea0d28c216f2, type: 3}
+    _sceneName: 
   - _scene: {fileID: 102900000, guid: b0e9bac8a166a4e46b7a813d050251cc, type: 3}
     _sceneName: 
   - _scene: {fileID: 102900000, guid: e86d776073058a543aa040dcc9919139, type: 3}
