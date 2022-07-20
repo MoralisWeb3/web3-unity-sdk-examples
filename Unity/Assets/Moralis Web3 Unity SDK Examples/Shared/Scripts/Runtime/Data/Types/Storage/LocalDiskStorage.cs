@@ -11,10 +11,11 @@ namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
     public class LocalDiskStorage: CustomSingleton<LocalDiskStorage>, ICustomSingletonParent
     {
         //  Properties ------------------------------------
-
+        
         
         //  Fields ----------------------------------------
         public const string Title = "LocalDiskStorage";
+        
         
         //  Initialization Methods-------------------------
         public LocalDiskStorage()
@@ -22,16 +23,19 @@ namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
             // Avoid using constructor for initialization
         }
 
+        
         void ICustomSingletonParent.OnInstantiatedChild()
         {
             // Use this for initialization
         }
 
+        
         //  General Methods -------------------------------
         public bool Save<T>(T obj)
         {
             return Save<T>(obj, true);
         }
+        
         
         public bool Save<T>(T obj, bool willOverwrite)
         {
@@ -54,10 +58,12 @@ namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
             return isSuccess;
         }
 
+        
         public bool Has<T>()
         {
             return LoadWithoutValidation<T>() != null;
         }
+        
         
         public T Load<T>()
         {
@@ -75,6 +81,7 @@ namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
             
             return LoadWithoutValidation<T>();
         }
+        
         
         private T LoadWithoutValidation<T>()
         {
@@ -111,8 +118,5 @@ namespace MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage
         }
         
         //  Event Handlers --------------------------------
-        
-        
-        //  Methods ---------------------------------------
     }
 }

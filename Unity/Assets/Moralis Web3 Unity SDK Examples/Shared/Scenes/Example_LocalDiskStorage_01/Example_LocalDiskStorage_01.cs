@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Examples.Sdk.Shared.Data.Types.Storage;
@@ -8,7 +7,7 @@ using UnityEngine;
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_LocalDiskStorage_01	
 {
-	[CustomFilePath(LocalDiskStorage.Title + "/SampleData.txt", CustomFilePathLocation.PersistentDataPath)]
+	[CustomFilePath(LocalDiskStorage.Title + "/SampleData.txt", CustomFilePathLocation.StreamingAssetsPath)]
 	[System.Serializable]
 	public class SampleData
 	{
@@ -62,9 +61,7 @@ namespace MoralisUnity.Examples.Sdk.Example_LocalDiskStorage_01
 				outputText.AppendBullet($"Created!");
 			}
 			
-			
 			return sampleData;
-			
 		}
 		
 		
