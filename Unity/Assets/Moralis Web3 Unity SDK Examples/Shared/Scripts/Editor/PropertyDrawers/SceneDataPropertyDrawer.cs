@@ -1,5 +1,3 @@
-using System;
-using MoralisUnity.Samples.Shared.Data.Types;
 using MoralisUnity.Samples.Shared.Data.Types.Storage;
 using UnityEditor;
 using UnityEngine;
@@ -43,25 +41,35 @@ namespace MoralisUnity.Samples.Shared.PropertyDrawers
 			// Render object
 			position.height = LineHeight + Pad;
 			SerializedProperty _scene = property.FindPropertyRelative("_scene");
+
 			if (_scene == null)
 			{
-				throw new Exception($"Cannot find '_scene'. Fix");
+				Debug.LogError("Cant find _sceneName. Fix target class");
+				return;
 			}
-			EditorGUI.PropertyField(position, _scene, new GUIContent ("Scene"));
+			
+			EditorGUI.PropertyField(position, _scene, new GUIContent (property.displayName));
 			position.y += LineHeight + Pad; 
 
 			// Update string to match object
 			SerializedProperty _sceneName = property.FindPropertyRelative("_sceneName");
-			if (_sceneName == null || string.IsNullOrEmpty(_sceneName.stringValue))
+			
+			if (_sceneName == null)
 			{
+				Debug.LogError("Cant find _sceneName. Fix target class");
 				return;
 			}
-			_sceneName.stringValue = _sceneName.objectReferenceValue.name;
 
-			// Render string as not editable
-			EditorGUI.BeginDisabledGroup(true);
-			EditorGUI.PropertyField(position, _sceneName, new GUIContent("Name"));
-			EditorGUI.EndDisabledGroup();
+			if (_sceneName.stringValue != _scene.objectReferenceValue.name)
+			{
+				_sceneName.stringValue = _scene.objectReferenceValue.name;
+				property.serializedObject.ApplyModifiedProperties();
+			}
+			
+			// Optional: Enable to debug the values
+			// EditorGUI.BeginDisabledGroup(true);
+			// EditorGUI.PropertyField(position, _sceneName, new GUIContent("Name"));
+			// EditorGUI.EndDisabledGroup();
 		}
 
 		// Event Handlers ---------------------------------
