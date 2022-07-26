@@ -31,18 +31,48 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 		/// Limit results to conserve text display space
 		/// </summary>
 		private static readonly LoopLimit LoopLimit = new LoopLimit(3);
-		
-		
+
+
 		//  General Methods -------------------------------	
-		
+
+
+		private static string GetExampleAddressForChainList(ChainList chainList)
+		{
+			// TODO: In production, consider to use: Moralis.GetUser().ethAddress
+			if (chainList == ChainList.cronos_testnet)
+            {
+				return SharedConstants.CronosTestnetExampleAddress;
+			}
+			else if (chainList == ChainList.cronos)
+            {
+				return SharedConstants.CronosExampleAddress;
+			}
+			return SharedConstants.EthAddressForTesting; 
+		}
+
+		private static string GetExampleTokenAddressForChainList(ChainList chainList)
+		{
+			// TODO: In production, consider to use some specific address you choose
+			if (chainList == ChainList.cronos_testnet)
+			{
+				return SharedConstants.CronosTestnetExampleTokenAddress;
+			}
+			else if (chainList == ChainList.cronos)
+			{
+				return SharedConstants.CronosExampleTokenAddress;
+			}
+			return SharedConstants.EthTokenAddressForTesting;
+		}
+
+
 		public static async UniTask<StringBuilder> MoralisClient_Web3Api_Account_GetNativeBalance(
 			ChainList chainList, StringBuilder outputText)
 		{
-			
+
 			///////////////////////////////////////////
 			// Execute
 			///////////////////////////////////////////
-			string address = SharedConstants.AddressForTesting;
+			string address = GetExampleAddressForChainList(chainList);
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 			
@@ -77,17 +107,21 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				
 				outputText.AppendBullet($"transactionCollection.Result.Count = {transactionCollection.Result.Count}");
 
-				LoopLimit.Reset();
-				outputText.AppendBulletLoopLimit(LoopLimit);
-				foreach (Transaction transaction in transactionCollection.Result)
-				{
-					if (LoopLimit.IsAtLimit())
+				if (transactionCollection.Result.Count > 0)
+                {
+					LoopLimit.Reset();
+					outputText.AppendBulletLoopLimit(LoopLimit);
+					foreach (Transaction transaction in transactionCollection.Result)
 					{
-						break;
-					}
+						if (LoopLimit.IsAtLimit())
+						{
+							break;
+						}
 
-					outputText.AppendBullet($"transaction.Value = {transaction.Value}", 2);
+						outputText.AppendBullet($"transaction.Value = {transaction.Value}", 2);
+					}
 				}
+	
 			}
 			catch (Exception exception)
 			{
@@ -97,12 +131,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			return outputText;
 		}
 
+   
 
-		public static async UniTask<StringBuilder> MoralisClient_Web3Api_Account_GetTokenTransfers(
+        public static async UniTask<StringBuilder> MoralisClient_Web3Api_Account_GetTokenTransfers(
 			ChainList chainList, StringBuilder outputText)
 		{
 
-			string address = SharedConstants.AddressForTesting; // TODO: Use Moralis.GetUser().ethAddress;
+			string address = GetExampleAddressForChainList(chainList);
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 
@@ -119,16 +154,19 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				
 				outputText.AppendBullet($"tokenBalances.Count = {tokenBalances.Count}", 1);
 
-				LoopLimit.Reset();
-				outputText.AppendBulletLoopLimit(LoopLimit);
-				foreach (Erc20TokenBalance tokenBalance in tokenBalances)
+				if (tokenBalances.Count > 0)
 				{
-					if (LoopLimit.IsAtLimit())
+					LoopLimit.Reset();
+					outputText.AppendBulletLoopLimit(LoopLimit);
+					foreach (Erc20TokenBalance tokenBalance in tokenBalances)
 					{
-						break;
-					}
+						if (LoopLimit.IsAtLimit())
+						{
+							break;
+						}
 
-					outputText.AppendBullet($"tokenBalance = {tokenBalance.Balance}", 2);
+						outputText.AppendBullet($"tokenBalance = {tokenBalance.Balance}", 2);
+					}
 				}
 			}
 			catch (Exception exception)
@@ -150,17 +188,21 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				outputText.AppendBullet(
 					$"erc20TransactionCollection.Result.Count = {erc20TransactionCollection.Result.Count}", 1);
 
-				LoopLimit.Reset();
-				outputText.AppendBulletLoopLimit(LoopLimit);
-				foreach (Erc20Transaction erc20Transaction in erc20TransactionCollection.Result)
-				{
-					if (LoopLimit.IsAtLimit())
-					{
-						break;
-					}
 
-					string ercAddressFormatted = Formatters.GetWeb3AddressShortFormat(erc20Transaction.Address);
-					outputText.AppendBullet($"erc20Transaction.Address = {ercAddressFormatted}", 2);
+				if (erc20TransactionCollection.Result.Count > 0)
+                {
+					LoopLimit.Reset();
+					outputText.AppendBulletLoopLimit(LoopLimit);
+					foreach (Erc20Transaction erc20Transaction in erc20TransactionCollection.Result)
+					{
+						if (LoopLimit.IsAtLimit())
+						{
+							break;
+						}
+
+						string ercAddressFormatted = Formatters.GetWeb3AddressShortFormat(erc20Transaction.Address);
+						outputText.AppendBullet($"erc20Transaction.Address = {ercAddressFormatted}", 2);
+					}
 				}
 			}
 			catch (Exception exception)
@@ -176,7 +218,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			ChainList chainList, StringBuilder outputText)
 		{
 
-			string address = SharedConstants.AddressForTesting; // TODO: Use Moralis.GetUser().ethAddress;
+			string address = GetExampleAddressForChainList(chainList);
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 
@@ -194,16 +236,19 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				outputText.AppendBullet(
 					$"nftOwnerCollection.Result.Count = {nftOwnerCollection.Result.Count}", 1);
 
-				LoopLimit.Reset();
-				outputText.AppendBulletLoopLimit(LoopLimit);
-				foreach (NftOwner nftOwner in nftOwnerCollection.Result)
-				{
-					if (LoopLimit.IsAtLimit())
+				if (nftOwnerCollection.Result.Count > 0)
+                {
+					LoopLimit.Reset();
+					outputText.AppendBulletLoopLimit(LoopLimit);
+					foreach (NftOwner nftOwner in nftOwnerCollection.Result)
 					{
-						break;
-					}
+						if (LoopLimit.IsAtLimit())
+						{
+							break;
+						}
 
-					outputText.AppendBullet($"nftOwner.Name = {nftOwner.Name}", 2);
+						outputText.AppendBullet($"nftOwner.Name = {nftOwner.Name}", 2);
+					}
 				}
 			}
 			catch (Exception exception)
@@ -225,26 +270,30 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				outputText.AppendBullet(
 					$"nftTransferCollection.Result.Count = {nftTransferCollection.Result.Count}", 1);
 
-				LoopLimit.Reset();
-				outputText.AppendBulletLoopLimit(LoopLimit);
-				foreach (NftTransfer nftTransfer in nftTransferCollection.Result)
+				if (nftTransferCollection.Result.Count > 0)
 				{
-					if (LoopLimit.IsAtLimit())
+					LoopLimit.Reset();
+					outputText.AppendBulletLoopLimit(LoopLimit);
+					foreach (NftTransfer nftTransfer in nftTransferCollection.Result)
 					{
-						break;
-					}
+						if (LoopLimit.IsAtLimit())
+						{
+							break;
+						}
 
-					outputText.AppendBullet($"nftTransfer.Amount = {nftTransfer.Amount}", 2);
+						outputText.AppendBullet($"nftTransfer.Amount = {nftTransfer.Amount}", 2);
+					}
 				}
 			}
 			catch (Exception exception)
 			{
 				outputText.AppendBulletException(exception);
 			}
-			
-			string tokenAddress = SharedConstants.TokenAddressForTesting;
+
+			string tokenAddress = GetExampleTokenAddressForChainList(chainList);
+			string tokenAddressFormatted = Formatters.GetWeb3AddressShortFormat(tokenAddress);
 			outputText.AppendHeaderLine(
-				$"Web3Api.Account.GetNFTsForContract({addressFormatted}, {tokenAddress}, {chainList})");
+				$"Web3Api.Account.GetNFTsForContract({addressFormatted}, {tokenAddressFormatted}, {chainList})");
 
 			try
 			{
@@ -255,17 +304,20 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 					await moralisClient.Web3Api.Account.GetNFTsForContract(address, tokenAddress, chainList);
 				outputText.AppendBullet(
 					$"nftOwnerCollection.Result.Count = {nftOwnerCollection.Result.Count}", 1);
-		
-				LoopLimit.Reset();
-				outputText.AppendBulletLoopLimit(LoopLimit);
-				foreach (NftOwner nftOwner in nftOwnerCollection.Result)
-				{
-					if (LoopLimit.IsAtLimit())
-					{
-						break;
-					}
 
-					outputText.AppendBullet($"nftOwner.Amount = {nftOwner.Amount}", 2);
+				if (nftOwnerCollection.Result.Count > 0)
+				{
+					LoopLimit.Reset();
+					outputText.AppendBulletLoopLimit(LoopLimit);
+					foreach (NftOwner nftOwner in nftOwnerCollection.Result)
+					{
+						if (LoopLimit.IsAtLimit())
+						{
+							break;
+						}
+
+						outputText.AppendBullet($"nftOwner.Amount = {nftOwner.Amount}", 2);
+					}
 				}
 			}
 			catch (Exception exception)
@@ -275,5 +327,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 
 			return outputText;
 		}
-	}
+
+
+    }
 }

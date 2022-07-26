@@ -6,6 +6,7 @@ using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.SolanaApi.Models;
+using MoralisUnity.Web3Api.Models;
 using UnityEngine;
 using NativeBalance = MoralisUnity.SolanaApi.Models.NativeBalance;
 
@@ -33,14 +34,19 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 		/// Limit results to conserve text display space
 		/// </summary>
 		private static readonly LoopLimit LoopLimit = new LoopLimit(3);
-		
+
 		//  General Methods -------------------------------	
-		
+		private static string GetExampleAddress()
+		{
+			// TODO: In production, consider to use: Moralis.GetUser().ethAddress
+			return SharedConstants.SolanaAddressForTesting;
+		}
+
 		public static async UniTask<StringBuilder> MoralisClient_SolanaApi_Account_Balance(
 			StringBuilder outputText)
 		{
 			
-			string address = SharedConstants.AddressForSolanaTesting;
+			string address = GetExampleAddress();
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			NetworkTypes networkTypes = NetworkTypes.mainnet;
 			MoralisClient moralisClient = Moralis.GetClient();
@@ -70,7 +76,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 		public static async UniTask<StringBuilder> MoralisClient_SolanaApi_Account_GetPortfolio(
 			StringBuilder outputText)
 		{
-			string address = SharedConstants.AddressForSolanaTesting; 
+			string address = GetExampleAddress();
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			NetworkTypes networkTypes = NetworkTypes.mainnet;
 			MoralisClient moralisClient = Moralis.GetClient();
@@ -113,7 +119,7 @@ namespace MoralisUnity.Examples.Sdk.Example_SolanaAPI_Account_01
 			StringBuilder outputText)
 		{
 
-			string address = SharedConstants.AddressForSolanaTesting;
+			string address = GetExampleAddress();
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			NetworkTypes networkTypes = NetworkTypes.mainnet;
 			MoralisClient moralisClient = Moralis.GetClient();
