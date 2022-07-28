@@ -302,6 +302,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				///////////////////////////////////////////
 				NftOwnerCollection nftOwnerCollection =
 					await moralisClient.Web3Api.Account.GetNFTsForContract(address, tokenAddress, chainList);
+
 				outputText.AppendBullet(
 					$"nftOwnerCollection.Result.Count = {nftOwnerCollection.Result.Count}", 1);
 

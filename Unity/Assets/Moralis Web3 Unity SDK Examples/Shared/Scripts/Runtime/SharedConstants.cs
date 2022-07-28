@@ -101,9 +101,9 @@ namespace MoralisUnity.Examples.Sdk.Shared
         public const string CronosTestnetExampleAddress = "0xffd3a0042C75DDa5d41e7aa620ecB970237F513a";
         public const string CronosTestnetExampleTokenAddress = "0x66ec7b182018B5Ab622e0971222211BFf7Dafc9B";
 
-        // A random account (not mine) with much history for testing - https://cronoscan.com/address/0x5c7f8a570d578ed84e63fdfa7b1ee72deae1ae23
-        public const string CronosExampleAddress = "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23";
-        public const string CronosExampleTokenAddress = "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23";
+        // A random account (not mine) with much history for testing - https://cronoscan.com/address/0xb6237e5ac146bf84e920d1ed01f8c0c8d71808a6
+        public const string CronosExampleAddress = "0xb6237e5ac146bf84e920d1ed01f8c0c8d71808a6";
+        public const string CronosExampleTokenAddress = "0x8379f16903c7ec3a9cef19e3febd0141b2640c34";
 
 
 
