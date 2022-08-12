@@ -1,7 +1,9 @@
+using System;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using MoralisUnity.Examples.Sdk.Shared;
 using UnityEngine;
+using WalletConnectSharp.Unity;
 
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01	
@@ -33,7 +35,15 @@ namespace MoralisUnity.Examples.Sdk.Example_MenuItem_01
 			
 		}
 
-		
+		protected void OnDestroy()
+		{
+			if (WalletConnect.Instance != null)
+			{
+				Debug.LogWarning($"Destroy({WalletConnect.Instance}) as workaround to WalletConnect multi-scene lifecycle issues.");
+				Destroy(WalletConnect.Instance.gameObject);
+			}
+		}
+
 		//  General Methods -------------------------------	
 		private async UniTask SetupMoralis()
 		{

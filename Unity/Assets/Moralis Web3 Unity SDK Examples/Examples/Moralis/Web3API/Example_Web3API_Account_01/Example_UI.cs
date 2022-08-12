@@ -72,7 +72,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 			_exampleCanvas.Header.ChainsDropdown.SetSelectedChain(ChainList.eth);
 			
 			// Panels
-			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(9);
+			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(10);
 		
 			// Footer
 			GetNativeInfoButton.IsVisible = true;
