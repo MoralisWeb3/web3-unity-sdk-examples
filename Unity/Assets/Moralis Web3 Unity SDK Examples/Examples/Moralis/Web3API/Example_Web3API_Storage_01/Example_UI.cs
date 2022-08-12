@@ -166,8 +166,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			if (_lastLoadedIpfsFiles.Count >= 1 && _lastLoadedIpfsFiles[0].Path.Length > 0)
 			{
 				_spriteDestination = await SharedHelper.CreateSpriteFromImageUrl(_lastLoadedIpfsFiles[0].Path);
-				_imageDestination.sprite = _spriteDestination;
-				_imageDestination.GetComponent<CanvasGroup>().SetIsVisible(true);
+
+				// Nullcheck for smooth OnDestroy
+				if (_imageDestination != null)
+				{
+					_imageDestination.sprite = _spriteDestination;
+					_imageDestination.GetComponent<CanvasGroup>().SetIsVisible(true);
+				}
 				await RefreshUI();
 			}
 		}

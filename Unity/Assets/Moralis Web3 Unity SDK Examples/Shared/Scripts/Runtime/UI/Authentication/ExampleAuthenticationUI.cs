@@ -159,7 +159,7 @@ namespace MoralisUnity.Examples.Sdk.Shared
          switch (State)
          {
             case ExampleAuthenticationUIState.Authenticated:
-               _button.Text.text = Formatters.GetWeb3AddressShortFormat(ExampleRuntimeStorage.Instance.ActiveAddress);
+               _button.Text.text = SharedFormatter.GetWeb3AddressShortFormat(ExampleRuntimeStorage.Instance.ActiveAddress);
                break;
             case ExampleAuthenticationUIState.NotAuthenticated:
                _button.Text.text = SharedConstants.Authenticate;
