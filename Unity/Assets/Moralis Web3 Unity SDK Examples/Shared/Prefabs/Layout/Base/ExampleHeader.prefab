@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: -1
+  m_MinWidth: 200
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
@@ -322,13 +322,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 590
+  m_MinWidth: 540
   m_MinHeight: -1
-  m_PreferredWidth: 590
+  m_PreferredWidth: 540
   m_PreferredHeight: -1
   m_FlexibleWidth: 1
   m_FlexibleHeight: 1
-  m_LayoutPriority: 1
+  m_LayoutPriority: 2
 --- !u!114 &2802366195727143191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,11 +481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3977486024927956568, guid: e6eff563199182a4b92cb78244dfca43, type: 3}
       propertyPath: m_MinWidth
-      value: 200
+      value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 3977486024927956568, guid: e6eff563199182a4b92cb78244dfca43, type: 3}
       propertyPath: m_PreferredWidth
-      value: 200
+      value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 5232532415730920201, guid: e6eff563199182a4b92cb78244dfca43, type: 3}
       propertyPath: m_Pivot.x
@@ -699,6 +699,14 @@ PrefabInstance:
     - target: {fileID: 7891862542152218905, guid: 21744989f0104154f872843c6f453240, type: 3}
       propertyPath: m_MinWidth
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891862542152218905, guid: 21744989f0104154f872843c6f453240, type: 3}
+      propertyPath: m_LayoutPriority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891862542152218905, guid: 21744989f0104154f872843c6f453240, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21744989f0104154f872843c6f453240, type: 3}

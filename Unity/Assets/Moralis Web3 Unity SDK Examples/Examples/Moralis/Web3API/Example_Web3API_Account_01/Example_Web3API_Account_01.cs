@@ -35,11 +35,6 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 
 
 		//  General Methods -------------------------------	
-
-
-		
-		
-		
 		public static async UniTask<StringBuilder> MoralisClient_Web3Api_Account_GetNativeBalance(
 			ChainList chainList, StringBuilder outputText)
 		{
