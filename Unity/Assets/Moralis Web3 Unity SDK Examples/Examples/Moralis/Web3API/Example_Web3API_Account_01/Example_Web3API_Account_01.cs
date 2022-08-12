@@ -6,6 +6,7 @@ using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.Web3Api.Models;
+using UnityEngine;
 
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
@@ -36,43 +37,15 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 		//  General Methods -------------------------------	
 
 
-		private static string GetExampleAddressForChainList(ChainList chainList)
-		{
-			// TODO: In production, consider to use: Moralis.GetUser().ethAddress
-			if (chainList == ChainList.cronos_testnet)
-            {
-				return SharedConstants.CronosTestnetExampleAddress;
-			}
-			else if (chainList == ChainList.cronos)
-            {
-				return SharedConstants.CronosExampleAddress;
-			}
-			return SharedConstants.EthAddressForTesting; 
-		}
-
-		private static string GetExampleTokenAddressForChainList(ChainList chainList)
-		{
-			// TODO: In production, consider to use some specific address you choose
-			if (chainList == ChainList.cronos_testnet)
-			{
-				return SharedConstants.CronosTestnetExampleTokenAddress;
-			}
-			else if (chainList == ChainList.cronos)
-			{
-				return SharedConstants.CronosExampleTokenAddress;
-			}
-			return SharedConstants.EthTokenAddressForTesting;
-		}
-
-
+		
+		
+		
 		public static async UniTask<StringBuilder> MoralisClient_Web3Api_Account_GetNativeBalance(
 			ChainList chainList, StringBuilder outputText)
 		{
 
-			///////////////////////////////////////////
-			// Execute
-			///////////////////////////////////////////
-			string address = GetExampleAddressForChainList(chainList);
+			// Setup Parameters
+			string address = SharedHelper.GetExampleAddressForChainList(chainList);
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 			
@@ -87,6 +60,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				NativeBalance nativeBalance =
 					await moralisClient.Web3Api.Account.GetNativeBalance(address, chainList);
 				
+				// Show Results in UI
 				outputText.AppendBullet($"nativeBalance.Balance = {nativeBalance.Balance}");
 			}
 			catch (Exception exception)
@@ -105,6 +79,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				TransactionCollection transactionCollection = 
 					await moralisClient.Web3Api.Account.GetTransactions(address, chainList);
 				
+				// Show Results in UI
 				outputText.AppendBullet($"transactionCollection.Result.Count = {transactionCollection.Result.Count}");
 
 				if (transactionCollection.Result.Count > 0)
@@ -130,14 +105,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 
 			return outputText;
 		}
-
    
 
         public static async UniTask<StringBuilder> MoralisClient_Web3Api_Account_GetTokenTransfers(
 			ChainList chainList, StringBuilder outputText)
 		{
-
-			string address = GetExampleAddressForChainList(chainList);
+			// Setup Parameters
+			string address = SharedHelper.GetExampleAddressForChainList(chainList);
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 
@@ -152,6 +126,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				List<Erc20TokenBalance> tokenBalances =
 					await moralisClient.Web3Api.Account.GetTokenBalances(address, chainList);
 				
+				// Show Results in UI
 				outputText.AppendBullet($"tokenBalances.Count = {tokenBalances.Count}", 1);
 
 				if (tokenBalances.Count > 0)
@@ -185,9 +160,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				Erc20TransactionCollection erc20TransactionCollection =
 					await moralisClient.Web3Api.Account.GetTokenTransfers(address, chainList);
 				
+				// Show Results in UI
 				outputText.AppendBullet(
 					$"erc20TransactionCollection.Result.Count = {erc20TransactionCollection.Result.Count}", 1);
-
 
 				if (erc20TransactionCollection.Result.Count > 0)
                 {
@@ -217,8 +192,8 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 		public static async UniTask<StringBuilder> MoralisClient_Web3Api_Account_GetNFTTransfers(
 			ChainList chainList, StringBuilder outputText)
 		{
-
-			string address = GetExampleAddressForChainList(chainList);
+			// Setup Parameters
+			string address = SharedHelper.GetExampleAddressForChainList(chainList);
 			string addressFormatted = Formatters.GetWeb3AddressShortFormat(address);
 			MoralisClient moralisClient = Moralis.GetClient();
 
@@ -233,6 +208,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				NftOwnerCollection nftOwnerCollection =
 					await moralisClient.Web3Api.Account.GetNFTs(address, chainList);
 				
+				// Show Results in UI
 				outputText.AppendBullet(
 					$"nftOwnerCollection.Result.Count = {nftOwnerCollection.Result.Count}", 1);
 
@@ -267,6 +243,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				NftTransferCollection nftTransferCollection =
 					await moralisClient.Web3Api.Account.GetNFTTransfers(address, chainList);
 				
+				// Show Results in UI
 				outputText.AppendBullet(
 					$"nftTransferCollection.Result.Count = {nftTransferCollection.Result.Count}", 1);
 
@@ -290,7 +267,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				outputText.AppendBulletException(exception);
 			}
 
-			string tokenAddress = GetExampleTokenAddressForChainList(chainList);
+			string tokenAddress = SharedHelper.GetExampleTokenAddressForChainList(chainList);
 			string tokenAddressFormatted = Formatters.GetWeb3AddressShortFormat(tokenAddress);
 			outputText.AppendHeaderLine(
 				$"Web3Api.Account.GetNFTsForContract({addressFormatted}, {tokenAddressFormatted}, {chainList})");
@@ -303,6 +280,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 				NftOwnerCollection nftOwnerCollection =
 					await moralisClient.Web3Api.Account.GetNFTsForContract(address, tokenAddress, chainList);
 
+				// Show Results in UI
 				outputText.AppendBullet(
 					$"nftOwnerCollection.Result.Count = {nftOwnerCollection.Result.Count}", 1);
 
@@ -328,7 +306,5 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
 
 			return outputText;
 		}
-
-
     }
 }

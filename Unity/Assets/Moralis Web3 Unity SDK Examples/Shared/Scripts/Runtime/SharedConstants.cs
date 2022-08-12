@@ -90,20 +90,20 @@ namespace MoralisUnity.Examples.Sdk.Shared
         ///////////////////////////////////////////
 
         // A random account (not mine) with much history for testing - https://etherscan.io/address/0xda9dfa130df4de4673b89022ee50ff26f6ea73cf
-        public const string EthAddressForTesting = "0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf";
-        public const string EthTokenAddressForTesting = "0x00000000219ab540356cbb839cbe05303d7705fa";
+        public const string ExampleAddressEth = "0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf";
+        public const string ExampleTokenAddressEth = "0x00000000219ab540356cbb839cbe05303d7705fa";
 
         ///////////////////////////////////////////
         // Web3 Addresses - Cronos Testnet
         ///////////////////////////////////////////
 
         // A random account (not mine) with much history for testing - https://testnet.cronoscan.com/address/0xffd3a0042c75dda5d41e7aa620ecb970237f513a
-        public const string CronosTestnetExampleAddress = "0xffd3a0042C75DDa5d41e7aa620ecB970237F513a";
-        public const string CronosTestnetExampleTokenAddress = "0x66ec7b182018B5Ab622e0971222211BFf7Dafc9B";
+        public const string ExampleAddressCronosTestnet = "0xffd3a0042C75DDa5d41e7aa620ecB970237F513a";
+        public const string ExampleTokenAddressCronosTestnet = "0x66ec7b182018B5Ab622e0971222211BFf7Dafc9B";
 
         // A random account (not mine) with much history for testing - https://cronoscan.com/address/0xb6237e5ac146bf84e920d1ed01f8c0c8d71808a6
-        public const string CronosExampleAddress = "0xb6237e5ac146bf84e920d1ed01f8c0c8d71808a6";
-        public const string CronosExampleTokenAddress = "0x8379f16903c7ec3a9cef19e3febd0141b2640c34";
+        public const string ExampleAddressCronos = "0xb6237e5ac146bf84e920d1ed01f8c0c8d71808a6";
+        public const string ExampleTokenAddressCronos = "0x8379f16903c7ec3a9cef19e3febd0141b2640c34";
 
 
 

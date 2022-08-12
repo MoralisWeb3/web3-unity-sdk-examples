@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using MoralisUnity.Platform.Objects;
+using MoralisUnity.Web3Api.Models;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -188,5 +189,50 @@ namespace MoralisUnity.Examples.Sdk.Shared
             return moralisUser != null;
         }
 
+        public static string GetExampleAddressForChainList(ChainList chainList)
+        {
+            // NOTE: In production, consider to use: Moralis.GetUser().ethAddress
+            string address = "";
+            switch (chainList)
+            {
+                case ChainList.cronos:
+                    address = SharedConstants.ExampleAddressCronos;
+                    break;
+                case ChainList.cronos_testnet:
+                    address =  SharedConstants.ExampleAddressCronosTestnet;
+                    break;
+                case ChainList.eth:
+                    address =  SharedConstants.ExampleAddressEth;
+                    break;
+                default:
+                    Debug.LogWarning($"Consider to add a test address for {chainList}.");
+                    address = SharedConstants.ExampleAddressEth;
+                    break;
+            }
+            return address;
+        }
+
+        public static string GetExampleTokenAddressForChainList(ChainList chainList)
+        {
+            // NOTE: In production, consider to use: Your own deployed contract address
+            string address = "";
+            switch (chainList)
+            {
+                case ChainList.cronos:
+                    address = SharedConstants.ExampleTokenAddressCronos;
+                    break;
+                case ChainList.cronos_testnet:
+                    address =  SharedConstants.ExampleTokenAddressCronosTestnet;
+                    break;
+                case ChainList.eth:
+                    address =  SharedConstants.ExampleTokenAddressEth;
+                    break;
+                default:
+                    Debug.LogWarning($"Consider to add a test address for {chainList}.");
+                    address = SharedConstants.ExampleTokenAddressEth;
+                    break;
+            }
+            return address;
+        }
     }
 }
