@@ -6,7 +6,6 @@ using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Examples.Sdk.Shared.Data.Types;
 using MoralisUnity.Sdk.Utilities;
 using MoralisUnity.Web3Api.Models;
-using UnityEngine;
 
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_Web3API_Account_01
