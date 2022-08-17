@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MoralisUnity.Examples.Sdk.Shared;
 using MoralisUnity.Sdk.Exceptions;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -140,7 +141,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
                 return default;
             }
         }
+        public async Task<Sprite> GetImage(string url)
+        {
+            Sprite sprite = await SharedHelper.CreateSpriteFromImageUrl(url);
+            return sprite;
+        }
         
         //  Event Handlers --------------------------------
+
     }
 }

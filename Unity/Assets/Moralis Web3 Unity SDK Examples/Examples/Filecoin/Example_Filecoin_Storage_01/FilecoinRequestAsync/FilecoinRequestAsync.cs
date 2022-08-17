@@ -75,9 +75,18 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
             UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
             return await unityWebRequestAsync.Get<UploadsResponse>(_token, url);
         }
-        
+        public async Task<Sprite> GetImage()
+        {
+            string url =
+                "https://static01.nyt.com/images/2022/08/16/arts/15emmy-walken/15emmy-walken-threeByTwoMediumAt2X.jpg";
+            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
+            return await unityWebRequestAsync.GetImage(url);
+ 
+
+        }
 
         
         //  Event Handlers --------------------------------
+        
     }
 }

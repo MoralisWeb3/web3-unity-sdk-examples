@@ -31,7 +31,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 		private Sprite _spriteToSave = null;
 		
 		private Sprite _spriteDestination = null;
-		private List<IpfsFile> _lastLoadedIpfsFiles = new List<IpfsFile>();
+		private Sprite _lastLoadedSprite = null;
 		private Image _imageDestination = null;
 		private readonly StringBuilder _topBodyText = new StringBuilder();
 		private StringBuilder _bottomBodyText = new StringBuilder();
@@ -137,20 +137,20 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			///////////////////////////////////////////
 			// Execute
 			///////////////////////////////////////////
-			ExampleResponse exampleResponse =
+			FilecoinData filecoinData =
 				await Example_Filecoin_Storage_01.Filecoin_Storage(
 					content,
 					_bottomBodyText,
 					_bottomBodyTextError);
 
-			if (exampleResponse == null)
+			if (filecoinData == null)
 			{
 				return;
 			}
 
-			_bottomBodyText = exampleResponse.OutputText;
-			_bottomBodyTextError = exampleResponse.ErrorText;
-			_lastLoadedIpfsFiles = exampleResponse.LastLoadedIpfsFiles;
+			_bottomBodyText = filecoinData.OutputText;
+			_bottomBodyTextError = filecoinData.ErrorText;
+			_lastLoadedSprite = filecoinData.Sprite;
 			
 			// Cosmetic delay for UI
 			_exampleCanvas.IsInteractable(true);
@@ -168,9 +168,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 				return;
 			}
 			
-			if (_lastLoadedIpfsFiles.Count >= 1 && _lastLoadedIpfsFiles[0].Path.Length > 0)
+			if (_lastLoadedSprite != null)
 			{
-				_spriteDestination = await SharedHelper.CreateSpriteFromImageUrl(_lastLoadedIpfsFiles[0].Path);
+				_spriteDestination = _lastLoadedSprite;
 
 				// Nullcheck for smooth OnDestroy
 				if (_imageDestination != null)
@@ -260,10 +260,10 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			{
 				_bottomBodyText.AppendBullet($"Image loaded and displayed below this text");
 
-				if (_lastLoadedIpfsFiles.Count >= 0 && _lastLoadedIpfsFiles[0].Path.Length > 0)
-				{
-					_bottomBodyText.AppendBullet($"Path = {_lastLoadedIpfsFiles[0].Path}");
-				}
+				// if (_lastLoadedSprite.Count >= 0 && _lastLoadedSprite[0].Path.Length > 0)
+				// {
+				// 	_bottomBodyText.AppendBullet($"Path = {_lastLoadedSprite[0].Path}");
+				// }
 			}
 			await RefreshUI();
 		}
