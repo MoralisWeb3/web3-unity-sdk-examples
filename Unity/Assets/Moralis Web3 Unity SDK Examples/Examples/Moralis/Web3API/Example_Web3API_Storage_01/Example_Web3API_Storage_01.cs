@@ -73,7 +73,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_Storage_01
 			{
 				errorText.Clear();
 				lastLoadedIpfsFiles = 
-					await moralisClient.Web3Api.Storage.UploadFolder(ipfsFileRequests);
+					await Moralis.Web3Api.Storage.UploadFolder(ipfsFileRequests);
 			}
 			catch (Exception exception)
 			{
