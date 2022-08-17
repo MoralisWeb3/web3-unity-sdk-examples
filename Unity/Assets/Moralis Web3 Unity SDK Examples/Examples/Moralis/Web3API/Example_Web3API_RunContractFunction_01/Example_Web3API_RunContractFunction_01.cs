@@ -63,7 +63,8 @@ namespace MoralisUnity.Examples.Sdk.Example_Web3API_RunContractFunction_01
 				///////////////////////////////////////////
 				MoralisClient moralisClient = Moralis.GetClient();
 				
-				string result = await moralisClient.Web3Api.Native.RunContractFunction(address, functionName, 
+				//TODO: Double check that <string> or other is correct - srivello
+				string result = await moralisClient.Web3Api.Native.RunContractFunction<string>(address, functionName, 
 					runContractDto, chainList);
 				
 				outputText.AppendBullet($"result = {result}");
