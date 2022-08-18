@@ -6,9 +6,8 @@ using UnityEngine;
 #pragma warning disable CS1998
 namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 {
-	
 	/// <summary>
-	/// Rarely, this example must return multiple values to the UI.
+	/// This example returns multiple values to the UI.
 	/// This class holds the response.
 	/// </summary>
 	public class UploadAndGetFileData
@@ -18,17 +17,22 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 		public Sprite Sprite;
 	}
 	
+	
 	/// <summary>
-	/// Example: IStorageApi
+	/// Example: Filecoin Storage
 	///
-	/// Documentation: <see cref="http://docs.moralis.io/unity"/>
+	/// Documentation:
 	/// 
-	/// Coding Concerns
 	/// <list type="bullet">
+	///		<item>See <see cref="https://filecoin.io/blog/posts/introducing-web3-storage/"/> </item>
+	///		<item>See <see cref="https://web3.storage/docs/reference/http-api/"/> </item>
+	/// </list>
 	/// 
-	/// <item>See <see cref="Example_UI"/> for the UI functionality</item>
-	/// <item>See below for the core functionality</item>
+	/// Coding Concerns:
 	/// 
+	/// <list type="bullet">
+	///		<item>See <see cref="Example_UI"/> for the UI functionality</item>
+	///		<item>See below for the core functionality</item>
 	/// </list>
 	/// </summary>
 	public class Example_Filecoin_Storage_01 : Example_UI
@@ -46,22 +50,22 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 
 			Debug.Log("\n\n");
 			Debug.Log("----- UploadFile() --------");
-			var filecoinRequestAsync01 = new FilecoinRequestAsync(token);
-			UploadResponse uploadResponse = await filecoinRequestAsync01.UploadFile(bytes);
-			Debug.Log($"\tuploadResponse = {uploadResponse}");
-			string lastUploadedCid = uploadResponse.cid;
+			var filecoinRequestAsync01 = new FilecoinWeb3Storage(token);
+			UploadFileResponse uploadFileResponse = await filecoinRequestAsync01.UploadFile(bytes);
+			Debug.Log($"\tuploadResponse = {uploadFileResponse}");
+			string lastUploadedCid = uploadFileResponse.cid;
 			
 			
 			Debug.Log("\n\n");
 			Debug.Log("\n----- GetStatus() --------");
-			var filecoinRequestAsync02 = new FilecoinRequestAsync(token);
-			StatusResponse statusResponse = await filecoinRequestAsync02.GetStatus(lastUploadedCid);
-			Debug.Log($"\tstatusResponse = {statusResponse}");
+			var filecoinRequestAsync02 = new FilecoinWeb3Storage(token);
+			GetStatusResponse getStatusResponse = await filecoinRequestAsync02.GetStatus(lastUploadedCid);
+			Debug.Log($"\tstatusResponse = {getStatusResponse}");
 
 			
 			Debug.Log("\n\n");
 			Debug.Log("----- GetFile() --------");
-			var filecoinRequestAsync03 = new FilecoinRequestAsync(token);
+			var filecoinRequestAsync03 = new FilecoinWeb3Storage(token);
 			GetFileResponse getFileResponse = await filecoinRequestAsync03.GetFile(lastUploadedCid);
 			Debug.Log($"\tgetFileResponse = {getFileResponse.data}");
 			
@@ -72,6 +76,8 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 				ErrorText = errorText,
 				Sprite = SharedHelper.CreateSpriteFromBytes(getFileResponse.data)
 			};
+			
+			
 			return uploadAndGetFileData;
 		}
 	}

@@ -35,7 +35,7 @@
     }
     
     [System.Serializable]
-    public class StatusResponse : IResponse
+    public class GetStatusResponse : IResponse
     {
         public string cid { get; set; }
         public int dagSize { get; set; }
