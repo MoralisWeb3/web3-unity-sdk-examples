@@ -47,13 +47,11 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 
         //  General Methods -------------------------------
 
-        public async Task<DownloadHandlerData> Get(string token, string url)
+        public async Task<DownloadHandlerData> Get(string url)
         {
             try
             {
                 using var unityWebRequest = UnityWebRequest.Get(url);
-                unityWebRequest.SetRequestHeader("Authorization", $"Bearer {token}");
-
                 unityWebRequest.SetRequestHeader("Content-Type", _serializationOption.ContentType);
                 Debug.Log($"Get() url = {url}");
                 Debug.Log($"Get() Content-Type = {_serializationOption.ContentType}");
@@ -86,7 +84,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 
         }
         
-        public async Task<DownloadHandlerData> Post(string token, string url, string filename, byte[] bytes)
+        public async Task<DownloadHandlerData> Post(string token, string url, byte[] bytes)
         {
             try
             {
@@ -95,7 +93,6 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
                 
                 Debug.Log($" >>>>> token {token}");
                 Debug.Log($" >>>>> url {url}");
-                Debug.Log($" >>>>> filename {filename}");
                 Debug.Log($" >>>>> bytes {bytes.Length}");
                 
                 //FROM DOCUMENTATION
@@ -112,7 +109,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 
                 List<IMultipartFormSection> multipartFormSections = new List<IMultipartFormSection>();
 
-                multipartFormSections.Add(new MultipartFormFileSection("file", bytes, filename, "image/png"));
+                multipartFormSections.Add(new MultipartFormFileSection("file", bytes, "", "image/png"));
 
                 byte[] boundary = UnityWebRequest.GenerateBoundary();
                 using var unityWebRequest = UnityWebRequest.Post(url, multipartFormSections);

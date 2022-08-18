@@ -138,20 +138,20 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			///////////////////////////////////////////
 			// Execute
 			///////////////////////////////////////////
-			FilecoinData filecoinData =
-				await Example_Filecoin_Storage_01.Filecoin_Storage(
+			UploadAndGetFileData uploadAndGetFileData =
+				await Example_Filecoin_Storage_01.Filecoin_UploadAndGetFile(
 					content,
 					_bottomBodyText,
 					_bottomBodyTextError);
 
-			if (filecoinData == null)
+			if (uploadAndGetFileData == null)
 			{
 				return;
 			}
 
-			_bottomBodyText = filecoinData.OutputText;
-			_bottomBodyTextError = filecoinData.ErrorText;
-			_lastLoadedSprite = filecoinData.Sprite;
+			_bottomBodyText = uploadAndGetFileData.OutputText;
+			_bottomBodyTextError = uploadAndGetFileData.ErrorText;
+			_lastLoadedSprite = uploadAndGetFileData.Sprite;
 			
 			// Cosmetic delay for UI
 			_exampleCanvas.IsInteractable(true);
