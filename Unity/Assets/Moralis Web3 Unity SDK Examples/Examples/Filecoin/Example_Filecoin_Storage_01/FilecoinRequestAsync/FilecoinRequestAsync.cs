@@ -27,9 +27,48 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
         {
             _token = token;
         }
+        
+        //  General Methods (With Auth) ---------------------
+        public async Task<UploadResponse> Upload(string filename, byte[] bytes)
+        {
+            string url = _baseUrl + $"/upload";
+            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
+            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Post(_token, url, filename, bytes);
+            return JsonConvert.DeserializeObject<UploadResponse>(downloadHandlerData.text);
+        }
+        
 
         
         //  General Methods (No Auth) ---------------------
+        
+        public async Task<StatusResponse> GetStatus(string cid)
+        {
+            string url = _baseUrl + $"/status/{cid}";
+            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
+            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
+            return JsonConvert.DeserializeObject<StatusResponse>(downloadHandlerData.text);
+        }
+
+        public async Task<UploadsResponse> GetUploads()
+        {
+            string url = _baseUrl + $"/user/uploads";
+            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
+            DownloadHandlerData downloadHandlerData =  await unityWebRequestAsync.Get(_token, url);
+            return JsonConvert.DeserializeObject<UploadsResponse>(downloadHandlerData.text);
+        }
+
+        public async Task<CarResponse> GetFile(string cid)
+        {
+            //e.g. https://bafybeiaqsybxdb5sxitsofxk5ek7bt7nrigp52bjeakdo6x65x5h3i7aye.ipfs.w3s.link
+            string url =  $"https://{cid}.ipfs.w3s.link/";
+            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new ImageSerializationOption());
+            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
+            return new CarResponse
+            {
+                data = downloadHandlerData.data
+            };
+        }
+        
         // public async Task<CarResponse> GetCarOld(string cid)
         // {
         //     string url = _baseUrl + $"/car/{cid}";
@@ -41,80 +80,39 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
         //     return carResponse;
         // }
         
-        public async Task<CarResponse> GetCarRaw(string cid)
-        {
-            string url = _baseUrl + $"/car/{cid}";
-            //url = $"https://{cid}.ipfs.w3s.link";
-            //url = "https://bafybeidd2gyhagleh47qeg77xqndy2qy3yzn4vkxmk775bg2t5lpuy7pcu.ipfs.w3s.link/not-distributed.jpg"; //random link from online
-            //url = "https://static01.nyt.com/images/2022/08/16/arts/15emmy-walken/15emmy-walken-threeByTwoMediumAt2X.jpg"; //random link from online
-           // url = "https://ipfs.io/ipfs/QmUanajiSMEbxWA7dtPu2heExSxNdJ35H33iGD1TJz5NeH"; //random link from online
-           
-            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new ImageSerializationOption());
-            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
-            
-            Debug.Log("Return is : " + downloadHandlerData.data);
-            return new CarResponse
-            {
-                data = downloadHandlerData.data
-            };
-        }
+        // public async Task<CarResponse> GetCarRaw(string cid)
+        // {
+        //     string url = _baseUrl + $"/car/{cid}";
+        //     //url = $"https://{cid}.ipfs.w3s.link";
+        //     //url = "https://bafybeidd2gyhagleh47qeg77xqndy2qy3yzn4vkxmk775bg2t5lpuy7pcu.ipfs.w3s.link/not-distributed.jpg"; //random link from online
+        //     //url = "https://static01.nyt.com/images/2022/08/16/arts/15emmy-walken/15emmy-walken-threeByTwoMediumAt2X.jpg"; //random link from online
+        //    // url = "https://ipfs.io/ipfs/QmUanajiSMEbxWA7dtPu2heExSxNdJ35H33iGD1TJz5NeH"; //random link from online
+        //    
+        //     UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new ImageSerializationOption());
+        //     DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
+        //     
+        //     Debug.Log("Return is : " + downloadHandlerData.data);
+        //     return new CarResponse
+        //     {
+        //         data = downloadHandlerData.data
+        //     };
+        // }
         
-        public async Task<CarResponse> GetCarFromGateway(string cid)
-        {
-            //e.g. https://bafybeiaqsybxdb5sxitsofxk5ek7bt7nrigp52bjeakdo6x65x5h3i7aye.ipfs.w3s.link
-            string url =  $"https://{cid}.ipfs.w3s.link";
-            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new ImageSerializationOption());
-            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
-            
-            Debug.Log("Return is : " + downloadHandlerData.data);
-            return new CarResponse
-            {
-                data = downloadHandlerData.data
-            };
-        }
-        
-        public async Task<CarResponse> GetFileFromGateway(string cid, string filename)
-        {
-            //e.g. https://bafybeiaqsybxdb5sxitsofxk5ek7bt7nrigp52bjeakdo6x65x5h3i7aye.ipfs.w3s.link/art_Acrylic.jpg
-            string url =  $"https://{cid}.ipfs.w3s.link/{filename}";
-            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new ImageSerializationOption());
-            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
-            
-            Debug.Log("Return is : " + downloadHandlerData.data);
-            return new CarResponse
-            {
-                data = downloadHandlerData.data
-            };
-        }
-        
-        
-        
-        public async Task<StatusResponse> GetStatus(string cid)
-        {
-            string url = _baseUrl + $"/status/{cid}";
-            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
-            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
-            return JsonConvert.DeserializeObject<StatusResponse>(downloadHandlerData.text);
-        }
-        
-        
-        //  General Methods (With Auth) ---------------------
-        public async Task<UploadResponse> Upload(string data)
-        {
-            string url = _baseUrl + $"/upload";
-            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
-            DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Post(_token, url, data);
-            return JsonConvert.DeserializeObject<UploadResponse>(downloadHandlerData.text);
-        }
-        
-        public async Task<UploadsResponse> GetUploads()
-        {
-            string url = _baseUrl + $"/user/uploads";
-            UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new JsonSerializationOption());
-            DownloadHandlerData downloadHandlerData =  await unityWebRequestAsync.Get(_token, url);
-            return JsonConvert.DeserializeObject<UploadsResponse>(downloadHandlerData.text);
-        }
-        
+        // public async Task<CarResponse> GetCarFromGateway(string cid)
+        // {
+        //     //e.g. https://bafybeiaqsybxdb5sxitsofxk5ek7bt7nrigp52bjeakdo6x65x5h3i7aye.ipfs.w3s.link
+        //     string url =  $"https://{cid}.ipfs.w3s.link";
+        //     UnityWebRequestAsync unityWebRequestAsync = new UnityWebRequestAsync(new ImageSerializationOption());
+        //     DownloadHandlerData downloadHandlerData = await unityWebRequestAsync.Get(_token, url);
+        //     
+        //     Debug.Log("Return is : " + downloadHandlerData.data);
+        //     return new CarResponse
+        //     {
+        //         data = downloadHandlerData.data
+        //     };
+        // }
+        //
+
         //  Event Handlers --------------------------------
         
     }

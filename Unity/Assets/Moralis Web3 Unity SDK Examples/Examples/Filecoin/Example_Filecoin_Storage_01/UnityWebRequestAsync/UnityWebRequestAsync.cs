@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -85,12 +86,38 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 
         }
         
-        public async Task<DownloadHandlerData> Post(string token, string url, string data)
+        public async Task<DownloadHandlerData> Post(string token, string url, string filename, byte[] bytes)
         {
             try
             {
-                using var unityWebRequest = UnityWebRequest.Post(url, data);
+          
+    
+                
+                Debug.Log($" >>>>> token {token}");
+                Debug.Log($" >>>>> url {url}");
+                Debug.Log($" >>>>> filename {filename}");
+                Debug.Log($" >>>>> bytes {bytes.Length}");
+                
+                //FROM DOCUMENTATION
+                // curl -X 'POST' \
+                // 'https://api.web3.storage/upload' \
+                // -H 'accept: application/json' \
+                // -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY0MjU3Q2IyZDMyOWEzRWIzMTM1MzI1YzgyYzAzNkFlYWMwMkE3NDgiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA2NzQxNjI0MTMsIm5hbWUiOiJ3ZWIzLXVuaXR5LXNkay1leGFtcGxlcyJ9.FAtQ2W7HxzLAG68U1clOE5CpjaWYbYvrnlTmeVm53as' \
+                // -H 'Content-Type: multipart/form-data' \
+                // -F 'file=@art_watercolor.jpg;type=image/jpeg' \
+                // -F 'file=@photo.png;type=image/png'
+                
+                //OFF-THE-SUBJECT LINKS
+                //formData.Add(new MultipartFormFileSection("file", bytes, filename, "application/octet-stream"));
+
+                List<IMultipartFormSection> multipartFormSections = new List<IMultipartFormSection>();
+
+                multipartFormSections.Add(new MultipartFormFileSection("file", bytes, filename, "image/png"));
+
+                byte[] boundary = UnityWebRequest.GenerateBoundary();
+                using var unityWebRequest = UnityWebRequest.Post(url, multipartFormSections);
                 unityWebRequest.SetRequestHeader("Authorization", $"Bearer {token}");
+                //unityWebRequest.SetRequestHeader("Content-Type", "multipart/form-data");
                 var operation = unityWebRequest.SendWebRequest();
 
                 while (!operation.isDone)

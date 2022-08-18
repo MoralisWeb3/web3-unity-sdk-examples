@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Cysharp.Threading.Tasks;
@@ -123,7 +124,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 		}
 
 
-		private async UniTask CallUploadFolder(string content)
+		private async UniTask CallUploadFolder(byte[] content)
 		{
 			if (await SharedHelper.HasMoralisUser() == false)
 			{
@@ -198,7 +199,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			await RefreshUI();
 			
 			//The empty string will create an empty image
-			string content = ""; 
+			byte[] content = Array.Empty<byte>();
 			
 			await CallUploadFolder(content);
 			RenderImage();
@@ -222,9 +223,8 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			_bottomBodyText.AppendLine($"Saving...");
 			await RefreshUI();
 			
-			string content = SharedHelper.ConvertSpriteToContentString(_spriteToSave);
+			byte[] content = SharedHelper.ConvertSpriteToContentBytes(_spriteToSave);
 			
-			Debug.Log(content);
 			await CallUploadFolder(content);
 			RenderImage();
 			
