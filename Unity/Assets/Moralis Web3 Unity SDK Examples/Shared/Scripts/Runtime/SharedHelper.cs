@@ -25,10 +25,17 @@ namespace MoralisUnity.Examples.Sdk.Shared
         /// </summary>
         public static string ConvertSpriteToContentString(Sprite sprite)
         {
+            byte[] bytes;
+            bytes = ConvertSpriteToContentBytes(sprite);
+            return Convert.ToBase64String(bytes);
+        }
+        
+        public static byte[] ConvertSpriteToContentBytes(Sprite sprite)
+        {
             Texture2D mytexture = sprite.texture;
             byte[] bytes;
             bytes = mytexture.EncodeToPNG();
-            return Convert.ToBase64String(bytes);
+            return bytes;
         }
         
         
@@ -42,7 +49,12 @@ namespace MoralisUnity.Examples.Sdk.Shared
 
             Texture2D textured2D = new Texture2D(2, 2);
             byte[] bytes = getRequest.downloadHandler.data;
-
+            return CreateSpriteFromBytes(bytes);
+        }
+        
+        public static Sprite CreateSpriteFromBytes(byte[] bytes)
+        {   
+            Texture2D textured2D = new Texture2D(2, 2);
             // Empty bytes means empty image. Support that.
             if (bytes != null && bytes.Length > 0)
             { 

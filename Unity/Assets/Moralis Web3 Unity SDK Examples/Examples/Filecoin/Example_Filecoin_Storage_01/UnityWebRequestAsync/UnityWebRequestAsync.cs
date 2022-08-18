@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MoralisUnity.Examples.Sdk.Shared;
-using MoralisUnity.Sdk.Exceptions;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 {
+
+    public class DownloadHandlerData
+    {
+        public byte[] data;
+        public string text;
+
+        public DownloadHandlerData(DownloadHandler downloadHandler)
+        {
+            data = downloadHandler.data;
+            text = downloadHandler.text;
+        }
+    }
     
     /// <summary>
     /// Wrapper for <see cref="UnityWebRequest"/> inspired by https://github.com/crevelop/unitywebrequest-tutorial.
@@ -35,10 +45,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
         }
 
         //  General Methods -------------------------------
-        public async Task<T> Get<T>(string token, string url)
+
+        public async Task<DownloadHandlerData> Get(string token, string url)
         {
-            T result = default(T);
-            
             try
             {
                 using var unityWebRequest = UnityWebRequest.Get(url);
@@ -52,100 +61,69 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 
                 while (!operation.isDone)
                 {
-                    await Task.Yield();  
+                    await Task.Yield();
                 }
 
                 if (unityWebRequest.result != UnityWebRequest.Result.Success)
                 {
-                    if (unityWebRequest.downloadHandler.text != null)
-                    {
-                        ErrorResponse errorResponse = _serializationOption.Deserialize<ErrorResponse>(unityWebRequest.downloadHandler.text);
-                        Debug.Log("Get() Failed errorResponse = " + errorResponse);
-                        return default(T);
-                    }
-                    
-                    Debug.LogError($"Failed error = {unityWebRequest.error}");
+                    Debug.LogError($"Failed: {unityWebRequest.error}");
                 }
-
-                Debug.LogWarning($"////// {_serializationOption.ReturnType} ////// ");
-
-                
-                
-                switch (_serializationOption.ReturnType)
+                else
                 {
-                    case ReturnType.RequiresDeserialization:
-                        result = _serializationOption.Deserialize<T>(unityWebRequest.downloadHandler.text);
-                        break;
-                    case ReturnType.Text:
-                        Debug.Log("text : " + unityWebRequest.downloadHandler.text);
-                        result = default(T);
-                        break;
-                    case ReturnType.Image:
-                        Debug.Log("1");
-                        // Get downloaded asset bundle
-                        var texture = DownloadHandlerTexture.GetContent(unityWebRequest);
-                        Debug.Log("2");
-                        Debug.Log("texture: " + texture.dimension);
-                        Debug.Log("3");
-                        break;
-                      
-                    case ReturnType.Binary:
-                        
-                        byte[] results = unityWebRequest.downloadHandler.data;
-                        if (results != null)
-                        {
-                            result = (T)(object)results;
-                        }
-                        
-                        break;
-                    default:
-                        throw new SwitchDefaultException(_serializationOption.ReturnType);
-                        break;
+                    string responseContentType = unityWebRequest.GetResponseHeader("Content-Type");
+                    Debug.Log($"responseContentType = {responseContentType}");
+                    return new DownloadHandlerData(unityWebRequest.downloadHandler);
                 }
             }
             catch (Exception ex)
             {
                 Debug.LogError($"{nameof(Get)} failed: {ex.Message}");
-                return default;
+                
             }
-            
-            return result;
+
+            return null;
+
         }
         
-        public async Task<T> Post<T>(string token, string url, string data)
+        public async Task<DownloadHandlerData> Post(string token, string url, string data)
         {
             try
             {
-                using var www = UnityWebRequest.Post(url, data);
-                www.SetRequestHeader("Authorization", $"Bearer {token}");
-                var operation = www.SendWebRequest();
+                using var unityWebRequest = UnityWebRequest.Post(url, data);
+                unityWebRequest.SetRequestHeader("Authorization", $"Bearer {token}");
+                var operation = unityWebRequest.SendWebRequest();
 
                 while (!operation.isDone)
                 {
                     await Task.Yield();  
                 }
 
-                if (www.result != UnityWebRequest.Result.Success)
+                if (unityWebRequest.result != UnityWebRequest.Result.Success)
                 {
-                    Debug.LogError($"Failed: {www.error}");
+                    Debug.LogError($"Failed: {unityWebRequest.error}");
                 }
-                
-                var result = _serializationOption.Deserialize<T>(www.downloadHandler.text);
-                return result;
-
-                
+                else
+                {
+                    string responseContentType = unityWebRequest.GetResponseHeader("Content-Type");
+                    Debug.Log($"responseContentType = {responseContentType}");
+                    return new DownloadHandlerData(unityWebRequest.downloadHandler);
+                }
+  
             }
             catch (Exception ex)
             {
                 Debug.LogError($"{nameof(Post)} failed: {ex.Message}");
-                return default;
             }
+            return null;
         }
-        public async Task<Sprite> GetImage(string url)
-        {
-            Sprite sprite = await SharedHelper.CreateSpriteFromImageUrl(url);
-            return sprite;
-        }
+        
+        
+        
+        // public async Task<Sprite> GetImage(string url)
+        // {
+        //     Sprite sprite = await SharedHelper.CreateSpriteFromImageUrl(url);
+        //     return sprite;
+        // }
         
         //  Event Handlers --------------------------------
 

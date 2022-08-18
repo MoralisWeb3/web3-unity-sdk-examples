@@ -223,6 +223,8 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			await RefreshUI();
 			
 			string content = SharedHelper.ConvertSpriteToContentString(_spriteToSave);
+			
+			Debug.Log(content);
 			await CallUploadFolder(content);
 			RenderImage();
 			

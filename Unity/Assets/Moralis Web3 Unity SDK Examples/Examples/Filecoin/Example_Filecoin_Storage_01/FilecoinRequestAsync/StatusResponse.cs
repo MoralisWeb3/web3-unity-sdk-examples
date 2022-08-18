@@ -30,7 +30,7 @@
         
         public override string ToString()
         {
-            return $"[{this.GetType().Name}(dealId = {dealId})]";
+            return $"[{this.GetType().Name}(dataCid = {dataCid}, pieceCid = {pieceCid})]";
         }
     }
     

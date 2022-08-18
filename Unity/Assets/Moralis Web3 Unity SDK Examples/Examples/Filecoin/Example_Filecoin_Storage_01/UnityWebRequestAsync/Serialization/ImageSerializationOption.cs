@@ -9,7 +9,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
         	
         
         //  Fields ----------------------------------------
-        public string ContentType => "application/text";
+        public string ContentType => "application/jpeg";
 
         
         //  General Methods -------------------------------

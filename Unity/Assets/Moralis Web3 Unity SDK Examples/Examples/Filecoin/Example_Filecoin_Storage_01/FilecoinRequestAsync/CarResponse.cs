@@ -3,11 +3,11 @@
     [System.Serializable]
     public class CarResponse : IResponse
     {
-        public byte[] bytes { get; set; }
+        public byte[] data { get; set; }
         
         public override string ToString()
         {
-            return $"[{this.GetType().Name}(bytes = {bytes})]";
+            return $"[{this.GetType().Name}(data = {data})]";
         }
     }
 }
