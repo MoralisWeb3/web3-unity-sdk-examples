@@ -15,8 +15,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 		public StringBuilder OutputText;
 		public StringBuilder ErrorText;
 		public Sprite Sprite;
+		public int BytesLength;
+		public string Url;
 	}
-	
 	
 	/// <summary>
 	/// Example: Filecoin Storage
@@ -45,40 +46,56 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 				StringBuilder errorText)
 		{
 
+			///////////////////////////////////////////
+			// SETUP
+			///////////////////////////////////////////
+			//		1. Create free account at https://web3.storage/
+			//		2. Create token at https://web3.storage/tokens/
+			//		3. Past your token below
+			//		4. Run the Scene "Example_Filecoin_Storage_01.unity"
+			//		5. Optional: See uploaded files at https://web3.storage/account/
+			///////////////////////////////////////////
 			string token =
 				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY0MjU3Q2IyZDMyOWEzRWIzMTM1MzI1YzgyYzAzNkFlYWMwMkE3NDgiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA2NzQxNjI0MTMsIm5hbWUiOiJ3ZWIzLXVuaXR5LXNkay1leGFtcGxlcyJ9.FAtQ2W7HxzLAG68U1clOE5CpjaWYbYvrnlTmeVm53as";
 
-			Debug.Log("\n\n");
-			Debug.Log("----- UploadFile() --------");
+			///////////////////////////////////////////
+			// UploadFile
+			///////////////////////////////////////////
+			Debug.Log("FilecoinWeb3Storage.UploadFile(...)");
 			var filecoinRequestAsync01 = new FilecoinWeb3Storage(token);
 			UploadFileResponse uploadFileResponse = await filecoinRequestAsync01.UploadFile(bytes);
-			Debug.Log($"\tuploadResponse = {uploadFileResponse}");
+			Debug.Log($"{uploadFileResponse}");
 			string lastUploadedCid = uploadFileResponse.cid;
 			
-			
+			///////////////////////////////////////////
+			// GetStatus
+			///////////////////////////////////////////
 			Debug.Log("\n\n");
-			Debug.Log("\n----- GetStatus() --------");
+			Debug.Log("\nFilecoinWeb3Storage.GetStatus(...)");
 			var filecoinRequestAsync02 = new FilecoinWeb3Storage(token);
 			GetStatusResponse getStatusResponse = await filecoinRequestAsync02.GetStatus(lastUploadedCid);
-			Debug.Log($"\tstatusResponse = {getStatusResponse}");
+			Debug.Log($"{getStatusResponse}");
 
-			
+			///////////////////////////////////////////
+			// GetFile
+			///////////////////////////////////////////
 			Debug.Log("\n\n");
-			Debug.Log("----- GetFile() --------");
+			Debug.Log("FilecoinWeb3Storage.GetFile(...)");
 			var filecoinRequestAsync03 = new FilecoinWeb3Storage(token);
 			GetFileResponse getFileResponse = await filecoinRequestAsync03.GetFile(lastUploadedCid);
-			Debug.Log($"\tgetFileResponse = {getFileResponse.data}");
+			Debug.Log($"{getFileResponse}");
 			
-			
-			UploadAndGetFileData uploadAndGetFileData = new UploadAndGetFileData
+			return new UploadAndGetFileData
 			{
 				OutputText = outputText,
 				ErrorText = errorText,
-				Sprite = SharedHelper.CreateSpriteFromBytes(getFileResponse.data)
+				Sprite = SharedHelper.CreateSpriteFromBytes(getFileResponse.data),
+				Url = getFileResponse.url,
+				
+				// For brevity, length is shown instead of full data
+				BytesLength = getFileResponse.data.Length
+				
 			};
-			
-			
-			return uploadAndGetFileData;
 		}
 	}
 }

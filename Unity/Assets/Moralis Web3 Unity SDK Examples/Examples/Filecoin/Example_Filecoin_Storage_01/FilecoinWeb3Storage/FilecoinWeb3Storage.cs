@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using UnityEngine;
 using UnityEngine.Networking;
 
 namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
@@ -49,7 +48,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
             RawResponse rawResponse = await Post(_token, url, multipartFormSections, requestHeaders);
             
             // Return object from text
-            return JsonConvert.DeserializeObject<UploadFileResponse>(rawResponse.Text);
+            return JsonConvert.DeserializeObject<UploadFileResponse>(rawResponse.text);
         }
 
 
@@ -67,7 +66,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
             RawResponse rawResponse = await Get(url);
             
             // Return object from text
-            return JsonConvert.DeserializeObject<GetStatusResponse>(rawResponse.Text);
+            return JsonConvert.DeserializeObject<GetStatusResponse>(rawResponse.text);
         }
 
         /// <summary>
@@ -78,13 +77,14 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
         /// </summary>
         public async Task<GetFileResponse> GetFile(string cid)
         {
-            string url = $"https://{cid}.ipfs.w3s.link/";
+            string url = $"https://{cid}.ipfs.w3s.link";
             RawResponse rawResponse = await Get(url);
             
             // Return binary data
             return new GetFileResponse
             {
-                data = rawResponse.Data
+                data = rawResponse.data,
+                url = url
             };
         }
 

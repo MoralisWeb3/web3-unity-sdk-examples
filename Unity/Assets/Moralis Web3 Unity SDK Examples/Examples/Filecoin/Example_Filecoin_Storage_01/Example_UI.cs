@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using MoralisUnity.Examples.Sdk.Shared;
-using MoralisUnity.Web3Api.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +16,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 	public class Example_UI : MonoBehaviour
 	{
 		//  Properties ------------------------------------
-		private ExampleButton LoadImageButton { get { return _exampleCanvas.Footer.Button01;}}
+		private ExampleButton OpenImageButton { get { return _exampleCanvas.Footer.Button01;}}
 		private ExampleButton SaveImageButton { get { return _exampleCanvas.Footer.Button02;}}
 		private ExampleButton ClearImageButton { get { return _exampleCanvas.Footer.Button03;}}
 		
@@ -31,12 +30,16 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 		[SerializeField] 
 		private Sprite _spriteToSave = null;
 		
-		private Sprite _spriteDestination = null;
-		private Sprite _lastLoadedSprite = null;
-		private Image _imageDestination = null;
 		private readonly StringBuilder _topBodyText = new StringBuilder();
 		private StringBuilder _bottomBodyText = new StringBuilder();
 		private StringBuilder _bottomBodyTextError = new StringBuilder();
+		private UploadAndGetFileData _lastUploadAndGetFileData = null;
+		private Sprite _spriteDestination = null;
+		private Image _imageDestination = null;
+		
+		// When we 'clear' the image we actually upload a small white one
+		// This value is used to determine "did we just clear or save a REAL image?"
+		private const int MaxBytesLengthForClearedImage = 10;
 		
 		//  Unity Methods ---------------------------------
 		protected async void Start()
@@ -72,11 +75,18 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			_exampleCanvas.Header.ChainsDropdown.IsVisible = false;
 			
 			// Panels
-			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(6);
+			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(12);
+			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(12);
 			_bottomBodyText.Clear();
 			_topBodyText.Clear();
-			_topBodyText.AppendHeaderLine($"Filecoin Storage(...)");
-			_topBodyText.AppendBullet($"Uploads and store data");
+			_topBodyText.AppendHeaderLine($"FilecoinWeb3Storage.UploadFile(...)");
+			_topBodyText.AppendBullet($"Upload and store a file");
+			
+			_topBodyText.AppendHeaderLine($"FilecoinWeb3Storage.GetStatus(...)");
+			_topBodyText.AppendBullet($"Get status of stored file");
+			
+			_topBodyText.AppendHeaderLine($"FilecoinWeb3Storage.GetFile(...)");
+			_topBodyText.AppendBullet($"Download a stored file");
 			
 			// Dynamically add, for the to-be-loaded Image
 			_imageDestination = SharedHelper.CreateNewImageUnderParentAsLastSibling(
@@ -84,16 +94,16 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			_imageDestination.GetComponent<CanvasGroup>().SetIsVisible(false);
 			
 			// Footer
-			LoadImageButton.IsVisible = true;
-			LoadImageButton.Text.text = $"Load Image\n(Ipfs)";
-			LoadImageButton.Button.onClick.AddListener(LoadImageButton_OnClicked);
+			OpenImageButton.IsVisible = true;
+			OpenImageButton.Text.text = $"Open Image\n(Browser)";
+			OpenImageButton.Button.onClick.AddListener(OpenImageButton_OnClicked);
 
 			SaveImageButton.IsVisible = true;
-			SaveImageButton.Text.text = $"Save Image\n(Ipfs)";
+			SaveImageButton.Text.text = $"Save Image\n({_spriteToSave.name})";
 			SaveImageButton.Button.onClick.AddListener(SaveImageButton_OnClicked);
 
 			ClearImageButton.IsVisible = true;
-			ClearImageButton.Text.text = $"Clear Image\n(Ipfs)";
+			ClearImageButton.Text.text = $"Clear Image\n";
 			ClearImageButton.Button.onClick.AddListener(ClearImageButton_OnClicked);
 		}
 
@@ -118,6 +128,10 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			{
 				_exampleCanvas.BottomPanel.BodyText.Text.text = _bottomBodyTextError.ToString();
 			}
+
+			OpenImageButton.IsInteractable = _lastUploadAndGetFileData != null 
+			                                 && _lastUploadAndGetFileData.BytesLength > MaxBytesLengthForClearedImage
+			                                 && !string.IsNullOrEmpty(_lastUploadAndGetFileData.Url);
 			
 			// Cosmetic delay for UI
 			await SharedHelper.TaskDelayWaitForCosmeticEffect();
@@ -149,9 +163,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 				return;
 			}
 
-			_bottomBodyText = uploadAndGetFileData.OutputText;
-			_bottomBodyTextError = uploadAndGetFileData.ErrorText;
-			_lastLoadedSprite = uploadAndGetFileData.Sprite;
+			_lastUploadAndGetFileData = uploadAndGetFileData;
+			_bottomBodyText = _lastUploadAndGetFileData.OutputText;
+			_bottomBodyTextError = _lastUploadAndGetFileData.ErrorText;
 			
 			// Cosmetic delay for UI
 			_exampleCanvas.IsInteractable(true);
@@ -169,9 +183,9 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 				return;
 			}
 			
-			if (_lastLoadedSprite != null)
+			if (_lastUploadAndGetFileData.Sprite != null)
 			{
-				_spriteDestination = _lastLoadedSprite;
+				_spriteDestination = _lastUploadAndGetFileData.Sprite;
 
 				// Nullcheck for smooth OnDestroy
 				if (_imageDestination != null)
@@ -195,21 +209,27 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			// Prepare
 			_imageDestination.sprite = null;
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"Clearing...");
+			_bottomBodyText.AppendHeaderLine($"Clearing...");
 			await RefreshUI();
 			
 			//The empty string will create an empty image
-			byte[] content = Array.Empty<byte>();
+			byte[] content = new byte[1];
 			
 			await CallUploadFolder(content);
 			RenderImage();
 						
 			// Display
-			_bottomBodyText.AppendHeaderLine($"Success!");
+			_bottomBodyText.AppendBullet($"Success!");
 			await RefreshUI();
 		}
 
-		
+		private async void OpenImageButton_OnClicked()
+		{
+			Application.OpenURL(_lastUploadAndGetFileData.Url);
+			
+			// Display
+			await RefreshUI();
+		}
 		private async void SaveImageButton_OnClicked()
 		{
 			if (await SharedHelper.HasMoralisUser() == false)
@@ -220,7 +240,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			// Prepare
 			_imageDestination.sprite = null;
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"Saving...");
+			_bottomBodyText.AppendHeaderLine($"Saving...");
 			await RefreshUI();
 			
 			byte[] content = SharedHelper.ConvertSpriteToContentBytes(_spriteToSave);
@@ -229,7 +249,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			RenderImage();
 			
 			// Display
-			_bottomBodyText.AppendHeaderLine($"Success!");
+			_bottomBodyText.AppendBullet($"Success!");
 			await RefreshUI();
 		}
 
@@ -245,14 +265,14 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			// Prepare
 			_imageDestination.sprite = null;
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendLine($"Loading...");
+			_bottomBodyText.AppendHeaderLine($"Loading...");
 			await RefreshUI();
 			
 			RenderImage();
 			
 			// Display
 			_bottomBodyText.Clear();
-			_bottomBodyText.AppendHeaderLine($"Load Image");
+			_bottomBodyText.AppendHeaderLine($"Loaded Image. Success!");
 
 			if (_spriteDestination == null)
 			{
@@ -260,7 +280,8 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			}
 			else
 			{
-				_bottomBodyText.AppendBullet($"Image loaded and displayed below this text");
+				_bottomBodyText.AppendBullet($"Sprite = {_lastUploadAndGetFileData.Sprite}");
+				_bottomBodyText.AppendBullet($"Url = {_lastUploadAndGetFileData.Url}");
 
 				// if (_lastLoadedSprite.Count >= 0 && _lastLoadedSprite[0].Path.Length > 0)
 				// {

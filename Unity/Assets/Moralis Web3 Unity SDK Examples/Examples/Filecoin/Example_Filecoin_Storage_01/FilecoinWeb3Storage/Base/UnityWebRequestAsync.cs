@@ -14,13 +14,13 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
     /// </summary>
     public class RawResponse
     {
-        public readonly byte[] Data;
-        public readonly string Text;
+        public readonly byte[] data;
+        public readonly string text;
 
         public RawResponse(DownloadHandler downloadHandler)
         {
-            Data = downloadHandler.data;
-            Text = downloadHandler.text;
+            data = downloadHandler.data;
+            text = downloadHandler.text;
         }
     }
     
