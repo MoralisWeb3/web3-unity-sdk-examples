@@ -75,8 +75,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			_exampleCanvas.Header.ChainsDropdown.IsVisible = false;
 			
 			// Panels
-			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(12);
-			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(12);
+			await _exampleCanvas.SetMaxTextLinesForTopPanelHeight(14);
 			_bottomBodyText.Clear();
 			_topBodyText.Clear();
 			_topBodyText.AppendHeaderLine($"FilecoinWeb3Storage.UploadFile(...)");
@@ -87,6 +86,7 @@ namespace MoralisUnity.Examples.Sdk.Example_Filecoin_Storage_01
 			
 			_topBodyText.AppendHeaderLine($"FilecoinWeb3Storage.GetFile(...)");
 			_topBodyText.AppendBullet($"Download a stored file");
+			_topBodyText.AppendLine();
 			
 			// Dynamically add, for the to-be-loaded Image
 			_imageDestination = SharedHelper.CreateNewImageUnderParentAsLastSibling(
